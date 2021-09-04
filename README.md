@@ -8,7 +8,7 @@
 
 ### Dependencies
 * [React](https://reactjs.org/)
-* [Python (Django)](https://docs.djangoproject.com/en/3.2/)
+* [NestJS](https://nestjs.com/)
 * [Docker](https://www.docker.com/)
 * [Kubernetes](https://kubernetes.io/)
 * [AWS](https://aws.amazon.com/)

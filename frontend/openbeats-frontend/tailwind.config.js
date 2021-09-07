@@ -8,13 +8,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        /* green: {
-           300: "red",  override tailwind's default colors like this
-         }, */
-        exampleCustomColor: "#001529", // add our own colors like this
+        green1: "#006622", // Darkest Green
+        green2: "#158236", // 
+        green3: "#359E50", // 
+        green4: "#68BC76", // Lightest Green
       },
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Roboto", ...defaultTheme.fontFamily.sans],
       },
     },
     screens: {
@@ -52,6 +52,10 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
+      green1: colors.green1,
+      green2: colors.green2,
+      green3: colors.green3,
+      green4: colors.green4,
     },
     spacing: {
       px: "1px",

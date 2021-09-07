@@ -1,0 +1,29 @@
+/* The index.css file is where we’ll import tailwind’s base styles and configurations. 
+tailwind.css will contain the compiled output of the index.css. */
+
+
+/* injects Tailwind’s base styles, which is a combination of Normalize.css and some additional base styles */
+@tailwind base;
+
+/* injects any component (small reusable styles such as buttons, form elements, etc.) classes registered 
+by plugins defined in your tailwind config file */
+@tailwind components;
+
+/* Below the component import is where you would add any of your custom component classes — things 
+that you’d want to be loaded before the default utilities so the utilities could still override them. 
+Here’s an example:
+   .btn { ... }
+   .form-input { ... }
+*/
+
+
+
+/* injects all of Tailwind’s utility classes (including the default and your utilities), which are generated based on your config file. */
+@tailwind utilities;
+
+
+/* Below the utilities import is where you would add any custom utilities you need that don’t come out of the box with Tailwind.
+Example:
+   .bg-pattern-graph-paper { ... }
+   .skew-45 { ... } 
+*/

@@ -8,13 +8,12 @@ const Register = () => {
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <img
               className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
+              src="openbeats"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create your account</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold-roboto text-gray-900">Create your account</h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{' '}
-              <a href="#" onClick={ () => history.push("/login")} className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a href="#" onClick={ () => history.push("/login")} className="font-medium text-green2 hover:text-green3">
                 sign in with exsting account
               </a>
             </p>
@@ -58,7 +57,7 @@ const Register = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium-roboto text-white bg-green2 hover:bg-green1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Create Account
                   </button>

@@ -72,8 +72,7 @@ export default function LandingNav() {
                                 <span className="sr-only">Workflow</span>
                                 <img
                                     className="h-8 w-auto sm:h-10"
-                                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                    alt=""
+                                    src="openbeats"
                                 />
                             </a>
                         </div>
@@ -163,7 +162,7 @@ export default function LandingNav() {
                             <a
                                 onClick={onClickSignUp}
                                 href="#"
-                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green1 hover:bg-green4"
                             >
                                 Sign up
                             </a>
@@ -190,8 +189,7 @@ export default function LandingNav() {
                                     <div>
                                         <img
                                             className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                            alt="Workflow"
+                                            src="openbeats"
                                         />
                                     </div>
                                     <div className="-mr-2">

@@ -7,8 +7,8 @@ const Login = () => {
         <div className=" bg-gray-50 flex flex-col mt-16 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <img
-              className="mx-auto h-12 w-auto"
-              src="frontend/openbeats-frontend/src/openbeats.png"
+              className="mx-auto h-28 w-auto" // https://tailwindcss.com/docs/height
+              src="/openbeats.png"
               alt="Open Beats Logo"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold-roboto text-gray-900">Sign in to your account</h2>

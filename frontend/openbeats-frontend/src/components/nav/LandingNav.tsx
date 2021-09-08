@@ -66,13 +66,14 @@ export default function LandingNav() {
         <div className="relative bg-gray-50">
             <Popover className="relative bg-white shadow">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+                    <div className="flex justify-between items-center md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
                             <a href="#">
                                 <span className="sr-only">Workflow</span>
                                 <img
-                                    className="h-8 w-auto sm:h-10"
-                                    src="openbeats"
+                                    className="sm:h-20 h-16 w-auto" // https://tailwindcss.com/docs/height
+                                    src="/openbeats.png"
+                                    alt="Open Beats Logo"
                                 />
                             </a>
                         </div>
@@ -188,8 +189,9 @@ export default function LandingNav() {
                                 <div className="flex items-center justify-between">
                                     <div>
                                         <img
-                                            className="h-8 w-auto"
-                                            src="openbeats"
+                                            className="sm:h-20 h-16 w-auto" // https://tailwindcss.com/docs/height
+                                            src="/openbeats.png"
+                                            alt="Open Beats Logo"
                                         />
                                     </div>
                                     <div className="-mr-2">

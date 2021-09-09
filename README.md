@@ -40,7 +40,7 @@ Contributors names and contact info
 * [Ryan Dils](ryandils@buffalo.edu)
 * [Kyle Alberry](kalberry@buffalo.edu)
 * [Jordan Bailey](bailey8@buffalo.edu)
-* [Priya Sanjay Sonawane](priyason@buffalo.edu)
+* [Priya Sonawane](priyason@buffalo.edu)
 * [Michael Focacci](mcfocacc@buffalo.edu)
 
 

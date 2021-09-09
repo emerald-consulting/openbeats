@@ -8,10 +8,10 @@
 
 ### Dependencies
 * [React](https://reactjs.org/)
-* [NestJS](https://nestjs.com/)
+* [Django](https://docs.djangoproject.com/en/3.2/)
 * [Docker](https://www.docker.com/)
-* [Kubernetes](https://kubernetes.io/)
-* [AWS](https://aws.amazon.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+
 
 ### Installing
 

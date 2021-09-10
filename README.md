@@ -8,10 +8,10 @@
 
 ### Dependencies
 * [React](https://reactjs.org/)
-* [NestJS](https://nestjs.com/)
+* [Django](https://docs.djangoproject.com/en/3.2/)
 * [Docker](https://www.docker.com/)
-* [Kubernetes](https://kubernetes.io/)
-* [AWS](https://aws.amazon.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+
 
 ### Installing
 
@@ -40,7 +40,7 @@ Contributors names and contact info
 * [Ryan Dils](ryandils@buffalo.edu)
 * [Kyle Alberry](kalberry@buffalo.edu)
 * [Jordan Bailey](bailey8@buffalo.edu)
-* [Priya Sanjay Sonawane](priyason@buffalo.edu)
+* [Priya Sonawane](priyason@buffalo.edu)
 * [Michael Focacci](mcfocacc@buffalo.edu)
 
 

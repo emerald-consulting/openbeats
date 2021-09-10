@@ -1,5 +1,3 @@
-.DS_Store
-
 # Django #
 *.log
 *.pot
@@ -116,3 +114,5 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+data/

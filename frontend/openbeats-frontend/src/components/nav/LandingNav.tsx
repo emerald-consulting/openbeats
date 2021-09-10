@@ -63,7 +63,7 @@ export default function LandingNav() {
     }
 
     return (
-        <div className="relative bg-gray-50">
+        <div className="relative bg-white">
             <Popover className="relative bg-white shadow">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center md:justify-start md:space-x-10">

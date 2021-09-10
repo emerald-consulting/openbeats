@@ -4,7 +4,7 @@ const Register = () => {
     const history = useHistory();
 
     return (
-        <div className=" bg-gray-50 flex flex-col mt-16 sm:px-6 lg:px-8">
+        <div className=" bg-white flex flex-col mt-16 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <img
               className="mx-auto h-28 w-auto" // https://tailwindcss.com/docs/height

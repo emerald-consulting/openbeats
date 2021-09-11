@@ -1,0 +1,39 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  api:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./backend
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  frontend:
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend/openbeats-frontend
+    volumes:
+      - /app/node_modules # don't want to override node_modules
+      - ./frontend/openbeats-frontend:/app # live updates
+  nginx:
+    depends_on:
+      - api
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '80:80'

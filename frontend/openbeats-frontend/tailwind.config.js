@@ -7,6 +7,10 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      backgroundImage: {
+        'profilePic': "url('./exampleProfilePic.jpg')",
+       },
+
       colors: {
         green1: "#006622", // Darkest Green
         green2: "#158236", // 

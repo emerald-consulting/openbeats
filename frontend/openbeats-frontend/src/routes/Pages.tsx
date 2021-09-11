@@ -8,6 +8,7 @@ import NotFound from '../components/notFound/NotFound';
 import Landing from '../components/landing/LandingMain';
 import Register from '../components/landing/Register';
 import Login from '../components/landing/Login';
+import Example from '../components/dashboard/Example';
 
 const Pages = () => {
 
@@ -18,6 +19,8 @@ const Pages = () => {
             <LoggedOutRoute path='/login' exact={true} component={Login} />
             <LoggedOutRoute path='/register' exact={true} component={Register} />
             <LoggedInRoute path='/dashboard' exact={true} component={Dashboard} />
+            <LoggedInRoute path='/example' exact={true} component={Example} />
+
             <Route component={NotFound} />
         </Switch>
     )

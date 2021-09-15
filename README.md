@@ -3,7 +3,9 @@
 
 ## Description
 
-**Open Beats**, is a Digital Audio Workstation (DAW) that aims to allow artists to collaborate with others on music synchronously and remotely. The project is currently beginning development for [Jesse Hartloff's CSE 442 class](https://cse442.com/) for the Fall 2021 semester at the University at Buffalo.
+**Open Beats**, is a Digital Audio Workstation (DAW) that aims to allow artists to collaborate with others on music synchronously and remotely. The project is currently beginning development for [Jesse Hartloff's CSE 442 class](https://cse442.com/) for the Fall 2021 semester at the University at Buffalo, as well as []() for the Fall 2021 semester at the University at Buffalo.
+
+This repository contains the code for a social media application that bundles with Open Beats. The goal is to allow musical artists who have produced songs on Open Beats to upload, listen and share their songs with others, as well as stream music from various streaming services. 
 
 ## Getting Started
 
@@ -16,23 +18,33 @@
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Must have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 
-### Executing program
+### Clone the repository
 
-* How to run the program
-* Step-by-step bullets
+
+* Clone the repository using SSH
 ```
-code blocks for commands
+git clone git@github.com:RyChrome/openbeats.git
 ```
 
-## Help
+* Clone the repository using HTTPS
+```
+git clone https://github.com/RyChrome/openbeats.git
+```
 
-Any advise for common problems or issues.
+### Building the project
+* Navigate to the repostiory
 ```
-command to run if program contains helper info
+cd openbeats
 ```
+
+* Build project using docker compose
+```
+docker-compose up
+```
+
+and then navigate to http://localhost/
 
 ## Authors
 
@@ -47,15 +59,13 @@ Contributors names and contact info
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+The project is broken up into 4 sprints: 
+* Sprint 1 – Week of Sep. 27th
+* Sprint 2 – Week of Oct. 18th
+* Sprint 3 – Week of Nov. 8th
+* Sprint 4 – Week of Dec. 6th
 
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+We will be doing production releases (merging develop into main) at the end of each sprint.
 
 ## Acknowledgments
 
@@ -65,3 +75,6 @@ Inspiration, code snippets, etc.
 * [dbader](https://github.com/dbader/readme-template)
 * [zenorocha](https://gist.github.com/zenorocha/4526327)
 * [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [Logic Pro](https://www.apple.com/logic-pro/)
+* [Google Docs](https://docs.google.com/)
+* [GitHub](https://www.github.com)

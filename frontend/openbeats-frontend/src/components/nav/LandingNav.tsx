@@ -43,7 +43,7 @@ export default function LandingNav() {
         history.push('/login');
     }
 
-    const onClickSignUp = () => {
+    const onClickRegister = () => {
         history.push('/register');
     }
 
@@ -62,7 +62,7 @@ export default function LandingNav() {
 
 
                 <div className="-mr-2 -my-2 md:hidden">
-                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100">
                         <span className="sr-only">Open menu</span>
                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
@@ -91,7 +91,7 @@ export default function LandingNav() {
                             Sign in
                         </a>
                         <a
-                            onClick={onClickSignUp}
+                            onClick={onClickRegister}
                             href="#"
                             className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green2 hover:bg-green1"
                         >
@@ -126,7 +126,7 @@ export default function LandingNav() {
                                     </a>
                                 </div>
                                 <div className="-mr-2">
-                                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100">
                                         <span className="sr-only">Close menu</span>
                                         <XIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>
@@ -154,13 +154,13 @@ export default function LandingNav() {
 
                                 <div>
                                     <a
-                                        onClick={onClickSignUp}
+                                        onClick={onClickLogin}
                                         className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green2 hover:bg-green1 border-green"
                                     >
                                         Sign in
                                     </a>
                                     <a
-                                        onClick={onClickSignUp}
+                                        onClick={onClickRegister}
                                         className="cursor-pointer w-full mt-5 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black hover:border-green1 border-green2 border-1"
                                     >
                                         Register

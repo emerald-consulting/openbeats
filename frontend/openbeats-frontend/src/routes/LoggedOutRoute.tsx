@@ -1,6 +1,6 @@
 import React  from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
+import LandingNav from '../components/nav/LandingNav'
 
 interface Props {
     exact?: boolean
@@ -29,6 +29,7 @@ const LoggedOutRoute = ({ component: Component, ...otherProps }: Props) => {
             <Route
                 render={otherProps => (
                     <>
+                        <LandingNav/>
                         <Component {...otherProps} />
                     </>
                 )}

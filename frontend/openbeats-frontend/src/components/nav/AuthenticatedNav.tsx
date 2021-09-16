@@ -36,8 +36,8 @@ const AuthenticatedNav = () => {
     name: string;
     onclick: () => void;
   }[] = [
-      { 'name': 'Your Profile', 'onclick': () => { } },
-      { 'name': 'Settings', 'onclick': () => { } },
+      { 'name': 'Your Profile', 'onclick': () => {history.push("/settings")} },
+      { 'name': 'Settings', 'onclick': () => {history.push("/settings")} },
       { 'name': 'Sign out', 'onclick': () => { history.push("/")} },
     ];
 

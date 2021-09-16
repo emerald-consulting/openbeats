@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import LandingNav from '../nav/LandingNav';
+import LandingNav from '../../nav/LandingNav';
 import LandingBody from './LandingBody';
-import Shell from '../Shell';
+import Shell from '../../Shell';
 import LandingFooter from './LandingFooter';
 import LandingCTA from './LandingCTA';
 import LandingAbout from './LandingAbout';
@@ -13,8 +13,6 @@ const Landing = () => {
 
     return (
         <>
-            <LandingNav
-            />
             <Shell>
                 <LandingBody />
                 <LandingAbout/>

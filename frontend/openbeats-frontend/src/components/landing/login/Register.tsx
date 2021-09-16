@@ -1,12 +1,11 @@
 import { useHistory } from "react-router";
-import LandingNav from "../nav/LandingNav";
+import LandingNav from "../../nav/LandingNav";
 
 const Register = () => {
   const history = useHistory();
 
   return (
     <>
-      <LandingNav />
       <div className=" bg-white flex flex-col mt-16 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img

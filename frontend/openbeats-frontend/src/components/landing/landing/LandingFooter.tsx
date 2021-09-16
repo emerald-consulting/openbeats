@@ -78,7 +78,7 @@ const navigation = {
 
 export default function LandingFooter() {
     return (
-        <footer className="bg-white py-4">
+        <footer className="bg-white pt-10">
             <div className="max-w-7xl mx-auto overflow-hidden ">
                 <nav className=" flex flex-wrap justify-between items-center" aria-label="Footer">
                     <div className={"flex justify-between w-44 md:w-60 lg:w-80"}>

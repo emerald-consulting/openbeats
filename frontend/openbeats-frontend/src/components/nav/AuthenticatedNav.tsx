@@ -63,11 +63,14 @@ const AuthenticatedNav = () => {
                     className="block lg:hidden h-20 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
+                    onClick={() => {}}
+                    
                   />
                   <img
                     className="hidden lg:block h-20 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
+                    onClick={() => {}}
                   />
                 </div>
                 <div className="hidden sm:ml-10 sm:flex sm:space-x-8">

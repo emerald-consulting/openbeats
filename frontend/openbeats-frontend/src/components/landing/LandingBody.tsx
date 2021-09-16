@@ -1,8 +1,7 @@
 const LandingBody = () => {
 
     return (
-        <main >
-            <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center">
+            <div className="mx-auto max-w-7xl w-full pt-8 pb-20 text-center">
                 <div className="px-4 sm:px-8">
                     <h1 className="text-4xl tracking-tight font-extrabold-roboto text-black sm:text-5xl md:text-6xl">
                         <span className="block ">Open Beats</span>{' '}
@@ -14,7 +13,7 @@ const LandingBody = () => {
                         <div className="rounded-md shadow">
                             <a
                                 href="#"
-                                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green1 hover:bg-green4 md:py-4 md:text-lg md:px-10"
+                                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green2 hover:bg-green1 md:py-4 md:text-lg md:px-10"
                             >
                                 Get started
                             </a>
@@ -30,8 +29,6 @@ const LandingBody = () => {
                     </div>
                 </div>
             </div>
-
-        </main>
     )
 };
 

@@ -27,6 +27,16 @@
 code blocks for commands
 ```
 
+### Creating the database
+* Create the initial migration for the User model
+```
+docker-compose exec api python manage.py makemigrations openbeats
+```
+* Migrate the database
+```
+docker-compose exec api python manage.py migrate
+```
+
 ## Help
 
 Any advise for common problems or issues.

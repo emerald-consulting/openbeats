@@ -25,18 +25,20 @@ SECRET_KEY = 'django-insecure-9_f9jt6c*ps+-*ym*t%2%+y-&-@u%-o5gfvss!3cecwoo7=9mj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'openbeats.apps.OpenbeatsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

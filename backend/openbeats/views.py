@@ -1,8 +1,14 @@
-from django.shortcuts import render
+from rest_framework import mixins
+from rest_framework import generics
+
+from openbeats.serializers import UserSerializer
 
 # Create your views here.
-class User(Models.model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
+class Register(
+    mixins.CreateModelMixin,
+    generics.GenericAPIView):
+
+    serializer_class = UserSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

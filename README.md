@@ -7,13 +7,20 @@
 
 ## Getting Started
 
-### Dependencies
+### Tech Stack
 * [React](https://reactjs.org/)
+    * [Typescript Tutorial ](https://www.udemy.com/course/typescript-the-complete-developers-guide/)
+    * [React Tutorial](https://reactjs.org/docs/hello-world.html)
+    * [React Youtube Tutorial](https://www.youtube.com/watch?v=I6ypD7qv3Z8)
 * [Django](https://docs.djangoproject.com/en/3.2/)
 * [Docker](https://www.docker.com/)
+    * [Docker Tutorial - Udemy - Very good](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/)
+    * [Dockerizing React App](https://mherman.org/blog/dockerizing-a-react-app/)
+    * [Dockerizing Django and Postgres](https://docs.docker.com/samples/django/)
 * [PostgreSQL](https://www.postgresql.org/)
+* [Tailwind CSS](https://tailwindcss.com/docs)
 
-
+    We won't need other libraries or languages because JS/React covers the frontend, and Python/Django covers the backend.
 ### Installing
 
 * How/where to download your program

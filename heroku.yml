@@ -1,5 +1,5 @@
 build:
   docker:
-    frontend: ~/frontend/openbeats-frontend/Dockerfile
-    api: ~/backend/Dockerfile
-    nginx: ~/nginx/Dockerfile
+    frontend: frontend/openbeats-frontend/Dockerfile
+    api: backend/Dockerfile
+    nginx: nginx/Dockerfile

@@ -115,7 +115,7 @@ export default function Example() {
                     className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green2 shadow-sm hover:bg-green1"
                   >
                     <PlusSmIcon className="-ml-1 mr-2 h- w-5" aria-hidden="true" />
-                    <span>New Job</span>
+                    <span>Upload</span>
                   </button>
                 </div>
               </div>

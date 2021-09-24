@@ -39,9 +39,9 @@ import {
 } from '@heroicons/react/outline'
 
 const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
+  name: 'Ryan Dils',
+  handle: 'rychrome',
+  email: 'ryandils@buffalo.edu',
   imageUrl:
     '/exampleProfilePic.jpg',
 }
@@ -128,7 +128,7 @@ export default function Example() {
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? 'bg-teal-50 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700'
+                          ? 'bg-teal50 border-green3 text-green1 hover:bg-teal-50 hover:text-green1'
                           : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
                         'group border-l-4 px-3 py-2 flex items-center text-sm font-medium'
                       )}
@@ -137,7 +137,7 @@ export default function Example() {
                       <item.icon
                         className={classNames(
                           item.current
-                            ? 'text-teal-500 group-hover:text-teal-500'
+                            ? 'border-green3 group-hover:border-green3'
                             : 'text-gray-400 group-hover:text-gray-500',
                           'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
                         )}
@@ -324,7 +324,7 @@ export default function Example() {
                           checked={availableToHire}
                           onChange={setAvailableToHire}
                           className={classNames(
-                            availableToHire ? 'bg-teal-500' : 'bg-gray-200',
+                            availableToHire ? 'bg-green1' : 'bg-gray-200',
                             'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 '
                           )}
                         >
@@ -350,7 +350,7 @@ export default function Example() {
                           checked={privateAccount}
                           onChange={setPrivateAccount}
                           className={classNames(
-                            privateAccount ? 'bg-teal-500' : 'bg-gray-200',
+                            privateAccount ? 'bg-green1' : 'bg-gray-200',
                             'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 '
                           )}
                         >
@@ -376,7 +376,7 @@ export default function Example() {
                           checked={allowCommenting}
                           onChange={setAllowCommenting}
                           className={classNames(
-                            allowCommenting ? 'bg-teal-500' : 'bg-gray-200',
+                            allowCommenting ? 'bg-green1' : 'bg-gray-200',
                             'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 '
                           )}
                         >
@@ -402,7 +402,7 @@ export default function Example() {
                           checked={allowMentions}
                           onChange={setAllowMentions}
                           className={classNames(
-                            allowMentions ? 'bg-teal-500' : 'bg-gray-200',
+                            allowMentions ? 'bg-green1' : 'bg-gray-200',
                             'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 '
                           )}
                         >

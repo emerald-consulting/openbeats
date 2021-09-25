@@ -1,9 +1,11 @@
 import { useHistory } from "react-router";
-
+import LandingNav from "../../nav/LandingNav";
 const Login = () => {
   const history = useHistory();
 
   return (
+
+    <>
     <div className=" bg-gray-50 flex flex-col mt-16 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
@@ -65,7 +67,7 @@ const Login = () => {
             <div>
               <button
                 onClick={() => {
-                  history.push('/dashboard')
+                  history.push('/feed')
                 }}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium-roboto text-white bg-green2 hover:bg-green1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
@@ -114,7 +116,7 @@ const Login = () => {
                 >
                   <span className="sr-only">Sign in with Spotify</span>
 
-                  <img src="/loginIcons/spotify.svg" className="w-7" alt="Spotify icon" />
+                  <img src="/loginIcons/spotify.png" className="w-7" alt="Spotify icon" />
 
 
                 </a>
@@ -124,6 +126,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   )
 };
 

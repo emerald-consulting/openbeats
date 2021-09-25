@@ -1,6 +1,6 @@
 import React  from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
+import LandingNav from '../components/nav/LandingNav'
 
 interface Props {
     exact?: boolean
@@ -15,11 +15,11 @@ const LoggedOutRoute = ({ component: Component, ...otherProps }: Props) => {
     // );
     const isAuthenticated = false; // placeholder
 
-    // TODO: Redirect to the dashboard if the user logs in
+    // TODO: Redirect to the feed if the user logs in
     // if (isAuthenticated === true) {
     //     return (
     //         <>
-    //             <Redirect to="/dashboard" />
+    //             <Redirect to="/feed" />
     //         </>
     //     );
     // }
@@ -29,6 +29,7 @@ const LoggedOutRoute = ({ component: Component, ...otherProps }: Props) => {
             <Route
                 render={otherProps => (
                     <>
+                        <LandingNav/>
                         <Component {...otherProps} />
                     </>
                 )}

@@ -16,10 +16,10 @@ export default function About() {
                 A musical artist can start a studio session and invite other members to it. From there, they can collaborate on music at the same time.
             </p>
           </div>
-          <div className="mt-12">
+          <div bg-green3>
             <img
               className="ring-black ring-opacity-5"
-              src="/openbeats-demo.png"
+              src="/open-beats-demo.png"
               alt=""
             />
           </div>

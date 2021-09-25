@@ -33,7 +33,7 @@ export default function Example() {
   };
 
   const onClickExample = () => {
-    history.push('/example');
+    history.push('/activity');
   };
   const navigation: {
     name: string;
@@ -41,7 +41,7 @@ export default function Example() {
     onclick: () => void;
   }[] = [
       { 'name': 'Feed', 'onclick': onClickFeed, 'pathname': '/feed' },
-      { 'name': 'Example', 'onclick': onClickExample, 'pathname': '/example' },
+      { 'name': 'Activity', 'onclick': onClickExample, 'pathname': '/activity' },
     ];
 
   const profile: {

@@ -24,9 +24,8 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { SearchIcon } from '@heroicons/react/solid'
+import { useState } from 'react'
+import { Disclosure, Switch } from '@headlessui/react'
 import {
   BellIcon,
   CogIcon,
@@ -35,7 +34,6 @@ import {
   MenuIcon,
   UserCircleIcon,
   ViewGridAddIcon,
-  XIcon,
 } from '@heroicons/react/outline'
 
 const user = {

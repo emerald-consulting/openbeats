@@ -15,11 +15,11 @@ const LoggedOutRoute = ({ component: Component, ...otherProps }: Props) => {
     // );
     const isAuthenticated = false; // placeholder
 
-    // TODO: Redirect to the dashboard if the user logs in
+    // TODO: Redirect to the feed if the user logs in
     // if (isAuthenticated === true) {
     //     return (
     //         <>
-    //             <Redirect to="/dashboard" />
+    //             <Redirect to="/feed" />
     //         </>
     //     );
     // }

@@ -28,8 +28,8 @@ export default function Example() {
   const history = useHistory();
   const location = useLocation();
 
-  const onClickDashboard = () => {
-    history.push('/dashboard');
+  const onClickFeed = () => {
+    history.push('/feed');
   };
 
   const onClickExample = () => {
@@ -40,7 +40,7 @@ export default function Example() {
     pathname: string,
     onclick: () => void;
   }[] = [
-      { 'name': 'Dashboard', 'onclick': onClickDashboard, 'pathname': '/dashboard' },
+      { 'name': 'Feed', 'onclick': onClickFeed, 'pathname': '/feed' },
       { 'name': 'Example', 'onclick': onClickExample, 'pathname': '/example' },
     ];
 
@@ -64,14 +64,14 @@ export default function Example() {
                     className="cursor-pointer block lg:hidden h-16 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
-                    onClick={() => history.push("/dashboard")}
+                    onClick={() => history.push("/feed")}
 
                   />
                   <img
                     className="cursor-pointer hidden lg:block h-16 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
-                    onClick={() => history.push("/dashboard")}
+                    onClick={() => history.push("/feed")}
                   />
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">

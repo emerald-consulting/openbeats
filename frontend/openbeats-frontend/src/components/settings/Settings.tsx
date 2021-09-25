@@ -46,7 +46,7 @@ const user = {
     '/exampleProfilePic.jpg',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Feed', href: '#', current: true },
   { name: 'Jobs', href: '#', current: false },
   { name: 'Applicants', href: '#', current: false },
   { name: 'Company', href: '#', current: false },

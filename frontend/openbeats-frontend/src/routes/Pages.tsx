@@ -11,6 +11,7 @@ import Login from '../components/landing/login/Login';
 import Example from '../components/dashboard/Example';
 import Settings from '../components/settings/Settings'
 import About from '../components/landing/about/About';
+import Pricing from '../components/pricing/Pricing';
 
 const Pages = () => {
 
@@ -24,7 +25,7 @@ const Pages = () => {
             <LoggedInRoute path='/feed' exact={true} component={Feed} />
             <LoggedInRoute path='/example' exact={true} component={Example} />
             <LoggedInRoute path='/settings' exact={true} component={Settings} />
-
+            <LoggedOutRoute path='/pricing' exact={true} component={Pricing} />
 
             <Route component={NotFound} />
         </Switch>

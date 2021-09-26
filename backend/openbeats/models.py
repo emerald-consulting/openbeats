@@ -1,7 +1,11 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+    pass
 
 '''
-User model comes with these fields built in:
+AbstractUser model comes with these fields built in:
 
 username (required)
 password (required)

@@ -158,4 +158,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Set equal to user model we use in openbeats/models.py
-#AUTH_USER_MODEL = _____
+AUTH_USER_MODEL = "openbeats.CustomUser"

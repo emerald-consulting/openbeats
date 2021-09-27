@@ -10,7 +10,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
         # Add custom claims here, this is just an example
-        token['fav_color'] = user.fav_color
         return token
 
 from rest_framework import serializers

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
+import { isUserLoggedIn } from '../api/auth';
 import AuthenticatedNav from "../components/nav/AuthenticatedNav";
-
+import { useQuery } from 'react-query'
 interface Props {
     exact?: boolean
     path: string
@@ -10,19 +10,28 @@ interface Props {
 }
 const LoggedInRoute = ({ component: Component, ...otherProps }: Props) => {
 
-    // TODO: get auth status
-    // const { isAuthenticated } = useSelector(
-    //     (state: RootState) => state.userState
-    // );
+    // https://stackoverflow.com/questions/67040687/react-query-doesnt-seem-to-be-caching
+    // https://tkdodo.eu/blog/react-query-and-type-script
+    const { data, isLoading } = useQuery<boolean, Error>('auth', isUserLoggedIn, {
+        retry: false,
+    })
+    
+    console.log(data);
+    
+    // Don't show anything while request is going out
+    if (isLoading) {
+        return null;
+    }
 
     // Redirect to the landing page if the user isn't logged in
-    // if (isAuthenticated === false) {
-    //     return (
-    //         <>
-    //             <Redirect to="/" />
-    //         </>
-    //     );
-    // }
+    if (data === false || data == undefined) {
+        return (
+            <>
+                <Redirect to="/" />
+            </>
+        );
+    }
+
 
     return (
         <>

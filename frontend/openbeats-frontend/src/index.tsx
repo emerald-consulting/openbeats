@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import App from './app/App';
 import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+const queryClient = new QueryClient()
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <App />
+      <ReactQueryDevtools position={"bottom-right"} />
+    </React.StrictMode>
+  </QueryClientProvider>
+  ,
   document.getElementById('root')
 );
 

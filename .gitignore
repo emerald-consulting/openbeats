@@ -121,3 +121,5 @@ GitHub.sublime-settings
 .history
 
 *backend/api/__pycache__/
+
+**/node_modules

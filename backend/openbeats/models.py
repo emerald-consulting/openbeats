@@ -2,7 +2,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    pass
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+
+CustomUser._meta.get_field('email')._unique=True
 
 '''
 AbstractUser model comes with these fields built in:

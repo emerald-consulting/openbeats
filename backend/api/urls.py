@@ -13,21 +13,36 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from openbeats.views import CustomUserCreate
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
+from openbeats.views import ObtainTokenPairWithColorView, CustomUserCreate, isLoggedIn, LogoutAndBlacklistRefreshTokenForUserView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-        # JWT paths
+
+    # Auth paths
     path('token/obtain/',
-         jwt_views.TokenObtainPairView.as_view(),
+         ObtainTokenPairWithColorView.as_view(),
          name='token_create'),
 
     path('token/refresh/',
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
+
+    path('user/create/',
+         CustomUserCreate.as_view(),
+         name='create_user'),
+
+    path('user/isLoggedIn/',
+         isLoggedIn.as_view(),
+         name='is_logged_in'),
+
+    path('blacklist/',
+         LogoutAndBlacklistRefreshTokenForUserView.as_view(),
+         name='blacklist'),
 
     # Keep on bottom
     path('', include('openbeats.urls'))

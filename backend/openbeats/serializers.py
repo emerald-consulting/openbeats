@@ -1,19 +1,34 @@
 from django.contrib.auth.hashers import make_password
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from openbeats.models import CustomUser
+from .models import CustomUser
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'first_name', 'last_name', 'username', 'password']
+        fields = ['email', 'username', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = CustomUser(
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            username=validated_data['username']
-        )
-        user.set_password(validated_data['password'])
+        password = validated_data.pop('password', None)
+        user = self.Meta.model(**validated_data)
+        if password is not None:
+            user.set_password(password)
         user.save()
         return user
+        #user = CustomUser(
+        #    email=validated_data['email'],
+        #    username=validated_data['username']
+        #)
+        #user.set_password(validated_data['password'])
+        #user.save()
+        #return user
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    @classmethod
+    def get_token(cls, user):
+        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+
+        return token

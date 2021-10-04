@@ -160,11 +160,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-<<<<<<< HEAD:backend/openbeats_backend/settings.py
 AUTH_USER_MODEL = "authentication.CustomUser"
-=======
 
 if os.getenv('ENV') == 'PROD':
     import dj_database_url
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
->>>>>>> a7855e9b5da4b605ee4e14c249f971e6b774c892:backend/api/settings.py

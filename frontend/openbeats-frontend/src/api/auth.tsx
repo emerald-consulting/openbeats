@@ -20,7 +20,7 @@ export const http = axios.create({
 
 export const isUserLoggedIn = async () => {
     const { data } = await http.get<string>("/user/isLoggedIn/");
-    return data == "User logged in";
+    return data === "User logged in";
 }
 
 

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import LandingNav from '../../nav/LandingNav';
+import React from 'react';
 import LandingBody from './LandingBody';
 import Shell from '../../Shell';
 import LandingFooter from './LandingFooter';

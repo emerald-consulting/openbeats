@@ -1,5 +1,4 @@
 import { useHistory } from "react-router";
-import LandingNav from "../../nav/LandingNav";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { http } from '../../../api/auth'
 import { useState } from "react";
@@ -16,7 +15,7 @@ const Login = () => {
   const history = useHistory();
 
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<LoginInputs>();
+  const { register, handleSubmit } = useForm<LoginInputs>();
   const [serverErrors, setServerErrors] = useState({} as serverErrors)
 
   const onSubmit: SubmitHandler<LoginInputs> = async ({ email, password }: LoginInputs) => {

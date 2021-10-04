@@ -27,3 +27,12 @@ Example:
    .bg-pattern-graph-paper { ... }
    .skew-45 { ... } 
 */
+
+@layer utilities {
+   .input-error {
+      @apply mt-1;
+      @apply text-red-600;
+      @apply text-xs;
+      @apply font-medium;
+  }
+}

@@ -1,5 +1,4 @@
 import { useHistory } from "react-router";
-import LandingNav from "../../nav/LandingNav";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { http } from '../../../api/auth'
 import { useState } from "react";

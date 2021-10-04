@@ -35,8 +35,6 @@ This repository contains the code for a social media application that bundles wi
 git clone git@github.com:RyChrome/openbeats.git
 ```
 
-## Help
-=======
 * Clone the repository using HTTPS
 ```
 git clone https://github.com/RyChrome/openbeats.git

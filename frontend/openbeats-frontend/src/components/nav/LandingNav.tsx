@@ -1,5 +1,3 @@
-
-
 import { Fragment } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
@@ -28,8 +26,6 @@ export default function LandingNav() {
             { 'name': 'Pricing', 'onclick': () => history.push("/pricing"), 'pathname': '/pricing' },
             { 'name': 'Community', 'onclick': () => { }, 'pathname': '/community' },
             { 'name': 'Support', 'onclick': () => { }, 'pathname': '/support' },
-
-
         ];
 
     const onClickLogin = () => {
@@ -69,7 +65,7 @@ export default function LandingNav() {
                             <a
                                 onClick={item.onclick}
                                 className={
-                                    item.pathname == location.pathname ? 'cursor-pointer text-base font-medium text-green1 px-5' : 'cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1'
+                                    item.pathname === location.pathname ? 'cursor-pointer text-base font-medium text-green1 px-5' : 'cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1'
                                 }
                             >
                                 {item.name}
@@ -134,7 +130,7 @@ export default function LandingNav() {
                                         <a
                                             onClick={item.onclick}
                                             className={
-                                                item.pathname == location.pathname ? 'cursor-pointer text-base font-medium text-green1 hover:text-gray-900' : 'cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900'
+                                                item.pathname === location.pathname ? 'cursor-pointer text-base font-medium text-green1 hover:text-gray-900' : 'cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900'
                                             }
                                         >
                                             {item.name}

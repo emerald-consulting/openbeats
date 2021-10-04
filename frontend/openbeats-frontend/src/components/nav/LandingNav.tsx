@@ -5,16 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { Popover, Transition } from '@headlessui/react'
 import {
-    ChartBarIcon,
-    CursorClickIcon,
-    DocumentReportIcon,
     MenuIcon,
-    RefreshIcon,
-    ShieldCheckIcon,
-    ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
-import { ChevronDownIcon } from '@heroicons/react/solid'
 
 
 

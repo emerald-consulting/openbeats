@@ -22,6 +22,7 @@ import { classNames } from '../../utils/tailwind'
 import { PlusSmIcon } from '@heroicons/react/solid'
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { http } from '../../api/auth'
 
 export default function Example() {
 
@@ -35,6 +36,22 @@ export default function Example() {
   const onClickExample = () => {
     history.push('/activity');
   };
+
+  const onSignOut = async () => {
+    try {
+      const response = await http.post('/blacklist/', {
+        "refresh_token": localStorage.getItem("refresh_token")
+      });
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      http.defaults.headers['Authorization'] = null;
+      
+      history.push("/")
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
   const navigation: {
     name: string;
     pathname: string,
@@ -50,7 +67,7 @@ export default function Example() {
   }[] = [
       { 'name': 'Your Profile', 'onclick': () => { history.push("/settings") } },
       { 'name': 'Settings', 'onclick': () => { history.push("/settings") } },
-      { 'name': 'Sign out', 'onclick': () => { history.push("/") } },
+      { 'name': 'Sign out', 'onclick': onSignOut },
     ];
   return (
     <Disclosure as="nav" className="bg-white shadow">

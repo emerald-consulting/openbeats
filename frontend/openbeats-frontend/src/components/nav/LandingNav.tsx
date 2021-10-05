@@ -1,20 +1,11 @@
-
-
 import { Fragment } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { Popover, Transition } from '@headlessui/react'
 import {
-    ChartBarIcon,
-    CursorClickIcon,
-    DocumentReportIcon,
     MenuIcon,
-    RefreshIcon,
-    ShieldCheckIcon,
-    ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
-import { ChevronDownIcon } from '@heroicons/react/solid'
 
 
 
@@ -35,8 +26,6 @@ export default function LandingNav() {
             { 'name': 'Pricing', 'onclick': () => history.push("/pricing"), 'pathname': '/pricing' },
             { 'name': 'Community', 'onclick': () => { }, 'pathname': '/community' },
             { 'name': 'Support', 'onclick': () => { }, 'pathname': '/support' },
-
-
         ];
 
     const onClickLogin = () => {
@@ -73,10 +62,10 @@ export default function LandingNav() {
                     </div>
                     {
                         navigation.map(item => (
-                            <a
+                            <a href="#"
                                 onClick={item.onclick}
                                 className={
-                                    item.pathname == location.pathname ? 'cursor-pointer text-base font-medium text-green1 px-5' : 'cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1'
+                                    item.pathname === location.pathname ? 'cursor-pointer text-base font-medium text-green1 px-5' : 'cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1'
                                 }
                             >
                                 {item.name}
@@ -138,10 +127,10 @@ export default function LandingNav() {
                             <div className="grid grid-cols-2 gap-4 pb-5">
                                 {
                                     navigation.map(item => (
-                                        <a
+                                        <a href="#"
                                             onClick={item.onclick}
                                             className={
-                                                item.pathname == location.pathname ? 'cursor-pointer text-base font-medium text-green1 hover:text-gray-900' : 'cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900'
+                                                item.pathname === location.pathname ? 'cursor-pointer text-base font-medium text-green1 hover:text-gray-900' : 'cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900'
                                             }
                                         >
                                             {item.name}
@@ -153,13 +142,13 @@ export default function LandingNav() {
                             <div className="py-6 px-5 space-y-6">
 
                                 <div>
-                                    <a
+                                    <a href="#"
                                         onClick={onClickLogin}
                                         className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green2 hover:bg-green1 border-green"
                                     >
                                         Sign in
                                     </a>
-                                    <a
+                                    <a href="#"
                                         onClick={onClickRegister}
                                         className="cursor-pointer w-full mt-5 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black hover:border-green1 border-green2 border-1"
                                     >

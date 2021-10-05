@@ -31,3 +31,13 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend/openbeats-frontend:/app # live updates
+  nginx:
+    depends_on:
+      - api
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '80:80'

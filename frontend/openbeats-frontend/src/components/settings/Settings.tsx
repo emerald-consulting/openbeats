@@ -24,18 +24,15 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { SearchIcon } from '@heroicons/react/solid'
+import { useState } from 'react'
+import { Disclosure, Switch } from '@headlessui/react'
 import {
   BellIcon,
   CogIcon,
   CreditCardIcon,
   KeyIcon,
-  MenuIcon,
   UserCircleIcon,
   ViewGridAddIcon,
-  XIcon,
 } from '@heroicons/react/outline'
 
 const user = {
@@ -45,12 +42,6 @@ const user = {
   imageUrl:
     '/exampleProfilePic.jpg',
 }
-const navigation = [
-  { name: 'Feed', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
-  { name: 'Applicants', href: '#', current: false },
-  { name: 'Company', href: '#', current: false },
-]
 const subNavigation = [
   { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
   { name: 'Account', href: '#', icon: CogIcon, current: false },
@@ -58,11 +49,6 @@ const subNavigation = [
   { name: 'Notifications', href: '#', icon: BellIcon, current: false },
   { name: 'Billing', href: '#', icon: CreditCardIcon, current: false },
   { name: 'Integrations', href: '#', icon: ViewGridAddIcon, current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
 ]
 
 function classNames(...classes:any) {
@@ -310,7 +296,7 @@ export default function Example() {
                         Ornare eu a volutpat eget vulputate. Fringilla commodo amet.
                       </p>
                     </div>
-                    <ul role="list" className="mt-2 divide-y divide-gray-200">
+                    <ul className="mt-2 divide-y divide-gray-200">
                       <Switch.Group as="li" className="py-4 flex items-center justify-between">
                         <div className="flex flex-col">
                           <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>

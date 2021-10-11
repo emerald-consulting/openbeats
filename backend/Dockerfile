@@ -5,3 +5,4 @@ WORKDIR /code
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
+CMD "gunicorn openbeats_backend.wsgi"

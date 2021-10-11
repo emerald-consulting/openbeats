@@ -19,7 +19,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-      - nginx
   frontend:
     stdin_open: true
     ports:
@@ -32,12 +31,3 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend/openbeats-frontend:/app # live updates
-  nginx:
-    restart: always
-    environment:
-      - NGINX_PORT=$PORT
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - '80:$PORT'

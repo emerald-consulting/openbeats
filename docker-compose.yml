@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=postgres
   api:
     build: 
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./backend
     volumes:
       - ./backend:/code
@@ -19,6 +19,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - nginx
   frontend:
     stdin_open: true
     ports:
@@ -32,11 +33,9 @@ services:
       - /app/node_modules # don't want to override node_modules
       - ./frontend/openbeats-frontend:/app # live updates
   nginx:
-    depends_on:
-      - api
     restart: always
     build:
       dockerfile: Dockerfile
       context: ./nginx
     ports:
-      - '80:80'
+      - '80:$PORT'

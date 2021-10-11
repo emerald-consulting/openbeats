@@ -123,5 +123,4 @@ GitHub.sublime-settings
 *backend/api/__pycache__/
 
 **/node_modules
-**/build
 .yarn

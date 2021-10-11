@@ -4,6 +4,7 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: backend/Dockerfile
+    web: nginx/Dockerfile
+    worker: backend/Dockerfile
 run:
-  web: gunicorn api.wsgi --bind 0.0.0.0:$PORT
+  worker: gunicorn api.wsgi --bind 0.0.0.0:$PORT

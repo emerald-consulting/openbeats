@@ -8,3 +8,4 @@ build:
     api: backend/Dockerfile
 run:
   api: gunicorn api.wsgi --bind 0.0.0.0:$PORT
+  web: bin/start-nginx-solo

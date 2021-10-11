@@ -5,6 +5,6 @@ setup:
 build:
   docker:
     web: nginx/Dockerfile
-    worker: backend/Dockerfile
+    api: backend/Dockerfile
 run:
-  worker: gunicorn api.wsgi --bind 0.0.0.0:$PORT
+  api: gunicorn api.wsgi --bind 0.0.0.0:$PORT

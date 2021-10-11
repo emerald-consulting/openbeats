@@ -1,0 +1,11 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: nginx/Dockerfile
+    api: backend/Dockerfile
+run:
+  web: bin/start-nginx
+  api: gunicorn api.wsgi --bind 0.0.0.0:$PORT

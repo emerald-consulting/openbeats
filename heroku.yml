@@ -7,5 +7,4 @@ build:
     web: nginx/Dockerfile
     api: backend/Dockerfile
 run:
-  web: bin/start-nginx
   api: gunicorn api.wsgi --bind 0.0.0.0:$PORT

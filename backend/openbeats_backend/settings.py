@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-81ii2^fiqv@q%73w$79+sy4k%*8r*(wl_+bbb-q@@)!havfaha
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api', '0.0.0.0', 'openbeats.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -64,7 +64,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
 CORS_ALLOW_ALL_ORIGINS = True 
@@ -91,7 +94,7 @@ ROOT_URLCONF = 'openbeats_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -166,3 +169,6 @@ if os.getenv('ENV') == 'PROD':
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_USER_MODEL = "authentication.CustomUser"
+
+import django_heroku
+django_heroku.settings(locals())

@@ -4,7 +4,6 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: nginx/Dockerfile
-    api: backend/Dockerfile
+    web: backend/Dockerfile
 run:
-  api: "gunicorn openbeats_backend.wsgi:application --bind 0.0.0.0:$PORT"
+  web: "gunicorn openbeats_backend.wsgi:application --bind 0.0.0.0:$PORT"

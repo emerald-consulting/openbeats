@@ -24,8 +24,8 @@ services:
       - db
     command: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py","runserver", "0.0.0.0:8000"]
 
-  web:
-    container_name: web
+  frontend:
+    container_name: frontend 
     stdin_open: true
     ports:
       - "3000:3000"

@@ -50,8 +50,7 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'corsheaders',
-
-
+    'openbeats'
 ]
 
 MIDDLEWARE = [

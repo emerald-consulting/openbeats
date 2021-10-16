@@ -4,25 +4,23 @@ services:
   db:
     container_name: db
     image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+     volumes:
+       - ./data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-
   api:
     container_name: api
     build: 
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./backend
-    volumes:
-      - ./backend:/code
+     volumes:
+       - ./backend:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
-
   frontend:
     container_name: frontend 
     stdin_open: true
@@ -31,12 +29,11 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./frontend
     volumes:
-      - /app/node_modules # don't want to override node_modules
-      - ./frontend:/app # live updates
-
+       - /app/node_modules # don't want to override node_modules
+       - ./frontend:/app # live updates
   nginx:
     container_name: nginx
     depends_on:

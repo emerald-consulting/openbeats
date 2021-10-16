@@ -2,14 +2,17 @@ version: "3.9"
    
 services:
   db:
-    image: postgres
+    container_name: db
+    image: postgres:13
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
   api:
+    container_name: api
     build: 
       dockerfile: Dockerfile.dev
       context: ./backend
@@ -21,7 +24,8 @@ services:
       - db
     command: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py","runserver", "0.0.0.0:8000"]
 
-  frontend:
+  web:
+    container_name: web
     stdin_open: true
     ports:
       - "3000:3000"
@@ -33,6 +37,7 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend/openbeats-frontend:/app # live updates
+
   nginx:
     depends_on:
       - api

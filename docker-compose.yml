@@ -33,10 +33,10 @@ services:
       - CHOKIDAR_USEPOLLING=true
     build:
       dockerfile: Dockerfile.dev
-      context: ./frontend/openbeats-frontend
+      context: ./frontend
     volumes:
       - /app/node_modules # don't want to override node_modules
-      - ./frontend/openbeats-frontend:/app # live updates
+      - ./frontend:/app # live updates
 
   nginx:
     depends_on:

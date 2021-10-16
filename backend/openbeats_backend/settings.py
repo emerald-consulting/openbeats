@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'corsheaders',
+    'spotify.apps.SpotifyConfig'
 
 
 ]

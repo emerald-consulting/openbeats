@@ -4,8 +4,8 @@ services:
   db:
     container_name: db
     image: postgres
-     volumes:
-       - ./data/db:/var/lib/postgresql/data
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -13,10 +13,10 @@ services:
   api:
     container_name: api
     build: 
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./backend
-     volumes:
-       - ./backend:/code
+    volumes:
+      - ./backend:/code
     ports:
       - "8000:8000"
     depends_on:
@@ -32,8 +32,8 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
     volumes:
-       - /app/node_modules # don't want to override node_modules
-       - ./frontend:/app # live updates
+      - /app/node_modules # don't want to override node_modules
+      - ./frontend:/app # live updates
   nginx:
     container_name: nginx
     depends_on:

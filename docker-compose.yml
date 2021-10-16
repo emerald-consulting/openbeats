@@ -3,7 +3,7 @@ version: "3.9"
 services:
   db:
     container_name: db
-    image: postgres:13
+    image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
@@ -22,7 +22,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    command: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py","runserver", "0.0.0.0:8000"]
 
   frontend:
     container_name: frontend 

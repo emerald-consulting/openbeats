@@ -39,6 +39,7 @@ services:
       - ./frontend:/app # live updates
 
   nginx:
+    container_name: nginx
     depends_on:
       - api
       - frontend

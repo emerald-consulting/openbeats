@@ -18,7 +18,7 @@ function login_to_spotify() {
   fetch("http://0.0.0.0:8000/spotify/get-auth-url")
   .then((response) => response.json())
   .then((data) => {
-    window.location.replace(data.url);
+    window.open(data.url);
   });
 }
 

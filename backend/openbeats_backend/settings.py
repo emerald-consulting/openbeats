@@ -50,12 +50,9 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'corsheaders',
-<<<<<<< HEAD
     'spotify.apps.SpotifyConfig'
 
 
-=======
->>>>>>> main
 ]
 
 MIDDLEWARE = [
@@ -159,7 +156,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = "authentication.CustomUser"
-<<<<<<< HEAD
 
 DEBUG = True
 TEMPLATE_DEBUG = True
@@ -174,5 +170,3 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-=======
->>>>>>> main

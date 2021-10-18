@@ -9,9 +9,6 @@ psycopg2-binary==2.9.1
 PyJWT==2.3.0
 pytz==2021.1
 sqlparse==0.4.2
-<<<<<<< HEAD
 django-cors-headers
 djangorestframework-simplejwt
 requests
-=======
->>>>>>> main

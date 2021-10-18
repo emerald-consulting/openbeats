@@ -22,9 +22,6 @@ from authentication.views import Health
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('authentication.urls')),
-<<<<<<< HEAD
-    path('spotify/', include('spotify.urls'))
-=======
+    path('spotify/', include('spotify.urls')),
     path('health', Health.as_view(), name='health')
->>>>>>> main
 ]

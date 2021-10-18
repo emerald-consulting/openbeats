@@ -74,4 +74,4 @@ jobs:
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
       with:
-        args: upgrade --install openbeats-api ./helm --namespace openbeats --set containers.openbeats.image.tag=latest --wait
+        args: upgrade --install openbeats ./helm --namespace openbeats --set containers.openbeats.image.tag=latest --wait

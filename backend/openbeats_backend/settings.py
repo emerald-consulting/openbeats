@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-81ii2^fiqv@q%73w$79+sy4k%*8r*(wl_+bbb-q@@)!havfaha
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api', '0.0.0.0', 'openbeats.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['api', '0.0.0.0', 'openbeats.herokuapp.com', '127.0.0.1', 'localhost']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -72,7 +72,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -86,12 +86,34 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
+X_FRAME_OPTIONS = 'ALLOW-FROM https://localhost/'
+
 ROOT_URLCONF = 'openbeats_backend.urls'
+# DJOSER ={
+#     "USER_ID_FIELD": "username",
+#     "LOGIN_FIELD": "email",
+#     "SEND_ACTIVATION_EMAIL": True,
+#     "ACTIVATION_URL": "activate/{uid}/{token}",
+#     "PASSWORD_RESET_CONFIRM_URL": "reset_password/{uid}/{token}", # the reset link 
+#     'SERIALIZERS': {
+#         'token_create': 'authentication.serializers.CustomUserSerializer',
+#     },
+# }
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'priyasanjay0416@gmail.com'
+EMAIL_HOST_PASSWORD = 'ebxjypjnplnifhpy' 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'default from email'
+
+# SITE_NAME = "OpenBeats"
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['openbeats_backend/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,77 +1,104 @@
-name: CI/CD
+# name: CI/CD
+
+# on:
+#   push:
+#     branches:
+#     - main
+
+# jobs:
+
+#   deploy_presentation:
+#     runs-on: ubuntu-latest
+#     name: Build & Push Presentation Static Assets to S3
+#     defaults:
+#       run:
+#         working-directory: ./
+#     steps:
+#     - uses: actions/checkout@v1
+#     - name: Configure AWS credentials
+#       # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-east-1
+#     - name: Build Static Assets
+#       run: make build-static-assets
+#     - name: Push Static Assets
+#       run: make push-static-assets
+
+#   deploy_web:
+#     runs-on: ubuntu-latest
+#     name: Build & Push Web Static Assets to S3
+#     defaults:
+#       run:
+#         working-directory: ./frontend
+#     steps:
+#     - uses: actions/checkout@v1
+#     - name: Configure AWS credentials
+#       # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-east-1
+#     - name: Build Image
+#       run: make build
+#     - name: Build Static Assets
+#       run: make build-static-assets
+#     - name: Push Static Assets
+#       run: make push-static-assets
+
+#   deploy_api:
+#     runs-on: ubuntu-latest
+#     name: Build, Push and Deploy Helm Chart
+#     defaults:
+#       run:
+#         working-directory: ./backend
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#     - name: Configure AWS credentials
+#       # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         aws-region: us-east-1
+#     - name: Build API
+#       run: make build
+#     - name: Push Docker Image
+#       run: make push
+#     - name: Helm Deploy
+#       uses: ./.github/actions/helm
+#       env:
+#         KUBECONFIG: ${{ secrets.KUBECONFIG }}
+#       with:
+#         args: upgrade --install openbeats-api . --namespace openbeats --set containers.openbeats.image.tag=${{ github.sha }} --wait
+
+name: Deploy to production
 
 on:
   push:
-    branches:
-    - main
+    branches : [ master ]
 
 jobs:
 
-  deploy_presentation:
+  build:
+    name: Build image
     runs-on: ubuntu-latest
-    name: Build & Push Presentation Static Assets to S3
-    defaults:
-      run:
-        working-directory: ./
-    steps:
-    - uses: actions/checkout@v1
-    - name: Configure AWS credentials
-      # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-    - name: Build Static Assets
-      run: make build-static-assets
-    - name: Push Static Assets
-      run: make push-static-assets
 
-  deploy_web:
-    runs-on: ubuntu-latest
-    name: Build & Push Web Static Assets to S3
-    defaults:
-      run:
-        working-directory: ./frontend
     steps:
-    - uses: actions/checkout@v1
-    - name: Configure AWS credentials
-      # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-    - name: Build Image
-      run: make build
-    - name: Build Static Assets
-      run: make build-static-assets
-    - name: Push Static Assets
-      run: make push-static-assets
 
-  deploy_api:
-    runs-on: ubuntu-latest
-    name: Build, Push and Deploy Helm Chart
-    defaults:
-      run:
-        working-directory: ./backend
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Configure AWS credentials
-      # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-    - name: Build API
-      run: make build
-    - name: Push Docker Image
-      run: make push
-    - name: Helm Deploy
-      uses: ./.github/actions/helm
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
       env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      with:
-        args: upgrade --install openbeats-api . --namespace openbeats --set containers.openbeats.image.tag=${{ github.sha }} --wait
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: my-ecr-repo
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

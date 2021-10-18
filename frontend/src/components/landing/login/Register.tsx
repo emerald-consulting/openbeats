@@ -14,6 +14,14 @@ export interface serverErrors {
   username: string[]
 }
 
+function login_to_spotify() {
+  fetch("http://0.0.0.0:8000/spotify/get-auth-url")
+  .then((response) => response.json())
+  .then((data) => {
+    window.location.replace(data.url);
+  });
+}
+
 /*
   Client side error validation meesages stored in "errors"
   Server side validation stored in "serverErrors"
@@ -183,6 +191,7 @@ const Register = () => {
                   <a
                     href="http://#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                    onClick={login_to_spotify}
                   >
                     <span className="sr-only">Sign in with Spotify</span>
 

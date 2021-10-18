@@ -83,7 +83,6 @@ on:
     branches : [ master ]
 
 jobs:
-
   build:
     name: Build image
     runs-on: ubuntu-latest

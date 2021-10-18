@@ -39,5 +39,5 @@ pull-cache: aws-login
 
 .PHONY: push
 push: aws-login
-	docker tag $(CONTAINER_NAME:$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
+	docker tag $(CONTAINER_NAME):$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
 	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)

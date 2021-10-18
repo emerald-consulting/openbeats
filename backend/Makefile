@@ -2,10 +2,11 @@
 # Globals
 # ============================================================================
 
-ECR_REPOSITORY:=318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeats-api
+ECR_REPOSITORY:=318250923417.dkr.ecr.us-east-1.amazonaws.com
 CONTAINER_NAME:=openbeats-api
 
-VERSION := $(shell git log -1 --pretty=format:"%H")
+# VERSION := $(shell git log -1 --pretty=format:"%H")
+VERSION := latest
 .DEFAULT_GOAL := build
 
 # ============================================================================
@@ -39,5 +40,5 @@ pull-cache: aws-login
 .PHONY: push
 push:
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
-	docker tag $(CONTAINER_NAME):$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
-	docker push $(ECR_REPOSITORY):$(VERSION)
+	docker tag openbeats-api:latest 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeat-api:latest
+	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)

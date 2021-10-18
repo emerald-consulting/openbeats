@@ -162,7 +162,7 @@ if os.getenv('ENV') == 'PROD':
 
 AUTH_USER_MODEL = "authentication.CustomUser"
 
-X_FRAME_OPTIONS = 'ALLOW-FROM *'
+X_FRAME_OPTIONS = 'ALLOWALL'
 
 ROOT_URLCONF = 'openbeats_backend.urls'
 # DJOSER ={

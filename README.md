@@ -1,13 +1,16 @@
-![openbeats_notype-45](https://user-images.githubusercontent.com/31867784/132925211-2aabc8a7-a06d-4354-99c0-56886400227c.png)
+![openbeats_notype-45](https://user-images.githubusercontent.com/31867784/132925211-2aabc8a7-a06d-4354-99c0-56886400227c.png =250x)
 
 
 ## Description
 
-**Open Beats**, is a Digital Audio Workstation (DAW) that aims to allow artists to collaborate with others on music synchronously and remotely. The project is currently beginning development for [Jesse Hartloff's CSE 442 class](https://cse442.com/) for the Fall 2021 semester at the University at Buffalo, as well as []() for the Fall 2021 semester at the University at Buffalo.
+**Open Beats**, is a Digital Audio Workstation (DAW) that aims to allow artists to collaborate with others on music synchronously and remotely. 
 
-This repository contains the code for a social media application that bundles with Open Beats. The goal is to allow musical artists who have produced songs on Open Beats to upload, listen and share their songs with others, as well as stream music from various streaming services. 
+The project is currently beginning development for [Jesse Hartloff's CSE 442 class](https://cse442.com/) for the Fall 2021 semester at the University at Buffalo, as well as Alan Hunt's CSE 611 Masters Project Development class for the Fall 2021 semester at the University at Buffalo.
 
-## Getting Started
+**This repository** contains the code for a social media application that bundles with the [Digital Audio Workstation, Open Beats](https://github.com/emerald-consulting/openbeats-daw). The goal is to allow musical artists who have produced songs on Open Beats to upload, listen and share their songs with others, as well as stream music from various streaming services. 
+
+## Prerequisites
+
 
 ### Tech Stack
 * [React](https://reactjs.org/)
@@ -16,52 +19,31 @@ This repository contains the code for a social media application that bundles wi
     * [React Youtube Tutorial](https://www.youtube.com/watch?v=I6ypD7qv3Z8)
 * [Django](https://docs.djangoproject.com/en/3.2/)
 * [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
     * [Docker Tutorial - Udemy - Very good](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/)
     * [Dockerizing React App](https://mherman.org/blog/dockerizing-a-react-app/)
     * [Dockerizing Django and Postgres](https://docs.docker.com/samples/django/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Tailwind CSS](https://tailwindcss.com/docs)
 
-    We won't need other libraries or languages because JS/React covers the frontend, and Python/Django covers the backend.
-### Installing
-
-* Must have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
-
-### Clone the repository
 
 
-* Clone the repository using SSH
-```
-git clone git@github.com:RyChrome/openbeats.git
-```
 
-* Clone the repository using HTTPS
-```
-git clone https://github.com/RyChrome/openbeats.git
-```
+# Steps for installation
 
-### Building the project
-* Navigate to the repostiory
-```
-cd openbeats
-```
+## Please make sure all prerequisites in the Tech Stack are met before trying to build the repository locally.
 
-* Build project using docker compose
-```
-docker-compose up
-```
+### `git clone git@github.com:emerald-consulting/openbeats.git`
 
-### Creating the database
-* Create the initial migration for the User model
-```
-docker-compose exec api python manage.py makemigrations openbeats
-```
-* Migrate the database
-```
-docker-compose exec api python manage.py migrate
-```
+### `cd openbeats`
 
-and then navigate to http://localhost/
+### `docker-compose exec api python3 manage.py makemigrations openbeats && python3 manage.py migrate`
+
+### `docker-compose up`
+
+### navigate to `localhost:3000` for frontend
+
+### navigate to `localhost:8000` for backend
 
 ## Authors
 
@@ -77,8 +59,8 @@ Contributors names and contact info
 ## Version History
 
 The project is broken up into 4 sprints: 
-* Sprint 1 – Week of Sep. 27th
-* Sprint 2 – Week of Oct. 18th
+* Sprint 1 – Week of Sep. 27th ✔️
+* Sprint 2 – Week of Oct. 18th 
 * Sprint 3 – Week of Nov. 8th
 * Sprint 4 – Week of Dec. 6th
 
@@ -88,10 +70,6 @@ We will be doing production releases (merging develop into main) at the end of e
 
 Inspiration, code snippets, etc.
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
 * [Logic Pro](https://www.apple.com/logic-pro/)
 * [Google Docs](https://docs.google.com/)
 * [GitHub](https://www.github.com)

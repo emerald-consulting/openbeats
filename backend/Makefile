@@ -15,7 +15,7 @@ VERSION := latest
 
 .PHONY: build
 build:
-	docker build $(CACHE_FROM) -t $(CONTAINER_NAME):$(VERSION) -t $(CONTAINER_NAME):$(VERSION) .
+	docker build -t $(CONTAINER_NAME):$(VERSION) .
 
 .PHONY: run
 run:
@@ -40,5 +40,9 @@ pull-cache: aws-login
 .PHONY: push
 push:
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
-	docker tag openbeats-api:latest 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeat-api:latest
+	make tag
 	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
+
+.PHONY: tag
+tag:
+	docker tag openbeats-api:latest 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeat-api:latest

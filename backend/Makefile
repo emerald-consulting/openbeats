@@ -14,7 +14,7 @@ VERSION := $(shell git log -1 --pretty=format:"%H")
 
 .PHONY: build
 build:
-	docker build $(CACHE_FROM) -t $(CONTAINER_NAME):$(VERSION) -t $(CONTAINER_NAME):latest .
+	docker build $(CACHE_FROM) -t $(CONTAINER_NAME):$(VERSION) -t $(CONTAINER_NAME):$(VERSION) .
 
 .PHONY: run
 run:
@@ -39,5 +39,5 @@ pull-cache: aws-login
 .PHONY: push
 push:
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
-	docker tag $(CONTAINER_NAME):latest $(ECR_REPOSITORY)/$(CONTAINER_NAME):latest
-	docker push $(ECR_REPOSITORY):latest
+	docker tag $(CONTAINER_NAME):$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
+	docker push $(ECR_REPOSITORY):$(VERSION)

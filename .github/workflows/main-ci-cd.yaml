@@ -3,7 +3,7 @@ name: CI/CD
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
 
@@ -32,7 +32,7 @@ jobs:
     name: Build & Push Web Static Assets to S3
     defaults:
       run:
-        working-directory: ./example/bflobox
+        working-directory: ./frontend
     steps:
     - uses: actions/checkout@v1
     - name: Configure AWS credentials
@@ -54,7 +54,7 @@ jobs:
     name: Build, Push and Deploy Helm Chart
     defaults:
       run:
-        working-directory: ./example/api
+        working-directory: ./backend
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -74,4 +74,4 @@ jobs:
       env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
       with:
-        args: upgrade --install bflobox-api ./example/helm --namespace bflobox --set containers.bfloBoxApi.image.tag=${{ github.sha }} --wait
+        args: upgrade --install openbeats-api . --namespace openbeats --set containers.openbeats.image.tag=${{ github.sha }} --wait

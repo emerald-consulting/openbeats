@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseURL = process.env.NODE_ENV === 'production'? 'https://api.openbeats716.com/api' : "http://localhost:8000/api"
+
+const baseURL = process.env.NODE_ENV === 'production' ? 'https://api.openbeats716.com/api' : "http://localhost:8000/api";
 
 /* Each time Axios gets a token, it stores the access_token in local storage. 
 We initiate the creation of the Axios instance by getting that token. 
@@ -21,7 +22,7 @@ export const http = axios.create({
 export const isUserLoggedIn = async () => {
     const { data } = await http.get<string>("/user/isLoggedIn/");
     return data === "User logged in";
-}
+};
 
 
 http.interceptors.response.use(

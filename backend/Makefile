@@ -3,7 +3,7 @@
 # ============================================================================
 
 ECR_REPOSITORY:=318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeats-api
-CONTAINER_NAME:=openbeats
+CONTAINER_NAME:=api
 
 VERSION := $(shell git log -1 --pretty=format:"%H")
 .DEFAULT_GOAL := build
@@ -27,7 +27,7 @@ run:
 
 .PHONY: aws-login
 aws-login:
-	@eval $(shell aws ecr get-login --no-include-email --region us-east-1)
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
 
 .PHONY: pull-cache
 pull-cache: aws-login
@@ -38,6 +38,6 @@ pull-cache: aws-login
 
 .PHONY: push
 push:
-	eval $(shell aws ecr get-login-password --region us-east-1 --profile RyChrome | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeats-api)
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
 	docker tag $(CONTAINER_NAME):$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
 	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)

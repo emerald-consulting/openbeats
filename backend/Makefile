@@ -28,7 +28,7 @@ run:
 
 .PHONY: aws-login
 aws-login:
-	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)
 
 .PHONY: pull-cache
 pull-cache: aws-login
@@ -38,7 +38,6 @@ pull-cache: aws-login
 	$(eval CACHE_FROM := --cache-from $(CACHE_URL))
 
 .PHONY: push
-push:
-	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
-	docker tag openbeats-api:latest 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeat-api:latest
+push: aws-login
+	docker tag $(CONTAINER_NAME:$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
 	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)

@@ -38,6 +38,6 @@ pull-cache: aws-login
 
 .PHONY: push
 push:
-	eval $(shell aws ecr get-login --no-include-email --region us-east-1)
+	eval $(shell aws ecr get-login-password --region us-east-1 --profile RyChrome | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeats-api)
 	docker tag $(CONTAINER_NAME):$(VERSION) $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
 	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)

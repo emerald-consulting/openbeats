@@ -29,7 +29,6 @@ class Health(APIView):
     def get(self, request):
         return Response(data="healthy", status=HTTP_200_OK)
 
-
 class ObtainTokenPairWithColorView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer

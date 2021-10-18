@@ -1,6 +1,7 @@
 # djsr/authentication/serializers.py
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from authentication.models import CustomUser
+from rest_framework import serializers
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -29,3 +30,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+# class CustomTokenSerializer(serializers.Serializer):
+#     token = serializers.CharField()

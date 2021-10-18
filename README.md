@@ -29,21 +29,23 @@ The project is currently beginning development for [Jesse Hartloff's CSE 442 cla
 
 
 
-# Steps for installation
+# Steps for setting up the environment
 
-## Please make sure all prerequisites in the Tech Stack are met before trying to build the repository locally.
+## First time
 
-### `git clone git@github.com:emerald-consulting/openbeats.git`
+1. Go to your terminal or git bash and run the command ```git clone git@github.com:emerald-consulting/openbeats.git```
 
-### `cd openbeats`
+2. Navigate to the openbeats root folder using ```cd openbeats```
 
-### `docker-compose exec api python3 manage.py makemigrations openbeats && python3 manage.py migrate`
+3. Run the ```docker-compose up --build``` command
 
-### `docker-compose up`
+4. In a separate terminal window, run the command ```docker exec -it api python manage.py migrate``` to make database migrations
 
-### navigate to `localhost:3000` for frontend
+## 
 
-### navigate to `localhost:8000` for backend
+1. Navigate to your terminal or git bash script and navigate to the openbeats directory
+
+2. Run the ```docker-compose up --build``` command
 
 ## Authors
 

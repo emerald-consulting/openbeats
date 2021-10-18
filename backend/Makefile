@@ -40,9 +40,5 @@ pull-cache: aws-login
 .PHONY: push
 push:
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 318250923417.dkr.ecr.us-east-1.amazonaws.com
-	make tag
-	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)
-
-.PHONY: tag
-tag:
 	docker tag openbeats-api:latest 318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeat-api:latest
+	docker push $(ECR_REPOSITORY)/$(CONTAINER_NAME):$(VERSION)

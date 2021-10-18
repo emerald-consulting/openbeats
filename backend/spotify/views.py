@@ -6,8 +6,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from requests import Request, post
+from .models import SpotifyToken
 
-class AuthURL(APIView):
+class SpotifyAuthURL(APIView):
 
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
@@ -28,21 +29,23 @@ class AuthURL(APIView):
         return Response({'url': url}, status=status.HTTP_200_OK)
         #redirect(url)
 
-# 3. Once user is done authorizing us, will redirect to here
+
+    # 3. Once user is done authorizing us, will redirect to here
 def spotify_callback(request, format=None):
     code = request.GET.get('code')
     error = request.GET.get('error')
+
+    print(code)
 
     # 4. Send request for tokens
     response = post('https://accounts.spotify.com/api/token', data={
         'grant_type': 'authorization_code',
         'code': code,
         'redirect_uri': REDIRECT_URI,
-        'client_id': CLIENT_ID,
-        'client_secret': CLIENT_SECRET
+        'client_id': CLIENT_ID.encode('utf-8'),
+        'client_secret': CLIENT_SECRET.encode('utf-8')
     }).json()
 
-    '''
     # 5. Store tokens
     access_token = response.get('access_token')
     refresh_token = response.get('refresh_token')
@@ -60,26 +63,39 @@ def spotify_callback(request, format=None):
         token_type=token_type,
         expires_in=expires_in
     )
-    '''
-    # 5. Retrieve user's email address and create or sign in
-    access_token = response.get('access_token')
-
-    headers = {
-        'Content-type': 'application/json',
-        'Authorization': 'Bearer ' + access_token
-    }
-    base_url = 'https://api.spotify.com/v1/me'
-    post(
-        base_url, 
-        data={
-            'authorization_code': access_token
-        }
-    )
-
-    email_res = requests.get(base_url, {}, headers=headers).json()
-
-    user_email = email_res.get('email')
-    return Response({'email': user_email}, status=status.HTTP_200_OK)
 
     # 6. Redirect back to the app
-    #return redirect("authentication:create_user")
+    return redirect("spotify:get-email")
+
+class SpotifyEmailURL(APIView):
+
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
+
+    def get(self, request, format=None):
+        session_id = self.request.session.session_key
+        tokens = SpotifyToken.objects.filter(session_id=session_id)
+
+        if tokens.exists():
+            tokens = tokens[0]
+        else:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+        
+        access_token = tokens.access_token
+
+        spotify_email_url = 'https://api.spotify.com/v1/me'
+
+        headers = {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + access_token
+        }
+
+        post(
+            spotify_email_url, 
+            data={'authorization_code': access_token}
+        )
+
+        email_res = requests.get(spotify_email_url, {}, headers=headers).json()
+
+        user_email = email_res.get('email')
+        return Response({'email': user_email}, status=status.HTTP_200_OK)

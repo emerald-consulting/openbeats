@@ -6,6 +6,20 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import MyTokenObtainPairSerializer, CustomUserSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+from rest_framework.permissions import AllowAny
+
+class Health(APIView):
+    """
+    View to return API connectivity/healthiness.
+    """
+
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response(data="healthy", status=HTTP_200_OK)
 
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):

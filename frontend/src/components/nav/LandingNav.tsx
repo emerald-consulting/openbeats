@@ -39,7 +39,7 @@ export default function LandingNav() {
     return (
         <Popover className="relative bg-white">
             <div className="flex items-center px-3 justify-between py-3 ">
-                <a href="#" className="self-center">
+                <a href="http://#" className="self-center">
                     <img
                         className="h-16 w-auto"
                         src="openbeats.png"
@@ -62,7 +62,7 @@ export default function LandingNav() {
                     </div>
                     {
                         navigation.map(item => (
-                            <a href="#"
+                            <a href="http://#"
                                 onClick={item.onclick}
                                 className={
                                     item.pathname === location.pathname ? 'cursor-pointer text-base font-medium text-green1 px-5' : 'cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1'
@@ -76,12 +76,12 @@ export default function LandingNav() {
 
 
                     <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                        <a onClick={onClickLogin} href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-green1">
+                        <a onClick={onClickLogin} href="#http://" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-green1">
                             Sign in
                         </a>
                         <a
                             onClick={onClickRegister}
-                            href="#"
+                            href="http://#"
                             className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green2 hover:bg-green1"
                         >
                             Register
@@ -104,7 +104,7 @@ export default function LandingNav() {
                         <div className="pt-5 pb-6 px-5">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <a href="#" className="flex">
+                                    <a href="http://#" className="flex">
                                         <img
                                             className="h-16 w-auto"
                                             src="openbeats.png"
@@ -127,7 +127,7 @@ export default function LandingNav() {
                             <div className="grid grid-cols-2 gap-4 pb-5">
                                 {
                                     navigation.map(item => (
-                                        <a href="#"
+                                        <a href="http://#"
                                             onClick={item.onclick}
                                             className={
                                                 item.pathname === location.pathname ? 'cursor-pointer text-base font-medium text-green1 hover:text-gray-900' : 'cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900'
@@ -142,13 +142,13 @@ export default function LandingNav() {
                             <div className="py-6 px-5 space-y-6">
 
                                 <div>
-                                    <a href="#"
+                                    <a href="http://#"
                                         onClick={onClickLogin}
                                         className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green2 hover:bg-green1 border-green"
                                     >
                                         Sign in
                                     </a>
-                                    <a href="#"
+                                    <a href="http://#"
                                         onClick={onClickRegister}
                                         className="cursor-pointer w-full mt-5 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black hover:border-green1 border-green2 border-1"
                                     >

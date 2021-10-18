@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-81ii2^fiqv@q%73w$79+sy4k%*8r*(wl_+bbb-q@@)!havfaha
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api', '0.0.0.0', 'openbeats.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -50,9 +50,12 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'corsheaders',
+<<<<<<< HEAD
     'spotify.apps.SpotifyConfig'
 
 
+=======
+>>>>>>> main
 ]
 
 MIDDLEWARE = [
@@ -69,8 +72,6 @@ MIDDLEWARE = [
 
 # https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
 CORS_ALLOW_ALL_ORIGINS = True 
-
-
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -129,6 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -156,6 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = "authentication.CustomUser"
+<<<<<<< HEAD
 
 DEBUG = True
 TEMPLATE_DEBUG = True
@@ -170,3 +174,5 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+=======
+>>>>>>> main

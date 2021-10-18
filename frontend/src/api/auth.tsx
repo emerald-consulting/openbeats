@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'http://127.0.0.1:8000/api/'
+const baseURL = process.env.NODE_ENV === 'production'? 'https://api.openbeats716.com' : "http://localhost:8000/api"
 
 /* Each time Axios gets a token, it stores the access_token in local storage. 
 We initiate the creation of the Axios instance by getting that token. 

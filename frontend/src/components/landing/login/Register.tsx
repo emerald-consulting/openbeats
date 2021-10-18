@@ -57,7 +57,7 @@ const Register = () => {
           <h2 className="mt-6 text-center text-3xl font-extrabold-roboto text-gray-900">Create your account</h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <a href="#" onClick={() => history.push("/login")} className="font-medium text-green2 hover:text-green3">
+            <a href="http://#" onClick={() => history.push("/login")} className="font-medium text-green2 hover:text-green3">
               sign in with exsting account
             </a>
           </p>
@@ -159,7 +159,7 @@ const Register = () => {
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a
-                    href="#"
+                    href="http://#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Google</span>
@@ -170,7 +170,7 @@ const Register = () => {
 
                 <div>
                   <a
-                    href="#"
+                    href="http://#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Apple Music</span>
@@ -181,7 +181,7 @@ const Register = () => {
 
                 <div>
                   <a
-                    href="#"
+                    href="http://#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Spotify</span>

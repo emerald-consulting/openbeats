@@ -94,7 +94,7 @@ export default function Example() {
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
                   {
                     navigation.map(item => (
-                      <a href="#"
+                      <a href="http://#"
                         onClick={item.onclick}
                         className={
                           item.pathname === location.pathname ? 'cursor-pointer border-green2 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium' : 'cursor-pointer border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
@@ -182,7 +182,7 @@ export default function Example() {
 
                           <Menu.Item>
                             {({ active }) => (
-                              <a href="#"
+                              <a href="http://#"
                                 onClick={item.onclick}
                                 className={classNames(active ? 'cursor-pointer bg-gray-100' : '', 'cursor-pointer block px-4 py-2 text-sm text-gray-700')}
                               >
@@ -207,7 +207,7 @@ export default function Example() {
 
               {
                 navigation.map(item => (
-                  <a href="#"
+                  <a href="http://#"
                     onClick={item.onclick}
                     className={
                       item.pathname === location.pathname ? 'cursor-pointer border-green1 text-green2 block pl-3 pr-4 py-2 border-l-4 text-base font-medium' : 'cursor-pointer border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
@@ -243,7 +243,7 @@ export default function Example() {
 
                 {
                   profile.map(item => (
-                    <a href="#"
+                    <a href="http://#"
                       onClick={item.onclick}
                       className={
                         'cursor-pointer block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100'

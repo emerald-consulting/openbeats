@@ -8,5 +8,4 @@ urlpatterns = [
     path('user/create/', CustomUserCreate.as_view(), name="create_user"),
     path('user/isLoggedIn/', isLoggedIn.as_view(), name="is_logged_in"),
     path('blacklist/', LogoutAndBlacklistRefreshTokenForUserView.as_view(), name='blacklist')
-
 ]

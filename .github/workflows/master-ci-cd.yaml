@@ -1,0 +1,77 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+
+  deploy_presentation:
+    runs-on: ubuntu-latest
+    name: Build & Push Presentation Static Assets to S3
+    defaults:
+      run:
+        working-directory: ./example/presentation
+    steps:
+    - uses: actions/checkout@v1
+    - name: Configure AWS credentials
+      # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: Build Static Assets
+      run: make build-static-assets
+    - name: Push Static Assets
+      run: make push-static-assets
+
+  deploy_web:
+    runs-on: ubuntu-latest
+    name: Build & Push Web Static Assets to S3
+    defaults:
+      run:
+        working-directory: ./example/bflobox
+    steps:
+    - uses: actions/checkout@v1
+    - name: Configure AWS credentials
+      # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: Build Image
+      run: make build
+    - name: Build Static Assets
+      run: make build-static-assets
+    - name: Push Static Assets
+      run: make push-static-assets
+
+  deploy_api:
+    runs-on: ubuntu-latest
+    name: Build, Push and Deploy Helm Chart
+    defaults:
+      run:
+        working-directory: ./example/api
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Configure AWS credentials
+      # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: Build API
+      run: make build
+    - name: Push Docker Image
+      run: make push
+    - name: Helm Deploy
+      uses: ./.github/actions/helm
+      env:
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      with:
+        args: upgrade --install bflobox-api ./example/helm --namespace bflobox --set containers.bfloBoxApi.image.tag=${{ github.sha }} --wait

@@ -12,8 +12,7 @@ const LandingBody = () => {
                 </p>
                 <div className="mt-10 sm:flex sm:justify-center ">
                     <div className="rounded-md shadow">
-                        <a
-                            href="#"
+                        <a  href="http://#"
                             onClick={() => history.push("/register")}
                             className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green2 hover:bg-green1 md:py-4 md:text-lg md:px-10"
                         >
@@ -22,7 +21,7 @@ const LandingBody = () => {
                     </div>
                     <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
                         <a
-                            href="#"
+                            href="http://#"
                             onClick={() => history.push("/about")}
                             className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green1 bg-white hover:bg-gray-100 md:py-4 md:text-lg md:px-10"
                         >

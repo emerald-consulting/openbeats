@@ -81,7 +81,6 @@ name: Deploy to production
 on:
   push:
     branches : [ main ]
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:

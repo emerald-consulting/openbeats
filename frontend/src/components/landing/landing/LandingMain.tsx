@@ -8,19 +8,16 @@ import LandingAbout2 from './LandingAbout2';
 /**
  * The landing page for unauthenticated users.
  */
-const Landing = () => {
-
-    return (
-        <>
-            <Shell>
-                <LandingBody />
-                <LandingAbout/>
-                <LandingAbout2/>
-                <LandingCTA/>
-                <LandingFooter/>
-            </Shell>
-        </>
-    )
+const Landing: React.FC = () => {
+  return (
+    <Shell>
+      <LandingBody />
+      <LandingAbout />
+      <LandingAbout2 />
+      <LandingCTA />
+      <LandingFooter />
+    </Shell>
+  );
 };
 
 export default Landing;

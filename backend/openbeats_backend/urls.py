@@ -21,8 +21,8 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    path('auth/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('authentication.urls')),
     path('health', Health.as_view(), name='health'),
-    path('auth/', include('django.contrib.auth.urls')),
 ]

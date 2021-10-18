@@ -1,16 +1,12 @@
-import { useHistory } from "react-router";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { http } from '../../../api/auth'
-import { useState } from "react";
+import React from 'react';
 
+const ResetPassword: React.FC = () => {
+  const baseURL =
+    process.env.NODE_ENV === 'production'
+      ? 'http://api.openbeats716.com/auth/password_reset/'
+      : 'http://localhost:8000/auth/password_reset/';
 
-const ResetPassword = () => {
-
-  const baseURL = process.env.NODE_ENV === 'production'? 'https://api.openbeats716.com/auth/password_reset/' : "http://localhost:8000/auth/password_reset/"
-
-  return(
-      <iframe src={baseURL} title="W3Schools Free Online Web Tutorials"></iframe>
-  )
+  return <iframe src={baseURL} title="Frame" />;
 };
 
 export default ResetPassword;

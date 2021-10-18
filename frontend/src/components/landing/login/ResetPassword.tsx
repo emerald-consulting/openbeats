@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const ResetPassword = () => {
 
-  const baseURL = process.env.NODE_ENV === 'production' ? 'https://www.api.openbeats716.com/auth/password_reset/' : "http://localhost:8000/auth/password_reset/"
+  const baseURL = process.env.NODE_ENV === 'production' ? 'http://api.openbeats716.com/auth/password_reset/' : "http://localhost:8000/auth/password_reset/"
 
   return(
       <iframe src={baseURL} title="Frame"></iframe>

@@ -6,10 +6,10 @@ import { useState } from "react";
 
 const ResetPassword = () => {
 
-  const baseURL = process.env.NODE_ENV === 'production'? 'https://api.openbeats716.com/auth/password_reset/' : "http://localhost:8000/auth/password_reset/"
+  const baseURL = process.env.NODE_ENV === 'production' ? 'https://www.api.openbeats716.com/auth/password_reset/' : "http://localhost:8000/auth/password_reset/"
 
   return(
-      <iframe src={baseURL} title="W3Schools Free Online Web Tutorials"></iframe>
+      <iframe src={baseURL} title="Frame"></iframe>
   )
 };
 

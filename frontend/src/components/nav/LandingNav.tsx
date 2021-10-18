@@ -24,8 +24,6 @@ export default function LandingNav() {
     }[] = [
             { 'name': 'About', 'onclick': () => history.push("/about"), 'pathname': '/about' },
             { 'name': 'Pricing', 'onclick': () => history.push("/pricing"), 'pathname': '/pricing' },
-            { 'name': 'Community', 'onclick': () => { }, 'pathname': '/community' },
-            { 'name': 'Support', 'onclick': () => { }, 'pathname': '/support' },
         ];
 
     const onClickLogin = () => {

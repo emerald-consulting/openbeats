@@ -90,7 +90,11 @@ const Login = () => {
 
 
               <div className="text-sm">
+<<<<<<< HEAD
                 <a href="http://#" className="font-medium text-green1 hover:text-green2">
+=======
+                <a href="#" className="font-medium text-green1 hover:text-green2" onClick={() => history.push("/reset")}>
+>>>>>>> main
                   Forgot your password?
                 </a>
               </div>

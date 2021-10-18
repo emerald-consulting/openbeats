@@ -1,8 +1,7 @@
 ![openbeats_notype-45](https://user-images.githubusercontent.com/31867784/132925211-2aabc8a7-a06d-4354-99c0-56886400227c.png)
 
 
-## Description
-
+## Description 
 **Open Beats**, is a Digital Audio Workstation (DAW) that aims to allow artists to collaborate with others on music synchronously and remotely. 
 
 The project is currently beginning development for [Jesse Hartloff's CSE 442 class](https://cse442.com/) for the Fall 2021 semester at the University at Buffalo, as well as Alan Hunt's CSE 611 Masters Project Development class for the Fall 2021 semester at the University at Buffalo.
@@ -62,7 +61,7 @@ Contributors names and contact info
 
 The project is broken up into 4 sprints: 
 * Sprint 1 – Week of Sep. 27th ✔️
-* Sprint 2 – Week of Oct. 18th 
+* Sprint 1 – Week of Oct. 18th ✔️
 * Sprint 3 – Week of Nov. 8th
 * Sprint 4 – Week of Dec. 6th
 

@@ -18,7 +18,7 @@ jobs:
     - name: Configure AWS credentials
       # Make sure you use a separate AWS user for deploying (i.e. not ADMIN)
       uses: aws-actions/configure-aws-credentials@v1
-      with:
+        with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1

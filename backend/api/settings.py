@@ -207,4 +207,5 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
+X_FRAME_OPTIONS = 'ALLOW-FROM http://api.openbeats716.com/'
 

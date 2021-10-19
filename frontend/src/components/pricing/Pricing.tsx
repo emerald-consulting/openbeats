@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { CheckIcon } from '@heroicons/react/outline'
+import { CheckIcon } from '@heroicons/react/outline';
 
 const tiers = [
   {
@@ -26,7 +26,7 @@ const tiers = [
       '.mp3 and .wav file downloads',
     ],
   },
-]
+];
 
 export default function Example() {
   return (
@@ -34,12 +34,15 @@ export default function Example() {
       <div className="pt-12 sm:pt-16 lg:pt-24">
         <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto space-y-2 lg:max-w-none">
-            <h2 className="text-lg roboto leading-6 font-semibold text-white uppercase tracking-wider">Pricing</h2>
+            <h2 className="text-lg roboto leading-6 font-semibold text-white uppercase tracking-wider">
+              Pricing
+            </h2>
             <p className="text-3xl roboto font-extrabold text-white sm:text-4xl lg:text-5xl">
               The right price for you, whoever you are
             </p>
             <p className="text-xl text-gray-300">
-              Open Beats offers two extrememly affordable subscription plans for aspiring music artists looking to get started with the platform.
+              Open Beats offers two extrememly affordable subscription plans for aspiring music
+              artists looking to get started with the platform.
             </p>
           </div>
         </div>
@@ -102,7 +105,9 @@ export default function Example() {
                   </h3>
                 </div>
                 <div className="mt-4 text-lg text-gray-600">
-                  Get full access to all of professional license features for <span className="font-semibold text-gray-900">$99.99</span> by providing a valid buffalo.edu email address.
+                  Get full access to all of professional license features for{' '}
+                  <span className="font-semibold text-gray-900">$99.99</span> by providing a valid
+                  buffalo.edu email address.
                 </div>
               </div>
               <div className="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
@@ -118,5 +123,5 @@ export default function Example() {
         </div>
       </div>
     </div>
-  )
+  );
 }

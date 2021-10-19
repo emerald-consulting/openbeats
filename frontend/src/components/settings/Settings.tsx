@@ -24,8 +24,8 @@
   }
   ```
 */
-import { useState } from 'react'
-import { Disclosure, Switch } from '@headlessui/react'
+import { useState } from 'react';
+import { Disclosure, Switch } from '@headlessui/react';
 import {
   BellIcon,
   CogIcon,
@@ -33,15 +33,14 @@ import {
   KeyIcon,
   UserCircleIcon,
   ViewGridAddIcon,
-} from '@heroicons/react/outline'
+} from '@heroicons/react/outline';
 
 const user = {
   name: 'Ryan Dils',
   handle: 'rychrome',
   email: 'ryandils@buffalo.edu',
-  imageUrl:
-    '/exampleProfilePic.jpg',
-}
+  imageUrl: '/exampleProfilePic.jpg',
+};
 const subNavigation = [
   { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
   { name: 'Account', href: '#', icon: CogIcon, current: false },
@@ -49,24 +48,23 @@ const subNavigation = [
   { name: 'Notifications', href: '#', icon: BellIcon, current: false },
   { name: 'Billing', href: '#', icon: CreditCardIcon, current: false },
   { name: 'Integrations', href: '#', icon: ViewGridAddIcon, current: false },
-]
+];
 
-function classNames(...classes:any) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function Example() {
-  const [availableToHire, setAvailableToHire] = useState(true)
-  const [privateAccount, setPrivateAccount] = useState(false)
-  const [allowCommenting, setAllowCommenting] = useState(true)
-  const [allowMentions, setAllowMentions] = useState(true)
+  const [availableToHire, setAvailableToHire] = useState(true);
+  const [privateAccount, setPrivateAccount] = useState(false);
+  const [allowCommenting, setAllowCommenting] = useState(true);
+  const [allowMentions, setAllowMentions] = useState(true);
 
   return (
     <div>
       <Disclosure as="div" className="relative bg-sky-700 pb-32 overflow-hidden">
         {({ open }) => (
           <>
-          
             <div
               aria-hidden="true"
               className={classNames(
@@ -148,11 +146,13 @@ export default function Example() {
                   <div className="mt-6 flex flex-col lg:flex-row">
                     <div className="flex-grow space-y-6">
                       <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="username"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Username
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
-                        
                           <input
                             type="text"
                             name="username"
@@ -193,7 +193,11 @@ export default function Example() {
                             className="flex-shrink-0 inline-block rounded-full overflow-hidden h-40 w-40"
                             aria-hidden="true"
                           >
-                            <img className="relative rounded-full w-40 h-40 object-cover" src={user.imageUrl} alt="" />
+                            <img
+                              className="relative rounded-full w-40 h-40 object-cover"
+                              src={user.imageUrl}
+                              alt=""
+                            />
                           </div>
                           <div className="ml-5 rounded-md shadow-sm">
                             <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50">
@@ -215,7 +219,11 @@ export default function Example() {
                       </div>
 
                       <div className="hidden relative rounded-full overflow-hidden lg:block">
-                        <img className="relative rounded-full w-40 h-40 object-cover" src={user.imageUrl} alt="" />
+                        <img
+                          className="relative rounded-full w-40 h-40 object-cover"
+                          src={user.imageUrl}
+                          alt=""
+                        />
                         <label
                           htmlFor="desktop-user-photo"
                           className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
@@ -235,7 +243,10 @@ export default function Example() {
 
                   <div className="mt-6 grid grid-cols-12 gap-6">
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         First name
                       </label>
                       <input
@@ -248,7 +259,10 @@ export default function Example() {
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="last-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Last name
                       </label>
                       <input
@@ -299,7 +313,11 @@ export default function Example() {
                     <ul className="mt-2 divide-y divide-gray-200">
                       <Switch.Group as="li" className="py-4 flex items-center justify-between">
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Available to hire
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
@@ -325,7 +343,11 @@ export default function Example() {
                       </Switch.Group>
                       <Switch.Group as="li" className="py-4 flex items-center justify-between">
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Make account private
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
@@ -351,7 +373,11 @@ export default function Example() {
                       </Switch.Group>
                       <Switch.Group as="li" className="py-4 flex items-center justify-between">
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Allow commenting
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
@@ -377,7 +403,11 @@ export default function Example() {
                       </Switch.Group>
                       <Switch.Group as="li" className="py-4 flex items-center justify-between">
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Allow mentions
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
@@ -424,5 +454,5 @@ export default function Example() {
         </div>
       </main>
     </div>
-  )
+  );
 }

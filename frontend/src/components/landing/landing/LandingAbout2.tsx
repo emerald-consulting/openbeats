@@ -1,7 +1,11 @@
-
-
 /* This example requires Tailwind CSS v2.0+ */
-import { AnnotationIcon, GlobeAltIcon, MailIcon, MusicNoteIcon, UploadIcon} from '@heroicons/react/outline'
+import {
+  AnnotationIcon,
+  GlobeAltIcon,
+  MailIcon,
+  MusicNoteIcon,
+  UploadIcon,
+} from '@heroicons/react/outline';
 
 const transferFeatures = [
   {
@@ -14,18 +18,16 @@ const transferFeatures = [
   {
     id: 2,
     name: 'Stream',
-    description:
-      'Stream music from your favorite artists no matter how underground or mainstream.',
+    description: 'Stream music from your favorite artists no matter how underground or mainstream.',
     icon: MusicNoteIcon,
   },
   {
     id: 3,
     name: 'Upload',
-    description:
-      'Upload your own tracks that you produce in the Open Beats DAW.',
+    description: 'Upload your own tracks that you produce in the Open Beats DAW.',
     icon: UploadIcon,
   },
-]
+];
 const communicationFeatures = [
   {
     id: 1,
@@ -41,7 +43,7 @@ const communicationFeatures = [
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: MailIcon,
   },
-]
+];
 
 export default function LandingAbout2() {
   return (
@@ -64,13 +66,18 @@ export default function LandingAbout2() {
               height={20}
               patternUnits="userSpaceOnUse"
             >
-              <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              <rect
+                x={0}
+                y={0}
+                width={4}
+                height={4}
+                className="text-gray-200"
+                fill="currentColor"
+              />
             </pattern>
           </defs>
           <rect width={404} height={784} fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)" />
         </svg>
-
-
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div className="relative">
@@ -78,7 +85,8 @@ export default function LandingAbout2() {
               Play Music
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-             With Open Beats, you can stream and download music from your favorite artists, no matter how big or small.
+              With Open Beats, you can stream and download music from your favorite artists, no
+              matter how big or small.
             </p>
 
             <dl className="mt-10 space-y-10">
@@ -113,7 +121,14 @@ export default function LandingAbout2() {
                   height={20}
                   patternUnits="userSpaceOnUse"
                 >
-                  <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                  <rect
+                    x={0}
+                    y={0}
+                    width={4}
+                    height={4}
+                    className="text-gray-200"
+                    fill="currentColor"
+                  />
                 </pattern>
               </defs>
               <rect width={784} height={404} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
@@ -144,7 +159,14 @@ export default function LandingAbout2() {
               height={20}
               patternUnits="userSpaceOnUse"
             >
-              <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              <rect
+                x={0}
+                y={0}
+                width={4}
+                height={4}
+                className="text-gray-200"
+                fill="currentColor"
+              />
             </pattern>
           </defs>
           <rect width={404} height={784} fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
@@ -153,10 +175,12 @@ export default function LandingAbout2() {
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Always in the loop</h3>
+              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+                Always in the loop
+              </h3>
               <p className="mt-3 text-lg text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
-                cum deleniti sunt in labore nihil quod quibusdam expedita nemo.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus
+                eligendi delectus, cum deleniti sunt in labore nihil quod quibusdam expedita nemo.
               </p>
 
               <dl className="mt-10 space-y-10">
@@ -166,7 +190,9 @@ export default function LandingAbout2() {
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-green3 text-white">
                         <item.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{item.name}</p>
+                      <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                        {item.name}
+                      </p>
                     </dt>
                     <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
                   </div>
@@ -192,7 +218,14 @@ export default function LandingAbout2() {
                     height={20}
                     patternUnits="userSpaceOnUse"
                   >
-                    <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                    <rect
+                      x={0}
+                      y={0}
+                      width={4}
+                      height={4}
+                      className="text-gray-200"
+                      fill="currentColor"
+                    />
                   </pattern>
                 </defs>
                 <rect width={784} height={404} fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
@@ -208,5 +241,5 @@ export default function LandingAbout2() {
         </div>
       </div>
     </div>
-  )
+  );
 }

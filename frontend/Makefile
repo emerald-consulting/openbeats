@@ -24,7 +24,6 @@ run:
 	docker-compose stop
 	docker-compose up
 
-
 .PHONY: lint
 lint:
 	docker run -v $(shell pwd)/src:/node/src -v $(shell pwd)/public:/node/public $(DOCKER_IMAGE):$(VERSION) yarn lint
@@ -59,7 +58,7 @@ push-static-assets:
 
 .PHONY: aws-login
 aws-login:
-	@eval $(shell aws ecr get-login --no-include-email --region us-east-1)
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)
 
 .PHONY: pull-cache
 pull-cache: aws-login

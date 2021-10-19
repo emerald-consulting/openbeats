@@ -3,3 +3,4 @@ appVersion: "1.0"
 description: Open Beats API
 name: openbeats-api
 version: 0.1.0
+metadata: 

@@ -163,11 +163,11 @@ if os.getenv('ENV') == 'PROD':
     import dj_database_url
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-AUTH_USER_MODEL = "authentication.CustomUser"
+AUTH_USER_MODEL = "authentication.User"
 
 X_FRAME_OPTIONS = '*'
 
-ROOT_URLCONF = 'openbeats_backend.urls'
+ROOT_URLCONF = 'api.urls'
 # DJOSER ={
 #     "USER_ID_FIELD": "username",
 #     "LOGIN_FIELD": "email",
@@ -175,7 +175,7 @@ ROOT_URLCONF = 'openbeats_backend.urls'
 #     "ACTIVATION_URL": "activate/{uid}/{token}",
 #     "PASSWORD_RESET_CONFIRM_URL": "reset_password/{uid}/{token}", # the reset link 
 #     'SERIALIZERS': {
-#         'token_create': 'authentication.serializers.CustomUserSerializer',
+#         'token_create': 'authentication.serializers.UserSerializer',
 #     },
 # }
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -205,6 +205,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'openbeats_backend.wsgi.application'
+WSGI_APPLICATION = 'api.wsgi.application'
 
 

@@ -1,29 +1,29 @@
 # djsr/authentication/serializers.py
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from authentication.models import CustomUser
+from .models import User
 from rest_framework import serializers
 
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+class UserTokenPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
     def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+        token = super(UserTokenPairSerializer, cls).get_token(user)
 
         # Add custom claims here, this is just an example
         return token
 
 from rest_framework import serializers
-from .models import CustomUser
+from .models import User
 # ...
-class CustomUserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-            model = CustomUser
+            model = User
             fields = ['email','username', 'password']
             extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = CustomUser(
+        user = User(
             email=validated_data['email'],
             username=validated_data['email']
         )

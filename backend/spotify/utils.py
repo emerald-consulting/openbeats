@@ -1,6 +1,7 @@
 from django.utils import timezone
 from .models import SpotifyToken
 from datetime import timedelta
+from authentication.models import User
 
 # Gets user tokens from database
 def get_user_tokens(session_id):
@@ -36,3 +37,5 @@ def update_or_create_user_tokens(session_id, access_token, refresh_token, token_
         )
         tokens.save()
 
+def login_or_create_user(emailAddr):
+    pass

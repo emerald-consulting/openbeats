@@ -13,7 +13,9 @@ from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 import json
 
-from .serializers import MyTokenObtainPairSerializer, CustomUserSerializer
+from .models import User
+
+from .serializers import TokenObtainPairSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -29,12 +31,12 @@ class Health(APIView):
     def get(self, request):
         return Response(data="healthy", status=HTTP_200_OK)
 
-class ObtainTokenPairWithColorView(TokenObtainPairView):
+class ObtainUserTokens(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
-    serializer_class = MyTokenObtainPairSerializer
+    serializer_class = TokenObtainPairSerializer
 
 
-class CustomUserCreate(APIView):
+class UserCreate(APIView):
 
     # We need to specify an empty list or tuple for authentication_classes in addition 
     # to setting permission_classes to convince DRF to open up a view to the public.
@@ -42,7 +44,7 @@ class CustomUserCreate(APIView):
     authentication_classes = ()
 
     def post(self, request, format='json'):
-        serializer = CustomUserSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             if user:
@@ -84,6 +86,17 @@ class LogoutAndBlacklistRefreshTokenForUserView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class ThirdPartyAuthLogin(APIView):
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
+
+    def post(self, request):
+        emailAddr = request.data['emailAddr']
+
+        if User.objects.filter(email=emailAddr).exists():
+            self.sessions.middleware.SessionMiddleware
 
 # class CustomPasswordResetView:
 #     @receiver(reset_password_token_created)

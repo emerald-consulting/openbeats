@@ -9,14 +9,14 @@ const baseURL =
 We initiate the creation of the Axios instance by getting that token. 
 If there’s no token in local storage, don’t even worry about it for the header. It will be set every time a user logs in. */
 export const http = axios.create({
-  baseURL: baseURL,
+  baseURL,
   timeout: 5000,
 
   /* In settings.py the SIMPLE_JWT dict sets the AUTH_HEADER_TYPES as ‘JWT'
     so for the Authorization header here it has to be the same. */
   headers: {
     Authorization: localStorage.getItem('access_token')
-      ? 'Bearer ' + localStorage.getItem('access_token')
+      ? `Bearer ${localStorage.getItem('access_token')}`
       : null,
     'Content-Type': 'application/json',
     accept: 'application/json',
@@ -34,7 +34,7 @@ http.interceptors.response.use(
     const originalRequest = error.config;
 
     // Prevent infinite loops
-    if (error.response.status === 401 && originalRequest.url === baseURL + 'token/refresh/') {
+    if (error.response.status === 401 && originalRequest.url === `${baseURL}token/refresh/`) {
       window.location.href = '/login/';
       return Promise.reject(error);
     }
@@ -60,8 +60,8 @@ http.interceptors.response.use(
               localStorage.setItem('access_token', response.data.access);
               localStorage.setItem('refresh_token', response.data.refresh);
 
-              http.defaults.headers['Authorization'] = 'Bearer ' + response.data.access;
-              originalRequest.headers['Authorization'] = 'Bearer ' + response.data.access;
+              http.defaults.headers.Authorization = `Bearer ${response.data.access}`;
+              originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
 
               return http(originalRequest);
             })
@@ -69,16 +69,14 @@ http.interceptors.response.use(
               console.log(err);
               return error.response.status;
             });
-        } else {
-          console.log('Refresh token is expired', tokenParts.exp, now);
-          window.location.href = '/login/';
-          return error.response.status;
         }
-      } else {
-        console.log('Refresh token not available.');
+        console.log('Refresh token is expired', tokenParts.exp, now);
         window.location.href = '/login/';
         return error.response.status;
       }
+      console.log('Refresh token not available.');
+      window.location.href = '/login/';
+      return error.response.status;
     }
 
     // specific error handling done elsewhere

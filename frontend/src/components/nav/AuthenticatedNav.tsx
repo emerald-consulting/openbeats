@@ -14,38 +14,38 @@
   }
   ```
 */
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { SearchIcon } from "@heroicons/react/solid";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { classNames } from "../../utils/tailwind";
-import { PlusSmIcon } from "@heroicons/react/solid";
-import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router";
-import { http } from "../../api/auth";
+import { Fragment } from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { SearchIcon } from '@heroicons/react/solid';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { classNames } from '../../utils/tailwind';
+import { PlusSmIcon } from '@heroicons/react/solid';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { http } from '../../api/auth';
 
 export default function Example() {
   const history = useHistory();
   const location = useLocation();
 
   const onClickFeed = () => {
-    history.push("/feed");
+    history.push('/feed');
   };
 
   const onClickExample = () => {
-    history.push("/activity");
+    history.push('/activity');
   };
 
   const onSignOut = async () => {
     try {
-      const response = await http.post("/blacklist/", {
-        refresh_token: localStorage.getItem("refresh_token"),
+      const response = await http.post('/blacklist/', {
+        refresh_token: localStorage.getItem('refresh_token'),
       });
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      http.defaults.headers["Authorization"] = null;
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      http.defaults.headers['Authorization'] = null;
 
-      history.push("/");
+      history.push('/');
     } catch (e) {
       console.log(e);
     }
@@ -55,8 +55,8 @@ export default function Example() {
     pathname: string;
     onclick: () => void;
   }[] = [
-    { name: "Feed", onclick: onClickFeed, pathname: "/feed" },
-    { name: "Activity", onclick: onClickExample, pathname: "/activity" },
+    { name: 'Feed', onclick: onClickFeed, pathname: '/feed' },
+    { name: 'Activity', onclick: onClickExample, pathname: '/activity' },
   ];
 
   const profile: {
@@ -64,18 +64,18 @@ export default function Example() {
     onclick: () => void;
   }[] = [
     {
-      name: "Your Profile",
+      name: 'Your Profile',
       onclick: () => {
-        history.push("/settings");
+        history.push('/settings');
       },
     },
     {
-      name: "Settings",
+      name: 'Settings',
       onclick: () => {
-        history.push("/settings");
+        history.push('/settings');
       },
     },
-    { name: "Sign out", onclick: onSignOut },
+    { name: 'Sign out', onclick: onSignOut },
   ];
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -89,13 +89,13 @@ export default function Example() {
                     className="cursor-pointer block lg:hidden h-16 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
-                    onClick={() => history.push("/feed")}
+                    onClick={() => history.push('/feed')}
                   />
                   <img
                     className="cursor-pointer hidden lg:block h-16 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
-                    onClick={() => history.push("/feed")}
+                    onClick={() => history.push('/feed')}
                   />
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
@@ -105,8 +105,8 @@ export default function Example() {
                       onClick={item.onclick}
                       className={
                         item.pathname === location.pathname
-                          ? "cursor-pointer border-green2 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                          : "cursor-pointer border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                          ? 'cursor-pointer border-green2 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                          : 'cursor-pointer border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
                       }
                     >
                       {item.name}
@@ -121,10 +121,7 @@ export default function Example() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <SearchIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
+                      <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                     </div>
                     <input
                       id="search"
@@ -140,10 +137,7 @@ export default function Example() {
                     type="button"
                     className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green2 shadow-sm hover:bg-green1"
                   >
-                    <PlusSmIcon
-                      className="-ml-1 mr-2 h- w-5"
-                      aria-hidden="true"
-                    />
+                    <PlusSmIcon className="-ml-1 mr-2 h- w-5" aria-hidden="true" />
                     <span>Upload</span>
                   </button>
                 </div>
@@ -173,7 +167,7 @@ export default function Example() {
                     <Menu.Button className="bg-white rounded-full flex text-sm">
                       <img
                         className="h-12 w-12 rounded-full object-cover "
-                        src={"/exampleProfilePic.jpg"}
+                        src={'/exampleProfilePic.jpg'}
                         alt="example profile pic"
                       />
                     </Menu.Button>
@@ -195,8 +189,8 @@ export default function Example() {
                               href="#"
                               onClick={item.onclick}
                               className={classNames(
-                                active ? "cursor-pointer bg-gray-100" : "",
-                                "cursor-pointer block px-4 py-2 text-sm text-gray-700"
+                                active ? 'cursor-pointer bg-gray-100' : '',
+                                'cursor-pointer block px-4 py-2 text-sm text-gray-700'
                               )}
                             >
                               {item.name}
@@ -221,8 +215,8 @@ export default function Example() {
                   onClick={item.onclick}
                   className={
                     item.pathname === location.pathname
-                      ? "cursor-pointer border-green1 text-green2 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                      : "cursor-pointer border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                      ? 'cursor-pointer border-green1 text-green2 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+                      : 'cursor-pointer border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                   }
                 >
                   {item.name}
@@ -234,16 +228,12 @@ export default function Example() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-12 w-12 rounded-full object-cover "
-                    src={"/exampleProfilePic.jpg"}
+                    src={'/exampleProfilePic.jpg'}
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">
-                    Tim Dillon
-                  </div>
-                  <div className="text-sm font-medium text-gray-500">
-                    tim@example.com
-                  </div>
+                  <div className="text-base font-medium text-gray-800">Tim Dillon</div>
+                  <div className="text-sm font-medium text-gray-500">tim@example.com</div>
                 </div>
                 <button
                   type="button"
@@ -259,7 +249,7 @@ export default function Example() {
                     href="#"
                     onClick={item.onclick}
                     className={
-                      "cursor-pointer block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                      'cursor-pointer block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100'
                     }
                   >
                     {item.name}

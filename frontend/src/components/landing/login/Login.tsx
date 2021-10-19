@@ -1,7 +1,7 @@
-import { useHistory } from "react-router";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { http } from "../../../api/auth";
-import { useState } from "react";
+import { useHistory } from 'react-router';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { http } from '../../../api/auth';
+import { useState } from 'react';
 
 export interface serverErrors {
   detail: string[];
@@ -16,23 +16,20 @@ const Login = () => {
   const { register, handleSubmit } = useForm<LoginInputs>();
   const [serverErrors, setServerErrors] = useState({} as serverErrors);
 
-  const onSubmit: SubmitHandler<LoginInputs> = async ({
-    email,
-    password,
-  }: LoginInputs) => {
+  const onSubmit: SubmitHandler<LoginInputs> = async ({ email, password }: LoginInputs) => {
     // clear existing server side errors
     setServerErrors({} as serverErrors);
 
     try {
-      const response = await http.post("/token/obtain/", {
+      const response = await http.post('/token/obtain/', {
         email,
         password,
         username: email,
       });
-      http.defaults.headers["Authorization"] = "Bearer " + response.data.access;
-      localStorage.setItem("access_token", response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
-      history.push("/feed");
+      http.defaults.headers['Authorization'] = 'Bearer ' + response.data.access;
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+      history.push('/feed');
     } catch (e) {
       setServerErrors((e as any).response.data);
     }
@@ -50,10 +47,10 @@ const Login = () => {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+            Or{' '}
             <a
               href="#"
-              onClick={() => history.push("/register")}
+              onClick={() => history.push('/register')}
               className="font-medium-roboto text-green1 hover:text-green2"
             >
               create a new account
@@ -65,16 +62,13 @@ const Login = () => {
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
                 <div className="mt-1">
                   <input
-                    {...register("email", {
-                      required: "Email is required.",
+                    {...register('email', {
+                      required: 'Email is required.',
                     })}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
@@ -85,17 +79,14 @@ const Login = () => {
               </div>
 
               <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
                 <div className="mt-1">
                   <input
                     type="password"
-                    {...register("password", {
-                      required: "Password is required.",
+                    {...register('password', {
+                      required: 'Password is required.',
                     })}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
@@ -106,7 +97,7 @@ const Login = () => {
                 <a
                   href="#"
                   className="font-medium text-green1 hover:text-green2"
-                  onClick={() => history.push("/reset")}
+                  onClick={() => history.push('/reset')}
                 >
                   Forgot your password?
                 </a>
@@ -128,9 +119,7 @@ const Login = () => {
                   <div className="w-full border-t border-gray-300" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">
-                    Or continue with
-                  </span>
+                  <span className="px-2 bg-white text-gray-500">Or continue with</span>
                 </div>
               </div>
 
@@ -141,11 +130,7 @@ const Login = () => {
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Google</span>
-                    <img
-                      src="/loginIcons/google.svg"
-                      className="w-7"
-                      alt="Google icon"
-                    />
+                    <img src="/loginIcons/google.svg" className="w-7" alt="Google icon" />
                   </a>
                 </div>
 
@@ -155,11 +140,7 @@ const Login = () => {
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Apple Music</span>
-                    <img
-                      src="/loginIcons/apple.svg"
-                      className="w-7"
-                      alt="Apple Music icon"
-                    />
+                    <img src="/loginIcons/apple.svg" className="w-7" alt="Apple Music icon" />
                   </a>
                 </div>
 
@@ -170,11 +151,7 @@ const Login = () => {
                   >
                     <span className="sr-only">Sign in with Spotify</span>
 
-                    <img
-                      src="/loginIcons/spotify.png"
-                      className="w-7"
-                      alt="Spotify icon"
-                    />
+                    <img src="/loginIcons/spotify.png" className="w-7" alt="Spotify icon" />
                   </a>
                 </div>
               </div>

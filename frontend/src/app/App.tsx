@@ -1,7 +1,6 @@
-import React from "react";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter } from 'react-router-dom';
 
-import Pages from "../routes/Pages";
+import Pages from '../routes/Pages';
 
 const App = () => {
   const isAuthenticated = true; // placeholder for now

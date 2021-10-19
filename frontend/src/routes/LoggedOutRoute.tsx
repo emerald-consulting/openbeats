@@ -1,6 +1,6 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import LandingNav from "../components/nav/LandingNav";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import LandingNav from '../components/nav/LandingNav';
 
 interface Props {
   exact?: boolean;

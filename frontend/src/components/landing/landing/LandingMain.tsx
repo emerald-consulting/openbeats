@@ -1,10 +1,10 @@
-import React from "react";
-import LandingBody from "./LandingBody";
-import Shell from "../../Shell";
-import LandingFooter from "./LandingFooter";
-import LandingCTA from "./LandingCTA";
-import LandingAbout from "./LandingAbout";
-import LandingAbout2 from "./LandingAbout2";
+import React from 'react';
+import LandingBody from './LandingBody';
+import Shell from '../../Shell';
+import LandingFooter from './LandingFooter';
+import LandingCTA from './LandingCTA';
+import LandingAbout from './LandingAbout';
+import LandingAbout2 from './LandingAbout2';
 /**
  * The landing page for unauthenticated users.
  */

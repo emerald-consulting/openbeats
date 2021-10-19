@@ -1,8 +1,8 @@
-import { Fragment } from "react";
-import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router";
-import { Popover, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Fragment } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { Popover, Transition } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
 /**
  * Nav bar on the landing page for unauthenticated users.
@@ -17,23 +17,23 @@ export default function LandingNav() {
     onclick: () => void;
   }[] = [
     {
-      name: "About",
-      onclick: () => history.push("/about"),
-      pathname: "/about",
+      name: 'About',
+      onclick: () => history.push('/about'),
+      pathname: '/about',
     },
     {
-      name: "Pricing",
-      onclick: () => history.push("/pricing"),
-      pathname: "/pricing",
+      name: 'Pricing',
+      onclick: () => history.push('/pricing'),
+      pathname: '/pricing',
     },
   ];
 
   const onClickLogin = () => {
-    history.push("/login");
+    history.push('/login');
   };
 
   const onClickRegister = () => {
-    history.push("/register");
+    history.push('/register');
   };
 
   return (
@@ -44,7 +44,7 @@ export default function LandingNav() {
             className="h-16 w-auto"
             src="openbeats.png"
             alt="openbeats logo"
-            onClick={() => history.push("/")}
+            onClick={() => history.push('/')}
           />
         </a>
 
@@ -57,7 +57,7 @@ export default function LandingNav() {
         <div className="hidden md:flex-1 md:flex md:items-baseline md:justify-between">
           <div
             className="cursor-pointer text-2xl hidden lg:block text-gray-700 pr-6"
-            onClick={() => history.push("/")}
+            onClick={() => history.push('/')}
           >
             Open Beats
           </div>
@@ -67,8 +67,8 @@ export default function LandingNav() {
               onClick={item.onclick}
               className={
                 item.pathname === location.pathname
-                  ? "cursor-pointer text-base font-medium text-green1 px-5"
-                  : "cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1"
+                  ? 'cursor-pointer text-base font-medium text-green1 px-5'
+                  : 'cursor-pointer xl:text-base font-medium text-gray-500 px-5 hover:text-green1'
               }
             >
               {item.name}
@@ -117,8 +117,8 @@ export default function LandingNav() {
                       src="openbeats.png"
                       alt="openbeats logo"
                       onClick={() => {
-                        history.push("/");
-                        console.log("CLICKED");
+                        history.push('/');
+                        console.log('CLICKED');
                       }}
                     />
                   </a>
@@ -139,8 +139,8 @@ export default function LandingNav() {
                     onClick={item.onclick}
                     className={
                       item.pathname === location.pathname
-                        ? "cursor-pointer text-base font-medium text-green1 hover:text-gray-900"
-                        : "cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900"
+                        ? 'cursor-pointer text-base font-medium text-green1 hover:text-gray-900'
+                        : 'cursor-pointer xl:text-base font-medium text-gray-500 hover:text-gray-900'
                     }
                   >
                     {item.name}

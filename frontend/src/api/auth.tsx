@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
 const baseURL =
-  process.env.NODE_ENV === "production"
-    ? "https://api.openbeats716.com/api"
-    : "http://localhost:8000/api";
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.openbeats716.com/api'
+    : 'http://localhost:8000/api';
 
 /* Each time Axios gets a token, it stores the access_token in local storage. 
 We initiate the creation of the Axios instance by getting that token. 
@@ -15,17 +15,17 @@ export const http = axios.create({
   /* In settings.py the SIMPLE_JWT dict sets the AUTH_HEADER_TYPES as ‘JWT'
     so for the Authorization header here it has to be the same. */
   headers: {
-    Authorization: localStorage.getItem("access_token")
-      ? "Bearer " + localStorage.getItem("access_token")
+    Authorization: localStorage.getItem('access_token')
+      ? 'Bearer ' + localStorage.getItem('access_token')
       : null,
-    "Content-Type": "application/json",
-    accept: "application/json",
+    'Content-Type': 'application/json',
+    accept: 'application/json',
   },
 });
 
 export const isUserLoggedIn = async () => {
-  const { data } = await http.get<string>("/user/isLoggedIn/");
-  return data === "User logged in";
+  const { data } = await http.get<string>('/user/isLoggedIn/');
+  return data === 'User logged in';
 };
 
 http.interceptors.response.use(
@@ -34,23 +34,20 @@ http.interceptors.response.use(
     const originalRequest = error.config;
 
     // Prevent infinite loops
-    if (
-      error.response.status === 401 &&
-      originalRequest.url === baseURL + "token/refresh/"
-    ) {
-      window.location.href = "/login/";
+    if (error.response.status === 401 && originalRequest.url === baseURL + 'token/refresh/') {
+      window.location.href = '/login/';
       return Promise.reject(error);
     }
 
     if (
-      error.response.data.code === "token_not_valid" &&
+      error.response.data.code === 'token_not_valid' &&
       error.response.status === 401 &&
-      error.response.statusText === "Unauthorized"
+      error.response.statusText === 'Unauthorized'
     ) {
-      const refreshToken = localStorage.getItem("refresh_token");
+      const refreshToken = localStorage.getItem('refresh_token');
 
       if (refreshToken) {
-        const tokenParts = JSON.parse(atob(refreshToken.split(".")[1]));
+        const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
         // exp date in token is expressed in seconds, while now() returns milliseconds:
         const now = Math.ceil(Date.now() / 1000);
@@ -58,15 +55,13 @@ http.interceptors.response.use(
 
         if (tokenParts.exp > now) {
           return http
-            .post("/token/refresh/", { refresh: refreshToken })
+            .post('/token/refresh/', { refresh: refreshToken })
             .then((response) => {
-              localStorage.setItem("access_token", response.data.access);
-              localStorage.setItem("refresh_token", response.data.refresh);
+              localStorage.setItem('access_token', response.data.access);
+              localStorage.setItem('refresh_token', response.data.refresh);
 
-              http.defaults.headers["Authorization"] =
-                "Bearer " + response.data.access;
-              originalRequest.headers["Authorization"] =
-                "Bearer " + response.data.access;
+              http.defaults.headers['Authorization'] = 'Bearer ' + response.data.access;
+              originalRequest.headers['Authorization'] = 'Bearer ' + response.data.access;
 
               return http(originalRequest);
             })
@@ -75,13 +70,13 @@ http.interceptors.response.use(
               return error.response.status;
             });
         } else {
-          console.log("Refresh token is expired", tokenParts.exp, now);
-          window.location.href = "/login/";
+          console.log('Refresh token is expired', tokenParts.exp, now);
+          window.location.href = '/login/';
           return error.response.status;
         }
       } else {
-        console.log("Refresh token not available.");
-        window.location.href = "/login/";
+        console.log('Refresh token not available.');
+        window.location.href = '/login/';
         return error.response.status;
       }
     }

@@ -41,8 +41,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "@imaginary-cloud/react"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -68,7 +67,7 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "postcss": "^7.0.36",
-    "prettier": "2.4.1",
+    "prettier": "^2.4.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.10"
   }
 }

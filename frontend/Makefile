@@ -24,7 +24,6 @@ run:
 	docker-compose stop
 	docker-compose up
 
-
 .PHONY: lint
 lint:
 	docker run -v $(shell pwd)/src:/node/src -v $(shell pwd)/public:/node/public $(DOCKER_IMAGE):$(VERSION) yarn lint

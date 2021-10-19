@@ -8,13 +8,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'profilePic': "url('./exampleProfilePic.jpg')",
-       },
+        profilePic: "url('./exampleProfilePic.jpg')",
+      },
 
       colors: {
         green1: "#006622", // Darkest Green
-        green2: "#158236", // 
-        green3: "#359E50", // 
+        green2: "#158236", //
+        green3: "#359E50", //
         green4: "#68BC76", // Lightest Green
       },
       fontFamily: {
@@ -1064,7 +1064,5 @@ module.exports = {
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [require("@tailwindcss/forms")],
 };

@@ -1,7 +1,6 @@
 /* The index.css file is where we’ll import tailwind’s base styles and configurations. 
 tailwind.css will contain the compiled output of the index.css. */
 
-
 /* injects Tailwind’s base styles, which is a combination of Normalize.css and some additional base styles */
 @tailwind base;
 
@@ -16,11 +15,8 @@ Here’s an example:
    .form-input { ... }
 */
 
-
-
 /* injects all of Tailwind’s utility classes (including the default and your utilities), which are generated based on your config file. */
 @tailwind utilities;
-
 
 /* Below the utilities import is where you would add any custom utilities you need that don’t come out of the box with Tailwind.
 Example:
@@ -29,10 +25,10 @@ Example:
 */
 
 @layer utilities {
-   .input-error {
-      @apply mt-1;
-      @apply text-red-600;
-      @apply text-xs;
-      @apply font-medium;
+  .input-error {
+    @apply mt-1;
+    @apply text-red-600;
+    @apply text-xs;
+    @apply font-medium;
   }
 }

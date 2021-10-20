@@ -36,6 +36,10 @@ REST_FRAMEWORK = {
     ),  #
 }
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZERS': 'authentication.serializers.UserSerializer',
+}
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -178,7 +182,7 @@ ROOT_URLCONF = 'api.urls'
 #         'token_create': 'authentication.serializers.UserSerializer',
 #     },
 # }
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'priyasanjay0416@gmail.com'

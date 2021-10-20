@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from requests import Request, post
 from .models import SpotifyToken
+import json
 
 class SpotifyAuthURL(APIView):
 
@@ -84,6 +85,7 @@ class SpotifyEmailURL(APIView):
         # Check expiry date of access token, if it is expired then it should be
         # refreshed.
         access_token = tokens.access_token
+        refresh_token = tokens.refresh_token
 
         headers = {
             'Content-type': 'application/json',
@@ -97,10 +99,11 @@ class SpotifyEmailURL(APIView):
 
         emailAddrJson = requests.get(spotify_email_url, {}, headers=headers).json()
 
-        emailAddr = emailAddrJson.get('email')
+        user_credentials = json.loads({
+            'type': 'spotify',
+            'token': refresh_token,
+            'email': emailAddrJson.get('email')
+        })
 
-        # Login or create user
-        login_or_create_user(emailAddr)
-
-        '''Redirect to user's home page'''
-        return Response({'email': emailAddr}, status=status.HTTP_200_OK)
+        '''Redirect to third party auth view'''
+        return redirect('authentication:third_party_auth', user_credentials)

@@ -11,11 +11,12 @@ from datetime import timedelta
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
+from django.shortcuts import redirect
 import json
 
 from .models import OpenBeatsUser
 
-from .serializers import TokenObtainPairSerializer, UserSerializer
+from .serializers import UserTokenPairSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -31,10 +32,12 @@ class Health(APIView):
     def get(self, request):
         return Response(data="healthy", status=HTTP_200_OK)
 
+
+
 class ObtainUserTokens(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
-    serializer_class = TokenObtainPairSerializer
-
+    serializer_class = UserTokenPairSerializer
+   
 
 class UserCreate(APIView):
 
@@ -56,9 +59,9 @@ class PasswordReset(APIView):
     permission_classes = [permissions.AllowAny]
     def post(self,request,format=None):
        print(request.data['email'])
-       useremail = request.data['email']
+       email = request.data['email']
        OpenBeatsUser = get_user_model()
-       if OpenBeatsUser.objects.filter(username=useremail).exists():
+       if OpenBeatsUser.objects.filter(email=email).exists():
             return Response(data="Email Exists",status=status.HTTP_200_OK)
        else: 
             return Response(data="Email Does not exists",status=status.HTTP_400_BAD_REQUEST) 
@@ -70,7 +73,7 @@ class PasswordReset(APIView):
     #    return Response(data=data1,status=status.HTTP_200_OK)
 
 class isLoggedIn(APIView):
-
+    # Requires permissions to access
     def get(self, request):
         return Response(data="User logged in", status=status.HTTP_200_OK)
 
@@ -88,15 +91,61 @@ class LogoutAndBlacklistRefreshTokenForUserView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-class ThirdPartyAuthLogin(APIView):
+#==============================================================================
+# THIRD PARTY AUTH VIEWS
+#==============================================================================
+
+class ThirdPartyAuth(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
 
+    '''
+    Requires json request in this form:
+    {
+        type: <name of third party auth provider,
+        token: <refresh token for third party auth provider',
+        email: <email address>,
+    }
+    '''
     def post(self, request):
-        emailAddr = request.data['emailAddr']
+        #type = request.data['type']
+        third_party_refresh_token = request.data['token']
+        email = request.data['email']
 
-        if OpenBeatsUser.objects.filter(email=emailAddr).exists():
-            self.sessions.middleware.SessionMiddleware
+        OpenBeatsUser = get_user_model()
+
+        if OpenBeatsUser.objects.filter(email=email).exists():
+            return redirect('authentication:third_party_login')
+
+        else:
+            data = json.loads({
+                'email': email,
+                'third_party_refresh_token': third_party_refresh_token
+            })
+        
+        return redirect('authentication:create_user', data)
+        # check validity of access token with third party
+
+class ThirdPartyLogin(APIView):
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
+
+    def post(self, request, format='json'):
+        user = get_user_model().objects.filter(email=request.data['email'])
+        serializer = UserSerializer(instance=user, data=request.data)
+
+        if serializer.is_valid():
+            res = serializer.data
+            return Response(res, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+
+
+
+
+
+
+
 
 # class CustomPasswordResetView:
 #     @receiver(reset_password_token_created)

@@ -5,6 +5,7 @@
 # ============================================================================
 DOCKER_IMAGE:=318250923417.dkr.ecr.us-east-1.amazonaws.com/openbeats-api
 CONTAINER_IMAGE:=openbeats
+ECR_REPOSITORY:=318250923417.dkr.ecr.us-east-1.amazonaws.com
 
 S3_URL:=s3://www.openbeats716.com
 
@@ -59,6 +60,7 @@ push-static-assets:
 .PHONY: aws-login
 aws-login:
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_REPOSITORY)
+
 
 .PHONY: pull-cache
 pull-cache: aws-login

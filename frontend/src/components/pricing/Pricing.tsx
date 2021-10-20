@@ -1,5 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { CheckIcon } from '@heroicons/react/outline';
+import React from 'react';
 
 const tiers = [
   {
@@ -112,7 +113,7 @@ export default function Example() {
               </div>
               <div className="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
                 <a
-                  href="#"
+                  href="!#"
                   className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                 >
                   Buy Discounted License

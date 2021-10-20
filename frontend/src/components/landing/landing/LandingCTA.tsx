@@ -1,4 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
+import React from 'react';
+
 export default function LandingCTA() {
   return (
     <div className="bg-gray-50">
@@ -10,7 +11,7 @@ export default function LandingCTA() {
         <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
           <div className="inline-flex rounded-md shadow">
             <a
-              href="#"
+              href="!#"
               className="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green2 hover:bg-green1"
             >
               Join Today

@@ -1,11 +1,12 @@
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { http } from '../../../api/auth';
-import { useState } from 'react';
+
 type RegisterInputs = {
   email: string;
   password: string;
-  password_repeat: string;
+  passwordRepeat: string;
 };
 
 export interface serverErrors {
@@ -41,7 +42,7 @@ const Register = () => {
         password,
         username: email,
       });
-      http.defaults.headers['Authorization'] = 'Bearer ' + response.data.access;
+      http.defaults.headers.Authorization = `Bearer response.data.access`;
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
       history.push('/feed');
@@ -76,6 +77,7 @@ const Register = () => {
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  <input type="text" />
                   Email address
                 </label>
                 <div className="mt-1">
@@ -97,6 +99,7 @@ const Register = () => {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  <input type="text" />
                   Password
                 </label>
                 <div className="mt-1">
@@ -123,19 +126,20 @@ const Register = () => {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  <input type="text" />
                   Confirm Password
                 </label>
                 <div className="mt-1">
                   <input
                     type="password"
-                    {...register('password_repeat', {
+                    {...register('passwordRepeat', {
                       validate: (value) =>
                         value === watch('password') || 'The passwords do not match',
                     })}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
-                  {errors.password_repeat && (
-                    <span className="input-error">{errors.password_repeat!.message}</span>
+                  {errors.passwordRepeat && (
+                    <span className="input-error">{errors.passwordRepeat!.message}</span>
                   )}
                 </div>
               </div>
@@ -163,7 +167,7 @@ const Register = () => {
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a
-                    href="#"
+                    href="!#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Google</span>
@@ -173,7 +177,7 @@ const Register = () => {
 
                 <div>
                   <a
-                    href="#"
+                    href="!#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Apple Music</span>
@@ -183,7 +187,7 @@ const Register = () => {
 
                 <div>
                   <a
-                    href="#"
+                    href="!#"
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Spotify</span>

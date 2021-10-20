@@ -1,4 +1,4 @@
-// https://tailwindui.com/components/marketing/sections/footers
+import React from 'react';
 
 const navigation = {
   left: [
@@ -81,7 +81,7 @@ export default function LandingFooter() {
     <footer className="bg-white pt-10">
       <div className="max-w-7xl mx-auto overflow-hidden ">
         <nav className=" flex flex-wrap justify-between items-center" aria-label="Footer">
-          <div className={'flex justify-between w-44 md:w-60 lg:w-80'}>
+          <div className="flex justify-between w-44 md:w-60 lg:w-80">
             {navigation.left.map((item) => (
               <div key={item.name}>
                 <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
@@ -91,16 +91,16 @@ export default function LandingFooter() {
             ))}
           </div>
 
-          <div className={'flex items-center'}>
+          <div className="flex items-center">
             <img
               className="h-8 w-auto sm:mr-1" // https://tailwindcss.com/docs/height
               src="/openbeats.png"
               alt="Open Beats Logo"
             />
-            <div className={'text-gray-500 text-xl tracking-wide hidden sm:block'}>Open Beats</div>
+            <div className="text-gray-500 text-xl tracking-wide hidden sm:block">Open Beats</div>
           </div>
 
-          <div className={'flex justify-between w-44 md:w-60 lg:w-80'}>
+          <div className="flex justify-between w-44 md:w-60 lg:w-80">
             {navigation.right.map((item) => (
               <div key={item.name}>
                 <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
@@ -110,7 +110,7 @@ export default function LandingFooter() {
             ))}
           </div>
         </nav>
-        <hr className={'mt-1 bg-gray-400 p-0'} />
+        <hr className="mt-1 bg-gray-400 p-0" />
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
             <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">

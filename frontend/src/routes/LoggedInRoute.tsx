@@ -1,10 +1,10 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import { Route, Redirect } from 'react-router-dom';
 import { isUserLoggedIn } from '../api/auth';
 import AuthenticatedNav from '../components/nav/AuthenticatedNav';
-import { useQuery } from 'react-query';
+
 interface Props {
-  exact?: boolean;
   path: string;
   component: React.ComponentType<any>;
 }

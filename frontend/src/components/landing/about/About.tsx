@@ -1,4 +1,5 @@
-/* This example requires Tailwind CSS v2.0+ */
+import React from 'react';
+
 export default function About() {
   return (
     <div className="relative bg-gray-50 pt-16 overflow-hidden sm:pt-24 lg:pt-32">

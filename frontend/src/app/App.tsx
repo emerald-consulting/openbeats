@@ -1,4 +1,5 @@
 import { Route, BrowserRouter } from 'react-router-dom';
+import React from 'react';
 
 import Pages from '../routes/Pages';
 
@@ -11,7 +12,6 @@ const App = () => {
         <Route component={Pages} />
       </BrowserRouter>
     );
-
   return <>{app}</>;
 };
 

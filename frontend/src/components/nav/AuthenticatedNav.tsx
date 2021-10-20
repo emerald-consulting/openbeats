@@ -1,27 +1,10 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { SearchIcon } from '@heroicons/react/solid';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import { classNames } from '../../utils/tailwind';
+import { SearchIcon, BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import { PlusSmIcon } from '@heroicons/react/solid';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { classNames } from '../../utils/tailwind';
 import { http } from '../../api/auth';
 
 export default function Example() {
@@ -43,7 +26,7 @@ export default function Example() {
       });
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      http.defaults.headers['Authorization'] = null;
+      http.defaults.headers.Auththorization = null;
 
       history.push('/');
     } catch (e) {
@@ -90,12 +73,14 @@ export default function Example() {
                     src="/openbeats.png"
                     alt="openbeats logo"
                     onClick={() => history.push('/feed')}
+                    onKeyDown={() => history.push('/feed')}
                   />
                   <img
                     className="cursor-pointer hidden lg:block h-16 w-auto"
                     src="/openbeats.png"
                     alt="openbeats logo"
                     onClick={() => history.push('/feed')}
+                    onKeyDown={() => history.push('/feed')}
                   />
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
@@ -117,6 +102,7 @@ export default function Example() {
               <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
                 <div className="max-w-lg w-full lg:max-w-xs">
                   <label htmlFor="search" className="sr-only">
+                    <input type="text" />
                     Search
                   </label>
                   <div className="relative">
@@ -167,7 +153,7 @@ export default function Example() {
                     <Menu.Button className="bg-white rounded-full flex text-sm">
                       <img
                         className="h-12 w-12 rounded-full object-cover "
-                        src={'/exampleProfilePic.jpg'}
+                        src="/exampleProfilePic.jpg"
                         alt="example profile pic"
                       />
                     </Menu.Button>
@@ -228,7 +214,8 @@ export default function Example() {
                 <div className="flex-shrink-0">
                   <img
                     className="h-12 w-12 rounded-full object-cover "
-                    src={'/exampleProfilePic.jpg'}
+                    src="/exampleProfilePic.jpg"
+                    alt="example profile pic"
                   />
                 </div>
                 <div className="ml-3">
@@ -248,9 +235,7 @@ export default function Example() {
                   <a
                     href="#"
                     onClick={item.onclick}
-                    className={
-                      'cursor-pointer block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100'
-                    }
+                    className="cursor-pointer block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                   >
                     {item.name}
                   </a>

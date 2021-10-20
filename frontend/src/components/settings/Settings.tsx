@@ -1,30 +1,4 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          sky: colors.sky,
-          teal: colors.teal,
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Disclosure, Switch } from '@headlessui/react';
 import {
   BellIcon,
@@ -150,6 +124,7 @@ export default function Example() {
                           htmlFor="username"
                           className="block text-sm font-medium text-gray-700"
                         >
+                          <input type="text" />
                           Username
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
@@ -166,6 +141,7 @@ export default function Example() {
 
                       <div>
                         <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                          <input type="text" />
                           About
                         </label>
                         <div className="mt-1">
@@ -174,7 +150,7 @@ export default function Example() {
                             name="about"
                             rows={3}
                             className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            defaultValue={''}
+                            defaultValue=""
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
@@ -205,14 +181,14 @@ export default function Example() {
                                 htmlFor="mobile-user-photo"
                                 className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
                               >
+                                <input
+                                  id="mobile-user-photo"
+                                  name="user-photo"
+                                  type="file"
+                                  className="absolute w-full h-full opacity-0 border-gray-300 rounded-md"
+                                />
                                 <span>Change</span>
                               </label>
-                              <input
-                                id="mobile-user-photo"
-                                name="user-photo"
-                                type="file"
-                                className="absolute w-full h-full opacity-0 border-gray-300 rounded-md"
-                              />
                             </div>
                           </div>
                         </div>
@@ -247,15 +223,15 @@ export default function Example() {
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
                       >
+                        <input
+                          type="text"
+                          name="first-name"
+                          id="first-name"
+                          autoComplete="given-name"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                         First name
                       </label>
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
@@ -263,40 +239,40 @@ export default function Example() {
                         htmlFor="last-name"
                         className="block text-sm font-medium text-gray-700"
                       >
+                        <input
+                          type="text"
+                          name="last-name"
+                          id="last-name"
+                          autoComplete="family-name"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                         Last name
                       </label>
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
 
                     <div className="col-span-12">
                       <label htmlFor="url" className="block text-sm font-medium text-gray-700">
                         URL
+                        <input
+                          type="text"
+                          name="url"
+                          id="url"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                       </label>
-                      <input
-                        type="text"
-                        name="url"
-                        id="url"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
                       <label htmlFor="company" className="block text-sm font-medium text-gray-700">
                         Company
+                        <input
+                          type="text"
+                          name="company"
+                          id="company"
+                          autoComplete="organization"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                       </label>
-                      <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        autoComplete="organization"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,6 @@
 import { useHistory } from 'react-router';
+import React from 'react';
+
 const LandingBody = () => {
   const history = useHistory();
   return (

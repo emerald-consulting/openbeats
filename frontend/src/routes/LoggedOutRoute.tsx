@@ -6,7 +6,7 @@ interface Props {
   path: string;
   component: React.ComponentType<any>;
 }
-const LoggedOutRoute = ({ component: Component, ...otherProps }: Props) => {
+const LoggedOutRoute = ({ component: Component, ...otherProps }: Props): JSX.Element => {
   // TODO: check auth status
   // const { isAuthenticated } = useSelector(
   //     (state: RootState) => state.userState

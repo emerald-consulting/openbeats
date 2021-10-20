@@ -3,7 +3,7 @@ import React from 'react';
 
 import Pages from '../routes/Pages';
 
-const App = () => {
+const App: React.FC = () => {
   const isAuthenticated = true; // placeholder for now
 
   const app =

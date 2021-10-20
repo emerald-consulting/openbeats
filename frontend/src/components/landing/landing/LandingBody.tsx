@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router';
 import React from 'react';
 
-const LandingBody = () => {
+const LandingBody: React.FC = () => {
   const history = useHistory();
   return (
     <div className="mx-auto max-w-7xl w-full pt-8 pb-20 text-center">

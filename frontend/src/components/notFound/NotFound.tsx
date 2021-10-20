@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function NotFound() {
+export default function NotFound(): JSX.Element {
   return (
     <div className="min-h-screen pt-16 pb-12 flex flex-col bg-white">
       <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">

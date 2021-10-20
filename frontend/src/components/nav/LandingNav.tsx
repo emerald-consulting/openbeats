@@ -7,7 +7,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 /**
  * Nav bar on the landing page for unauthenticated users.
  */
-export default function LandingNav() {
+export default function LandingNav(): JSX.Element {
   const location = useLocation();
   const history = useHistory();
 

@@ -19,7 +19,7 @@ export interface serverErrors {
   Client side error validation meesages stored in "errors"
   Server side validation stored in "serverErrors"
 */
-const Register = () => {
+const Register: React.FC = () => {
   const history = useHistory();
 
   const {

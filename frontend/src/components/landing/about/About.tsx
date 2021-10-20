@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function About() {
+export default function About(): JSX.Element {
   return (
     <div className="relative bg-gray-50 pt-16 overflow-hidden sm:pt-24 lg:pt-32">
       <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">

@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { http } from '../../../api/auth';
+import React from 'react';
 
-const ResetPassword = () => {
+const ResetPassword: React.FC = () => {
   const baseURL =
     process.env.NODE_ENV === 'production'
       ? 'http://api.openbeats716.com/auth/password_reset/'

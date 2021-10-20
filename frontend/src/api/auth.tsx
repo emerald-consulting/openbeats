@@ -23,7 +23,7 @@ export const http = axios.create({
   },
 });
 
-export const isUserLoggedIn = async () => {
+export const isUserLoggedIn = async (): Promise<boolean> => {
   const { data } = await http.get<string>('/user/isLoggedIn/');
   return data === 'User logged in';
 };

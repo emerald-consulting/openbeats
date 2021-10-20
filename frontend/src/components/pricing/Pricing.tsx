@@ -29,7 +29,7 @@ const tiers = [
   },
 ];
 
-export default function Example() {
+export default function Example(): JSX.Element {
   return (
     <div className="bg-green1">
       <div className="pt-12 sm:pt-16 lg:pt-24">

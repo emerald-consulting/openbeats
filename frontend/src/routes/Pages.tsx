@@ -13,7 +13,7 @@ import Pricing from '../components/pricing/Pricing';
 import Activity from '../components/dashboard/Activity';
 import ResetPassword from '../components/landing/login/ResetPassword';
 
-const Pages = () => {
+const Pages: React.FC = () => {
   return (
     <Switch>
       <LoggedOutRoute path="/" component={Landing} />

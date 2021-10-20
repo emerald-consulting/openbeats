@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  AdjustmentsIcon,
-  GlobeAltIcon,
-  MailIcon,
-  MusicNoteIcon,
-  UploadIcon,
-} from '@heroicons/react/outline';
+import { GlobeAltIcon, MailIcon, MusicNoteIcon, UploadIcon } from '@heroicons/react/outline';
 
 const transferFeatures = [
   {
@@ -38,7 +32,7 @@ const communicationFeatures = [
   },
 ];
 
-export default function LandingAbout2() {
+export default function LandingAbout2(): JSX.Element {
   return (
     <div className="pb-20 pt-3 bg-gray-50 overflow-hidden">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -128,9 +122,9 @@ export default function LandingAbout2() {
             </svg>
             <img
               className="relative mx-auto"
-              width={800}
-              src="guy-listening-to-music.png"
-              alt="guy listeniing to music"
+              width={900}
+              src="two-people-music-frame.png"
+              alt="two people listening to music"
             />
           </div>
         </div>

@@ -10,7 +10,7 @@ type LoginInputs = {
   email: string;
   password: string;
 };
-const Login = () => {
+const Login: React.FC = () => {
   const history = useHistory();
 
   const { register, handleSubmit } = useForm<LoginInputs>();

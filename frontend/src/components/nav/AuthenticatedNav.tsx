@@ -21,7 +21,7 @@ export default function Example() {
 
   const onSignOut = async () => {
     try {
-      const response = await http.post('/blacklist/', {
+      await http.post('/blacklist/', {
         refresh_token: localStorage.getItem('refresh_token'),
       });
       localStorage.removeItem('access_token');

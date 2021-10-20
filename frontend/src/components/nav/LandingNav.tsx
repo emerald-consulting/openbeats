@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { Popover, Transition } from '@headlessui/react';
@@ -45,6 +45,8 @@ export default function LandingNav() {
             src="openbeats.png"
             alt="openbeats logo"
             onClick={() => history.push('/')}
+            onKeyDown={() => history.push('/')}
+            role="presentation"
           />
         </a>
 
@@ -58,6 +60,8 @@ export default function LandingNav() {
           <div
             className="cursor-pointer text-2xl hidden lg:block text-gray-700 pr-6"
             onClick={() => history.push('/')}
+            onKeyDown={() => history.push('/')}
+            role="presentation"
           >
             Open Beats
           </div>
@@ -120,6 +124,11 @@ export default function LandingNav() {
                         history.push('/');
                         console.log('CLICKED');
                       }}
+                      onKeyDown={() => {
+                        history.push('/');
+                        console.log('KEY PRESSED');
+                      }}
+                      role="presentation"
                     />
                   </a>
                 </div>

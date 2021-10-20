@@ -1,7 +1,7 @@
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { http } from '../../../api/auth';
-import { useState } from 'react';
 
 export interface serverErrors {
   detail: string[];
@@ -26,7 +26,7 @@ const Login = () => {
         password,
         username: email,
       });
-      http.defaults.headers['Authorization'] = 'Bearer ' + response.data.access;
+      http.defaults.headers.Authorization = `Bearer ${response.data.access}`;
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
       history.push('/feed');
@@ -63,6 +63,7 @@ const Login = () => {
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  <input type="text" />
                   Email address
                 </label>
                 <div className="mt-1">
@@ -80,6 +81,7 @@ const Login = () => {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  <input type="text" />
                   Password
                 </label>
                 <div className="mt-1">

@@ -13,7 +13,7 @@ from django.dispatch import receiver
 from django.contrib.auth import get_user_model
 import json
 
-from .models import User
+from .models import OpenBeatsUser
 
 from .serializers import TokenObtainPairSerializer, UserSerializer
 from rest_framework.views import APIView
@@ -57,8 +57,8 @@ class PasswordReset(APIView):
     def post(self,request,format=None):
        print(request.data['email'])
        useremail = request.data['email']
-       User = get_user_model()
-       if User.objects.filter(username=useremail).exists():
+       OpenBeatsUser = get_user_model()
+       if OpenBeatsUser.objects.filter(username=useremail).exists():
             return Response(data="Email Exists",status=status.HTTP_200_OK)
        else: 
             return Response(data="Email Does not exists",status=status.HTTP_400_BAD_REQUEST) 
@@ -95,7 +95,7 @@ class ThirdPartyAuthLogin(APIView):
     def post(self, request):
         emailAddr = request.data['emailAddr']
 
-        if User.objects.filter(email=emailAddr).exists():
+        if OpenBeatsUser.objects.filter(email=emailAddr).exists():
             self.sessions.middleware.SessionMiddleware
 
 # class CustomPasswordResetView:

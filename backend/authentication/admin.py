@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import User
+from .models import OpenBeatsUser
 
 class UserAdmin(admin.ModelAdmin):
-    model = User
+    model = OpenBeatsUser
 
-admin.site.register(User, UserAdmin)
+admin.site.register(OpenBeatsUser, UserAdmin)

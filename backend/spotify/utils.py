@@ -1,7 +1,7 @@
 from django.utils import timezone
 from .models import SpotifyToken
 from datetime import timedelta
-from authentication.models import User
+from authentication.models import OpenBeatsUser
 
 # Gets user tokens from database
 def get_user_tokens(session_id):

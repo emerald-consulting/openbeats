@@ -163,7 +163,7 @@ if os.getenv('ENV') == 'PROD':
     import dj_database_url
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-AUTH_USER_MODEL = "authentication.User"
+AUTH_USER_MODEL = "authentication.OpenBeatsUser"
 
 X_FRAME_OPTIONS = '*'
 

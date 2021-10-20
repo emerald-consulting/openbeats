@@ -1,6 +1,6 @@
 # djsr/authentication/serializers.py
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User
+from .models import OpenBeatsUser
 from rest_framework import serializers
 
 
@@ -14,16 +14,16 @@ class UserTokenPairSerializer(TokenObtainPairSerializer):
         return token
 
 from rest_framework import serializers
-from .models import User
+from .models import OpenBeatsUser
 # ...
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-            model = User
+            model = OpenBeatsUser
             fields = ['email','username', 'password']
             extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User(
+        user = OpenBeatsUser(
             email=validated_data['email'],
             username=validated_data['email']
         )

@@ -82,7 +82,7 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
-ROOT_URLCONF = 'openbeats_backend.urls'
+ROOT_URLCONF = 'api.urls'
 
 TEMPLATES = [
     {
@@ -100,7 +100,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'openbeats_backend.wsgi.application'
+WSGI_APPLICATION = 'api.wsgi.application'
 
 
 # Database
@@ -192,7 +192,7 @@ DEFAULT_FROM_EMAIL = 'default from email'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['openbeats_backend/templates'],
+        'DIRS': ['api/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const baseURL =
   process.env.NODE_ENV === 'production'
     ? 'https://api.openbeats716.com/api'
-    : 'http://localhost:8000/api';
+    : 'http://localhost:8000/api'
 
 /* Each time Axios gets a token, it stores the access_token in local storage. 
 We initiate the creation of the Axios instance by getting that token. 
@@ -21,22 +21,25 @@ export const http = axios.create({
     'Content-Type': 'application/json',
     accept: 'application/json',
   },
-});
+})
 
 export const isUserLoggedIn = async (): Promise<boolean> => {
-  const { data } = await http.get<string>('/user/isLoggedIn/');
-  return data === 'User logged in';
-};
+  const { data } = await http.get<string>('/user/isLoggedIn/')
+  return data === 'User logged in'
+}
 
 http.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const originalRequest = error.config;
+  response => response,
+  error => {
+    const originalRequest = error.config
 
     // Prevent infinite loops
-    if (error.response.status === 401 && originalRequest.url === `${baseURL}token/refresh/`) {
-      window.location.href = '/login/';
-      return Promise.reject(error);
+    if (
+      error.response.status === 401 &&
+      originalRequest.url === `${baseURL}token/refresh/`
+    ) {
+      window.location.href = '/login/'
+      return Promise.reject(error)
     }
 
     if (
@@ -44,42 +47,42 @@ http.interceptors.response.use(
       error.response.status === 401 &&
       error.response.statusText === 'Unauthorized'
     ) {
-      const refreshToken = localStorage.getItem('refresh_token');
+      const refreshToken = localStorage.getItem('refresh_token')
 
       if (refreshToken) {
-        const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
+        const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]))
 
         // exp date in token is expressed in seconds, while now() returns milliseconds:
-        const now = Math.ceil(Date.now() / 1000);
-        console.log(tokenParts.exp);
+        const now = Math.ceil(Date.now() / 1000)
+        console.log(tokenParts.exp)
 
         if (tokenParts.exp > now) {
           return http
             .post('/token/refresh/', { refresh: refreshToken })
-            .then((response) => {
-              localStorage.setItem('access_token', response.data.access);
-              localStorage.setItem('refresh_token', response.data.refresh);
+            .then(response => {
+              localStorage.setItem('access_token', response.data.access)
+              localStorage.setItem('refresh_token', response.data.refresh)
 
-              http.defaults.headers.Authorization = `Bearer ${response.data.access}`;
-              originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
+              http.defaults.headers.Authorization = `Bearer ${response.data.access}`
+              originalRequest.headers.Authorization = `Bearer ${response.data.access}`
 
-              return http(originalRequest);
+              return http(originalRequest)
             })
-            .catch((err) => {
-              console.log(err);
-              return error.response.status;
-            });
+            .catch(err => {
+              console.log(err)
+              return error.response.status
+            })
         }
-        console.log('Refresh token is expired', tokenParts.exp, now);
-        window.location.href = '/login/';
-        return error.response.status;
+        console.log('Refresh token is expired', tokenParts.exp, now)
+        window.location.href = '/login/'
+        return error.response.status
       }
-      console.log('Refresh token not available.');
-      window.location.href = '/login/';
-      return error.response.status;
+      console.log('Refresh token not available.')
+      window.location.href = '/login/'
+      return error.response.status
     }
 
     // specific error handling done elsewhere
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)

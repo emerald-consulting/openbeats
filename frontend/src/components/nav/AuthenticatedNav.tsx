@@ -1,65 +1,67 @@
-import React, { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { SearchIcon, BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import { PlusSmIcon } from '@heroicons/react/solid';
-import { useHistory } from 'react-router-dom';
-import { useLocation } from 'react-router';
-import { classNames } from '../../utils/tailwind';
-import { http } from '../../api/auth';
+import React, { Fragment } from 'react'
+
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { SearchIcon, BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { PlusSmIcon } from '@heroicons/react/solid'
+import { useLocation } from 'react-router'
+import { useHistory } from 'react-router-dom'
+
+import { http } from '../../api/auth'
+import { classNames } from '../../utils/tailwind'
 
 export default function Example() {
-  const history = useHistory();
-  const location = useLocation();
+  const history = useHistory()
+  const location = useLocation()
 
   const onClickFeed = () => {
-    history.push('/feed');
-  };
+    history.push('/feed')
+  }
 
   const onClickExample = () => {
-    history.push('/activity');
-  };
+    history.push('/activity')
+  }
 
   const onSignOut = async () => {
     try {
       await http.post('/blacklist/', {
         refresh_token: localStorage.getItem('refresh_token'),
-      });
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
-      http.defaults.headers.Auththorization = null;
+      })
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('refresh_token')
+      http.defaults.headers.Auththorization = null
 
-      history.push('/');
+      history.push('/')
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-  };
+  }
   const navigation: {
-    name: string;
-    pathname: string;
-    onclick: () => void;
+    name: string
+    pathname: string
+    onclick: () => void
   }[] = [
     { name: 'Feed', onclick: onClickFeed, pathname: '/feed' },
     { name: 'Activity', onclick: onClickExample, pathname: '/activity' },
-  ];
+  ]
 
   const profile: {
-    name: string;
-    onclick: () => void;
+    name: string
+    onclick: () => void
   }[] = [
     {
       name: 'Your Profile',
       onclick: () => {
-        history.push('/settings');
+        history.push('/settings')
       },
     },
     {
       name: 'Settings',
       onclick: () => {
-        history.push('/settings');
+        history.push('/settings')
       },
     },
     { name: 'Sign out', onclick: onSignOut },
-  ];
+  ]
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -84,8 +86,9 @@ export default function Example() {
                   />
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
-                  {navigation.map((item) => (
+                  {navigation.map(item => (
                     <a
+                      key={item.name}
                       href="#"
                       onClick={item.onclick}
                       className={
@@ -107,7 +110,10 @@ export default function Example() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <SearchIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
                     </div>
                     <input
                       id="search"
@@ -123,7 +129,10 @@ export default function Example() {
                     type="button"
                     className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green2 shadow-sm hover:bg-green1"
                   >
-                    <PlusSmIcon className="-ml-1 mr-2 h- w-5" aria-hidden="true" />
+                    <PlusSmIcon
+                      className="-ml-1 mr-2 h- w-5"
+                      aria-hidden="true"
+                    />
                     <span>Upload</span>
                   </button>
                 </div>
@@ -168,8 +177,8 @@ export default function Example() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white z-50">
-                      {profile.map((item) => (
-                        <Menu.Item>
+                      {profile.map(item => (
+                        <Menu.Item key={item.name}>
                           {({ active }) => (
                             <a
                               href="#"
@@ -195,8 +204,9 @@ export default function Example() {
             <div className="pt-2 pb-3 space-y-1">
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" */}
 
-              {navigation.map((item) => (
+              {navigation.map(item => (
                 <a
+                  key={item.name}
                   href="#"
                   onClick={item.onclick}
                   className={
@@ -219,8 +229,12 @@ export default function Example() {
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">Tim Dillon</div>
-                  <div className="text-sm font-medium text-gray-500">tim@example.com</div>
+                  <div className="text-base font-medium text-gray-800">
+                    Tim Dillon
+                  </div>
+                  <div className="text-sm font-medium text-gray-500">
+                    tim@example.com
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -231,8 +245,9 @@ export default function Example() {
                 </button>
               </div>
               <div className="mt-3 space-y-1">
-                {profile.map((item) => (
+                {profile.map(item => (
                   <a
+                    key={item.name}
                     href="#"
                     onClick={item.onclick}
                     className="cursor-pointer block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
@@ -246,5 +261,5 @@ export default function Example() {
         </>
       )}
     </Disclosure>
-  );
+  )
 }

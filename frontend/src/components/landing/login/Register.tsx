@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { http } from '../../../api/auth';
+import React, { useState } from 'react'
+
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useHistory } from 'react-router'
+
+import { http } from 'api/auth'
 
 type RegisterInputs = {
-  email: string;
-  password: string;
-  passwordRepeat: string;
-};
+  email: string
+  password: string
+  passwordRepeat: string
+}
 
 export interface serverErrors {
-  email: string[];
-  password: string[];
-  username: string[];
+  email: string[]
+  password: string[]
+  username: string[]
 }
 
 /*
@@ -20,43 +22,50 @@ export interface serverErrors {
   Server side validation stored in "serverErrors"
 */
 const Register: React.FC = () => {
-  const history = useHistory();
+  const history = useHistory()
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<RegisterInputs>();
-  const [serverErrors, setServerErrors] = useState({} as serverErrors);
+  } = useForm<RegisterInputs>()
+  const [serverErrors, setServerErrors] = useState({} as serverErrors)
 
-  const onSubmit: SubmitHandler<RegisterInputs> = async ({ email, password }: RegisterInputs) => {
+  const onSubmit: SubmitHandler<RegisterInputs> = async ({
+    email,
+    password,
+  }: RegisterInputs) => {
     // clear existing server side errors
-    setServerErrors({} as serverErrors);
+    setServerErrors({} as serverErrors)
 
     // Send credentials to server
     try {
-      await http.post('/user/create/', { email, password, username: email });
+      await http.post('/user/create/', { email, password, username: email })
       const response = await http.post('/token/obtain/', {
         email,
         password,
         username: email,
-      });
-      http.defaults.headers.Authorization = `Bearer response.data.access`;
-      localStorage.setItem('access_token', response.data.access);
-      localStorage.setItem('refresh_token', response.data.refresh);
-      history.push('/feed');
+      })
+      http.defaults.headers.Authorization = `Bearer response.data.access`
+      localStorage.setItem('access_token', response.data.access)
+      localStorage.setItem('refresh_token', response.data.refresh)
+      history.push('/feed')
     } catch (e) {
       // Show any input validation errors
-      setServerErrors((e as any).response.data);
+      setServerErrors((e as any).response.data)
     }
-  };
+  }
 
   return (
     <>
       <div className=" bg-white flex flex-col mt-16 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img className="mx-auto h-28 w-auto" src="/openbeats.png" alt="Open Beats Logo" />
+          <img
+            className="mx-auto h-28 w-auto"
+            src="/openbeats.png"
+            alt="Open Beats Logo"
+          />
           <h2 className="mt-6 text-center text-3xl font-extrabold-roboto text-gray-900">
             Create your account
           </h2>
@@ -76,7 +85,10 @@ const Register: React.FC = () => {
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   <input type="text" />
                   Email address
                 </label>
@@ -92,13 +104,20 @@ const Register: React.FC = () => {
                     autoComplete="email"
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
-                  {errors.email && <span className="input-error">{errors.email.message}</span>}
-                  {serverErrors.email && <span className="input-error">{serverErrors.email}</span>}
+                  {errors.email && (
+                    <span className="input-error">{errors.email.message}</span>
+                  )}
+                  {serverErrors.email && (
+                    <span className="input-error">{serverErrors.email}</span>
+                  )}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   <input type="text" />
                   Password
                 </label>
@@ -119,13 +138,18 @@ const Register: React.FC = () => {
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                   {errors.password && (
-                    <span className="input-error">{errors.password.message}</span>
+                    <span className="input-error">
+                      {errors.password.message}
+                    </span>
                   )}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   <input type="text" />
                   Confirm Password
                 </label>
@@ -133,13 +157,16 @@ const Register: React.FC = () => {
                   <input
                     type="password"
                     {...register('passwordRepeat', {
-                      validate: (value) =>
-                        value === watch('password') || 'The passwords do not match',
+                      validate: value =>
+                        value === watch('password') ||
+                        'The passwords do not match',
                     })}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                   {errors.passwordRepeat && (
-                    <span className="input-error">{errors.passwordRepeat!.message}</span>
+                    <span className="input-error">
+                      {errors.passwordRepeat!.message}
+                    </span>
                   )}
                 </div>
               </div>
@@ -160,7 +187,9 @@ const Register: React.FC = () => {
                   <div className="w-full border-t border-gray-300" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                  <span className="px-2 bg-white text-gray-500">
+                    Or continue with
+                  </span>
                 </div>
               </div>
 
@@ -171,7 +200,11 @@ const Register: React.FC = () => {
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Google</span>
-                    <img src="/loginIcons/google.svg" className="w-7" alt="Google icon" />
+                    <img
+                      src="/loginIcons/google.svg"
+                      className="w-7"
+                      alt="Google icon"
+                    />
                   </a>
                 </div>
 
@@ -181,7 +214,11 @@ const Register: React.FC = () => {
                     className="w-full inline-flex justify-center py-1 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Apple Music</span>
-                    <img src="/loginIcons/apple.svg" className="w-7" alt="Apple Music icon" />
+                    <img
+                      src="/loginIcons/apple.svg"
+                      className="w-7"
+                      alt="Apple Music icon"
+                    />
                   </a>
                 </div>
 
@@ -192,7 +229,11 @@ const Register: React.FC = () => {
                   >
                     <span className="sr-only">Sign in with Spotify</span>
 
-                    <img src="/loginIcons/spotify.png" className="w-7" alt="Spotify icon" />
+                    <img
+                      src="/loginIcons/spotify.png"
+                      className="w-7"
+                      alt="Spotify icon"
+                    />
                   </a>
                 </div>
               </div>
@@ -201,7 +242,7 @@ const Register: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

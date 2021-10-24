@@ -4,12 +4,13 @@ services:
   db:
     container_name: db
     image: postgres
+    ports:
+      - "5432:5432"
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+    - docker.env
+
   api:
     container_name: api
     build: 
@@ -21,6 +22,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
   web:
     container_name: web
     stdin_open: true

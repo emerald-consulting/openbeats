@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function NotFound(): JSX.Element {
   return (
@@ -16,7 +16,10 @@ export default function NotFound(): JSX.Element {
               Sorry, we couldn’t find the page you’re looking for.
             </p>
             <div className="mt-6">
-              <a href="/" className="text-base font-medium text-green1 hover:text-green3">
+              <a
+                href="/"
+                className="text-base font-medium text-green1 hover:text-green3"
+              >
                 Go back home<span aria-hidden="true"> &rarr;</span>
               </a>
             </div>
@@ -24,5 +27,5 @@ export default function NotFound(): JSX.Element {
         </div>
       </main>
     </div>
-  );
+  )
 }

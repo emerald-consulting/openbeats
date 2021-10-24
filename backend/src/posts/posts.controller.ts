@@ -1,34 +1,54 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { PostsService } from './posts.service';
-import { CreatePostDto } from './dto/create-post.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+  Req,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+} from '@nestjs/common';
+import JwtAuthGuard from '../auth/jwt-auth.guard';
+import RequestWithUser from '../auth/requestWithUser.interface';
+import { FindOneParams } from '../utils/exceptionsLogger.filter';
+import CreatePostDto from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import PostsService from './posts.service';
 
 @Controller('posts')
-export class PostsController {
+@UseInterceptors(ClassSerializerInterceptor)
+export default class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(createPostDto);
-  }
-
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  getAllPosts() {
+    return this.postsService.getAllPosts();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postsService.findOne(+id);
+  getPostById(@Param() { id }: FindOneParams) {
+    return this.postsService.getPostById(Number(id));
+  }
+
+  @Post()
+  @UseGuards(JwtAuthGuard)
+  async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {
+    return this.postsService.createPost(post, req.user);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postsService.update(+id, updatePostDto);
+  async updatePost(
+    @Param() { id }: FindOneParams,
+    @Body() post: UpdatePostDto,
+  ) {
+    return this.postsService.updatePost(Number(id), post);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.postsService.remove(+id);
+  async deletePost(@Param() { id }: FindOneParams) {
+    return this.postsService.deletePost(Number(id));
   }
 }

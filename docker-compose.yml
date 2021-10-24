@@ -1,15 +1,16 @@
 version: "3.9"
    
 services:
-  db:
-    container_name: db
-    image: postgres
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - docker.env
+
   api:
     container_name: api
     build: 
@@ -20,7 +21,10 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - postgres
+    links:
+      - postgres:postgres
+
   web:
     container_name: web
     stdin_open: true
@@ -34,3 +38,15 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend:/app # live updates
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "80:80"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - docker.env

@@ -1,39 +1,33 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import LandingNav from '../components/nav/LandingNav';
+import React from 'react'
+
+import { Route } from 'react-router-dom'
+
+import LandingNav from 'components/nav/LandingNav'
 
 interface Props {
-  path: string;
-  component: React.ComponentType<any>;
+  path: string
+  component: React.ComponentType<any>
+  exactx?: boolean
 }
-const LoggedOutRoute = ({ component: Component, ...otherProps }: Props): JSX.Element => {
-  // TODO: check auth status
-  // const { isAuthenticated } = useSelector(
-  //     (state: RootState) => state.userState
-  // );
-  // const isAuthenticated = false; // placeholder
 
-  // TODO: Redirect to the feed if the user logs in
-  // if (isAuthenticated === true) {
-  //     return (
-  //         <>
-  //             <Redirect to="/feed" />
-  //         </>
-  //     );
-  // }
-
+const LoggedOutRoute: React.FC<Props> = ({
+  path,
+  component: Component,
+  exactx = false,
+}: Props) => {
   return (
-    <>
-      <Route
-        render={() => (
-          <>
-            <LandingNav />
-            <Component {...otherProps} />
-          </>
-        )}
-      />
-    </>
-  );
-};
+    <Route
+      path={path}
+      exact={exactx}
+      component={Component}
+      render={() => (
+        <>
+          <LandingNav />
+          <Component />
+        </>
+      )}
+    />
+  )
+}
 
-export default LoggedOutRoute;
+export default LoggedOutRoute

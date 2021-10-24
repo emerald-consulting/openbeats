@@ -1,23 +1,25 @@
-import { Route, Switch } from 'react-router-dom';
-import React from 'react';
-import Feed from '../components/dashboard/Feed';
-import LoggedOutRoute from './LoggedOutRoute';
-import LoggedInRoute from './LoggedInRoute';
-import NotFound from '../components/notFound/NotFound';
-import Landing from '../components/landing/landing/LandingMain';
-import Register from '../components/landing/login/Register';
-import Login from '../components/landing/login/Login';
-import Settings from '../components/settings/Settings';
-import About from '../components/landing/about/About';
-import Pricing from '../components/pricing/Pricing';
-import Activity from '../components/dashboard/Activity';
-import ResetPassword from '../components/landing/login/ResetPassword';
+import React from 'react'
+
+import { Route, Switch } from 'react-router-dom'
+
+import Activity from '../components/dashboard/Activity'
+import Feed from '../components/dashboard/Feed'
+import About from '../components/landing/about/About'
+import Landing from '../components/landing/landing/LandingMain'
+import Login from '../components/landing/login/Login'
+import Register from '../components/landing/login/Register'
+import ResetPassword from '../components/landing/login/ResetPassword'
+import NotFound from '../components/notFound/NotFound'
+import Pricing from '../components/pricing/Pricing'
+import Settings from '../components/settings/Settings'
+import LoggedInRoute from './LoggedInRoute'
+import LoggedOutRoute from './LoggedOutRoute'
 
 const Pages: React.FC = () => {
   return (
     <Switch>
-      <LoggedOutRoute path="/" component={Landing} />
-      <LoggedOutRoute path="/login" component={Login} />
+      <LoggedOutRoute exactx path="/" component={Landing} />
+      <LoggedOutRoute exactx path="/login" component={Login} />
       <LoggedOutRoute path="/register" component={Register} />
       <LoggedOutRoute path="/about" component={About} />
       <LoggedInRoute path="/feed" component={Feed} />
@@ -27,7 +29,7 @@ const Pages: React.FC = () => {
       <LoggedOutRoute path="/reset" component={ResetPassword} />
       <Route component={NotFound} />
     </Switch>
-  );
-};
+  )
+}
 
-export default Pages;
+export default Pages

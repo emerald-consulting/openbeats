@@ -1,20 +1,21 @@
-import React, { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useLocation } from 'react-router';
-import { Popover, Transition } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import React, { Fragment } from 'react'
+
+import { Popover, Transition } from '@headlessui/react'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { useLocation } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 /**
  * Nav bar on the landing page for unauthenticated users.
  */
 export default function LandingNav(): JSX.Element {
-  const location = useLocation();
-  const history = useHistory();
+  const location = useLocation()
+  const history = useHistory()
 
   const navigation: {
-    name: string;
-    pathname: string;
-    onclick: () => void;
+    name: string
+    pathname: string
+    onclick: () => void
   }[] = [
     {
       name: 'About',
@@ -26,15 +27,15 @@ export default function LandingNav(): JSX.Element {
       onclick: () => history.push('/pricing'),
       pathname: '/pricing',
     },
-  ];
+  ]
 
   const onClickLogin = () => {
-    history.push('/login');
-  };
+    history.push('/login')
+  }
 
   const onClickRegister = () => {
-    history.push('/register');
-  };
+    history.push('/register')
+  }
 
   return (
     <Popover className="relative bg-white">
@@ -65,9 +66,9 @@ export default function LandingNav(): JSX.Element {
           >
             Open Beats
           </div>
-          {navigation.map((item) => (
-            <a
-              href="#"
+          {navigation.map(item => (
+            <p
+              key={item.name}
               onClick={item.onclick}
               className={
                 item.pathname === location.pathname
@@ -76,7 +77,7 @@ export default function LandingNav(): JSX.Element {
               }
             >
               {item.name}
-            </a>
+            </p>
           ))}
 
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -121,12 +122,12 @@ export default function LandingNav(): JSX.Element {
                       src="openbeats.png"
                       alt="openbeats logo"
                       onClick={() => {
-                        history.push('/');
-                        console.log('CLICKED');
+                        history.push('/')
+                        console.log('CLICKED')
                       }}
                       onKeyDown={() => {
-                        history.push('/');
-                        console.log('KEY PRESSED');
+                        history.push('/')
+                        console.log('KEY PRESSED')
                       }}
                       role="presentation"
                     />
@@ -142,9 +143,9 @@ export default function LandingNav(): JSX.Element {
             </div>
             <div className=" px-5">
               <div className="grid grid-cols-2 gap-4 pb-5">
-                {navigation.map((item) => (
-                  <a
-                    href="#"
+                {navigation.map(item => (
+                  <p
+                    key={item.name}
                     onClick={item.onclick}
                     className={
                       item.pathname === location.pathname
@@ -153,20 +154,18 @@ export default function LandingNav(): JSX.Element {
                     }
                   >
                     {item.name}
-                  </a>
+                  </p>
                 ))}
               </div>
               <div className="py-6 px-5 space-y-6">
                 <div>
                   <a
-                    href="#"
                     onClick={onClickLogin}
                     className="cursor-pointer w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green2 hover:bg-green1 border-green"
                   >
                     Sign in
                   </a>
                   <a
-                    href="#"
                     onClick={onClickRegister}
                     className="cursor-pointer w-full mt-5 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-black hover:border-green1 border-green2 border-1"
                   >
@@ -179,5 +178,5 @@ export default function LandingNav(): JSX.Element {
         </Popover.Panel>
       </Transition>
     </Popover>
-  );
+  )
 }

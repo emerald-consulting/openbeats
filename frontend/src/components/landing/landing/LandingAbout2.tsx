@@ -1,20 +1,28 @@
-import React from 'react';
-import { GlobeAltIcon, MailIcon, MusicNoteIcon, UploadIcon } from '@heroicons/react/outline';
+import React from 'react'
+
+import {
+  GlobeAltIcon,
+  MailIcon,
+  MusicNoteIcon,
+  UploadIcon,
+} from '@heroicons/react/outline'
 
 const transferFeatures = [
   {
     id: 2,
     name: 'Stream',
-    description: 'Stream music from your favorite artists no matter how underground or mainstream.',
+    description:
+      'Stream music from your favorite artists no matter how underground or mainstream.',
     icon: MusicNoteIcon,
   },
   {
     id: 3,
     name: 'Upload',
-    description: 'Upload your own tracks that you produce in the Open Beats DAW.',
+    description:
+      'Upload your own tracks that you produce in the Open Beats DAW.',
     icon: UploadIcon,
   },
-];
+]
 const communicationFeatures = [
   {
     id: 1,
@@ -30,7 +38,7 @@ const communicationFeatures = [
       'Collaborate with anyone in the world with Open Beats. Find others to collaborate with on the Open Beats social media site.',
     icon: GlobeAltIcon,
   },
-];
+]
 
 export default function LandingAbout2(): JSX.Element {
   return (
@@ -63,7 +71,11 @@ export default function LandingAbout2(): JSX.Element {
               />
             </pattern>
           </defs>
-          <rect width={404} height={784} fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)" />
+          <rect
+            width={404}
+            height={784}
+            fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)"
+          />
         </svg>
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
@@ -72,20 +84,24 @@ export default function LandingAbout2(): JSX.Element {
               Play Music
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              With Open Beats, you can stream and download music from your favorite artists, no
-              matter how big or small.
+              With Open Beats, you can stream and download music from your
+              favorite artists, no matter how big or small.
             </p>
 
             <dl className="mt-10 space-y-10">
-              {transferFeatures.map((item) => (
+              {transferFeatures.map(item => (
                 <div key={item.id} className="relative">
                   <dt>
                     <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-green3 text-white">
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{item.name}</p>
+                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                      {item.name}
+                    </p>
                   </dt>
-                  <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
+                  <dd className="mt-2 ml-16 text-base text-gray-500">
+                    {item.description}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -118,7 +134,11 @@ export default function LandingAbout2(): JSX.Element {
                   />
                 </pattern>
               </defs>
-              <rect width={784} height={404} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
+              <rect
+                width={784}
+                height={404}
+                fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)"
+              />
             </svg>
             <img
               className="relative mx-auto"
@@ -156,7 +176,11 @@ export default function LandingAbout2(): JSX.Element {
               />
             </pattern>
           </defs>
-          <rect width={404} height={784} fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
+          <rect
+            width={404}
+            height={784}
+            fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"
+          />
         </svg>
 
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
@@ -166,12 +190,12 @@ export default function LandingAbout2(): JSX.Element {
                 Always on beat.
               </h3>
               <p className="mt-3 text-lg text-gray-500">
-                With Open Beats, multiple artists can join a studio session to work on a musical
-                project at the same time.
+                With Open Beats, multiple artists can join a studio session to
+                work on a musical project at the same time.
               </p>
 
               <dl className="mt-10 space-y-10">
-                {communicationFeatures.map((item) => (
+                {communicationFeatures.map(item => (
                   <div key={item.id} className="relative">
                     <dt>
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-green3 text-white">
@@ -181,7 +205,9 @@ export default function LandingAbout2(): JSX.Element {
                         {item.name}
                       </p>
                     </dt>
-                    <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
+                    <dd className="mt-2 ml-16 text-base text-gray-500">
+                      {item.description}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -215,7 +241,11 @@ export default function LandingAbout2(): JSX.Element {
                     />
                   </pattern>
                 </defs>
-                <rect width={784} height={404} fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
+                <rect
+                  width={784}
+                  height={404}
+                  fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)"
+                />
               </svg>
               <img
                 className="relative mx-auto"
@@ -227,5 +257,5 @@ export default function LandingAbout2(): JSX.Element {
         </div>
       </div>
     </div>
-  );
+  )
 }

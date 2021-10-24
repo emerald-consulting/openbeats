@@ -10,9 +10,8 @@ services:
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@openbeats.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+    env_file:
+      docker.env
     ports:
       - "80:80"
       - "5050:5050"

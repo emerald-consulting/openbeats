@@ -1,8 +1,9 @@
-import { useHistory } from 'react-router';
-import React from 'react';
+import React from 'react'
+
+import { useHistory } from 'react-router'
 
 const LandingBody: React.FC = () => {
-  const history = useHistory();
+  const history = useHistory()
   return (
     <div className="mx-auto max-w-7xl w-full pt-8 pb-20 text-center">
       <div className="px-4 sm:px-8">
@@ -10,14 +11,14 @@ const LandingBody: React.FC = () => {
           <span className="block ">Open Beats</span>{' '}
         </h1>
         <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
-          Open Beats, is a Digital Audio Workstation that allows for the synchronous collaboration
-          of musical projects remotely.
+          Open Beats, is a Digital Audio Workstation that allows for the
+          synchronous collaboration of musical projects remotely.
         </p>
 
         <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
-          In addition to a Digital Audio Workstation, Open Beats comes bundled with a social media
-          application that allows artists to find other tracks to listen to, and other artists to
-          collaborate with.
+          In addition to a Digital Audio Workstation, Open Beats comes bundled
+          with a social media application that allows artists to find other
+          tracks to listen to, and other artists to collaborate with.
         </p>
         <div className="mt-10 sm:flex sm:justify-center ">
           <div className="rounded-md shadow">
@@ -41,7 +42,7 @@ const LandingBody: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LandingBody;
+export default LandingBody

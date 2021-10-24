@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function LandingCTA(): JSX.Element {
   return (
@@ -28,5 +28,5 @@ export default function LandingCTA(): JSX.Element {
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,34 +1,45 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { PostsService } from './posts.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
+import PostsService from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import JwtAuthGuard from 'src/auth/jwt-auth.guard';
 
 @Controller('posts')
-export class PostsController {
+export default class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(createPostDto);
-  }
-
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  getAllPosts() {
+    return this.postsService.getAllPosts();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postsService.findOne(+id);
+  getPostById(@Param('id') id: string) {
+    return this.postsService.getPostById(Number(id));
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postsService.update(+id, updatePostDto);
+  @Post()
+  @UseGuards(JwtAuthGuard)
+  async createPost(@Body() post: CreatePostDto) {
+    return this.postsService.createPost(post);
+  }
+
+  @Put(':id')
+  async replacePost(@Param('id') id: string, @Body() post: UpdatePostDto) {
+    return this.postsService.replacePost(Number(id), post);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.postsService.remove(+id);
+  async deletePost(@Param('id') id: string) {
+    this.postsService.deletePost(Number(id));
   }
 }

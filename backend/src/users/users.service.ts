@@ -21,8 +21,32 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async findOne(userId: number): Promise<User | undefined> {
+  async findOneById(userId: number): Promise<User | undefined> {
     const user = await this.usersRepository.findOne(userId);
+    if (user) {
+      return user;
+    } else {
+      throw new HttpException(
+        'User with this id does not exist',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+  }
+
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    const user = await this.usersRepository.findOne(email);
+    if (user) {
+      return user;
+    } else {
+      throw new HttpException(
+        'User was not found in the database.',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+  }
+
+  async findOneByUsername(username: string): Promise<User | undefined> {
+    const user = await this.usersRepository.findOne(username);
     if (user) {
       return user;
     } else {
@@ -44,7 +68,6 @@ export class UsersService {
       HttpStatus.NOT_FOUND,
     );
   }
-
 
   async remove(id: number) {
     const deleteResponse = await this.usersRepository.delete(id);

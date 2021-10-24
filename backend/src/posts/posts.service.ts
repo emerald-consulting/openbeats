@@ -1,26 +1,49 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
+import { Post } from './post.interface';
 import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
-export class PostsService {
-  create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
+export default class PostsService {
+  private lastPostId = 0;
+  private posts: Post[] = [];
+
+  getAllPosts() {
+    return this.posts;
   }
 
-  findAll() {
-    return `This action returns all posts`;
+  getPostById(postId: number) {
+    const post = this.posts.find((post) => post.postId === postId);
+    if (post) {
+      return post;
+    }
+    throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  replacePost(postId: number, post: UpdatePostDto) {
+    const postIndex = this.posts.findIndex((post) => post.postId === postId);
+    if (postIndex > -1) {
+      this.posts[postIndex] = post;
+      return post;
+    }
+    throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
   }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+  createPost(post: CreatePostDto) {
+    const newPost = {
+      postId: ++this.lastPostId,
+      ...post,
+    };
+    this.posts.push(newPost);
+    return newPost;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  deletePost(postId: number) {
+    const postIndex = this.posts.findIndex((post) => post.postId === postId);
+    if (postIndex > -1) {
+      this.posts.splice(postIndex, 1);
+    } else {
+      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    }
   }
 }

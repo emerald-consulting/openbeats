@@ -16,7 +16,7 @@ import { PostsModule } from './posts/posts.module';
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
         PORT: Joi.number(),
-        JST_SECRET: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
         JWT_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),

@@ -3,13 +3,15 @@ version: "3.9"
 services:
   db:
     container_name: db
-    image: postgres
+    image: postgres:latest
     ports:
       - "5432:5432"
     volumes:
       - ./data/db:/var/lib/postgresql/data
     env_file:
-    - docker.env
+      - docker.env
+    networks:
+      - postgres
 
   api:
     container_name: api
@@ -36,3 +38,21 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend:/app # live updates
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    env_file:
+      - docker.env
+    networks:
+      - postgres
+
+  networks:
+    postgres:
+      driver: bridge

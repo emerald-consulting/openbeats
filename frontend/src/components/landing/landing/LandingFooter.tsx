@@ -39,7 +39,7 @@ const navigation = {
   ],
 }
 
-export default function LandingFooter() {
+export default function LandingFooter(): JSX.Element {
   return (
     <footer className="bg-white pt-10">
       <div className="max-w-7xl mx-auto overflow-hidden ">

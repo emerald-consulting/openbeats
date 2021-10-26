@@ -2,13 +2,13 @@ import { Test } from '@nestjs/testing';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import User from '../users/entities/user.entity';
-import { UsersService } from '../users/users.service';
-import { AuthService } from './auth.service';
-import mockedConfigService from '../utils/mocks/config.service';
-import mockedJwtService from '../utils/mocks/jwt.service';
+import { UsersService } from '../../users/users.service';
+import mockedJwtService from '../../utils/mocks/jwt.service';
+import mockedConfigService from '../../utils/mocks/config.service';
+import { AuthService } from '../auth.service';
+import User from '../../users/entities/user.entity';
 
-describe('The AuthenService', () => {
+describe('The AuthenticationService', () => {
   let authService: AuthService;
   beforeEach(async () => {
     const module = await Test.createTestingModule({

@@ -6,7 +6,7 @@ import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { PostsModule } from './posts/posts.module';
 import { APP_FILTER } from '@nestjs/core';
-import { ExceptionsLoggerFilter } from './utils/exceptionsLogger.filter';
+import { FindOneParams } from './utils/exceptionsLogger.filter';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { ExceptionsLoggerFilter } from './utils/exceptionsLogger.filter';
   providers: [
     {
       provide: APP_FILTER,
-      useClass: ExceptionsLoggerFilter,
+      useClass: FindOneParams,
     },
   ],
 })

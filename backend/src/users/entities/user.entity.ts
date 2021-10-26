@@ -1,8 +1,15 @@
 import { Exclude, Expose } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import Address from './address.entity';
 
 @Entity()
-export class User {
+export default class User {
   @PrimaryGeneratedColumn()
   public userId: number;
 
@@ -49,4 +56,11 @@ export class User {
   @Column()
   @Expose()
   public bio: string;
+
+  @OneToOne(() => Address, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn()
+  public address: Address;
 }

@@ -39,7 +39,7 @@ export class AuthController {
     const cookie = this.authService.getCookieWithJwtToken(user.userId);
     request.res.setHeader('Set-Cookie', cookie);
     return user;
-}
+  }
 
   @UseGuards(JwtauthGuard)
   @Post('log-out')

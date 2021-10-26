@@ -6,3 +6,5 @@ const mockedConfigService = {
     }
   },
 };
+
+export default mockedConfigService;

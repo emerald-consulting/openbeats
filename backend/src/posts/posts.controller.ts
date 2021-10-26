@@ -11,9 +11,9 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor,
 } from '@nestjs/common';
-import JwtAuthGuard from 'src/auth/jwt-auth.guard';
-import RequestWithUser from 'src/auth/requestWithUser.interface';
-import { FindOneParams } from 'src/utils/exceptionsLogger.filter';
+import JwtAuthGuard from '../auth/jwt-auth.guard';
+import RequestWithUser from '../auth/requestWithUser.interface';
+import { FindOneParams } from '../utils/exceptionsLogger.filter';
 import CreatePostDto from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import PostsService from './posts.service';

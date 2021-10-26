@@ -1,5 +1,4 @@
 import { Exclude, Expose } from 'class-transformer';
-import Post from 'src/posts/entities/post.entity';
 import {
   Column,
   Entity,
@@ -8,6 +7,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import Post from '../../posts/entities/post.entity';
 import Address from './address.entity';
 
 @Entity()

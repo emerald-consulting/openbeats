@@ -1,5 +1,3 @@
-import User from 'src/users/entities/user.entity';
-import Category from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
@@ -8,6 +6,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import Category from '../../categories/category.entity';
+import User from '../../users/entities/user.entity';
 
 @Entity()
 class Post {

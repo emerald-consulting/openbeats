@@ -10,8 +10,8 @@ import {
   ClassSerializerInterceptor,
   Post,
 } from '@nestjs/common';
-import JwtAuthGuard from 'src/auth/jwt-auth.guard';
-import { FindOneParams } from 'src/utils/exceptionsLogger.filter';
+import JwtAuthGuard from '../auth/jwt-auth.guard';
+import { FindOneParams } from '../utils/exceptionsLogger.filter';
 import CategoriesService from './categories.service';
 import CreateCategoryDto from './dto/createCategory.dto';
 import UpdateCategoryDto from './dto/updateCategory.dto';
@@ -33,7 +33,7 @@ export default class CategoriesController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async createCategory(@Body() category: CreateCategoryDto) {
+  async createCategoGy(@Body() category: CreateCategoryDto) {
     return this.categoriesService.createCategory(category);
   }
 

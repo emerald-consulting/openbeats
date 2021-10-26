@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module';
 import { PostsModule } from './posts/posts.module';
 import { APP_FILTER } from '@nestjs/core';
 import { FindOneParams } from './utils/exceptionsLogger.filter';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { FindOneParams } from './utils/exceptionsLogger.filter';
     UsersModule,
     DatabaseModule,
     PostsModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [

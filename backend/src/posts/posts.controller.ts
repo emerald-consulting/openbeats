@@ -4,18 +4,22 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
-  Put,
-  UseFilters,
   UseGuards,
+  Req,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
-import PostsService from './posts.service';
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
 import JwtAuthGuard from 'src/auth/jwt-auth.guard';
+import RequestWithUser from 'src/auth/requestWithUser.interface';
 import { FindOneParams } from 'src/utils/exceptionsLogger.filter';
+import CreatePostDto from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
+import PostsService from './posts.service';
 
 @Controller('posts')
+@UseInterceptors(ClassSerializerInterceptor)
 export default class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
@@ -31,17 +35,20 @@ export default class PostsController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async createPost(@Body() post: CreatePostDto) {
-    return this.postsService.createPost(post);
+  async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {
+    return this.postsService.createPost(post, req.user);
   }
 
-  @Put(':id')
-  async replacePost(@Param('id') id: string, @Body() post: UpdatePostDto) {
-    return this.postsService.replacePost(Number(id), post);
+  @Patch(':id')
+  async updatePost(
+    @Param() { id }: FindOneParams,
+    @Body() post: UpdatePostDto,
+  ) {
+    return this.postsService.updatePost(Number(id), post);
   }
 
   @Delete(':id')
-  async deletePost(@Param('id') id: string) {
-    this.postsService.deletePost(Number(id));
+  async deletePost(@Param() { id }: FindOneParams) {
+    return this.postsService.deletePost(Number(id));
   }
 }

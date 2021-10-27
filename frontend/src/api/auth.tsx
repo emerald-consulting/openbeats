@@ -24,7 +24,7 @@ export const http = axios.create({
 })
 
 export const isUserLoggedIn = async (): Promise<boolean> => {
-  const { data } = await http.get<string>('/user/isLoggedIn/')
+  const { data } = await http.get<string>('auth')
   return data === 'User logged in'
 }
 

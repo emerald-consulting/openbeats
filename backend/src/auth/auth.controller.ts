@@ -15,8 +15,10 @@ import { Response } from 'express';
 import { AuthService } from './auth.service';
 import RequestWithUser from './requestWithUser.interface';
 import { LocalAuthGuard } from './local-auth.guard';
-import JwtauthGuard from './jwt-auth.guard';
+import JwtAuthGuard from './jwt-auth.guard';
 import { RegisterDto } from './dto/register.dto';
+import { UsersService } from '../users/users.service';
+import JwtRefreshGuard from './jwt-refresh.guard';
 
 @Controller('auth')
 @SerializeOptions({
@@ -24,7 +26,21 @@ import { RegisterDto } from './dto/register.dto';
 })
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly usersService: UsersService,
+  ) {}
+
+  @UseGuards(JwtRefreshGuard)
+  @Get('refresh')
+  refresh(@Req() request: RequestWithUser) {
+    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
+      request.user.id,
+    );
+
+    request.res.setHeader('Set-Cookie', accessTokenCookie);
+    return request.user;
+  }
 
   @Post('register')
   async register(@Body() registrationData: RegisterDto) {
@@ -36,24 +52,34 @@ export class AuthController {
   @Post('log-in')
   async logIn(@Req() request: RequestWithUser) {
     const { user } = request;
-    const cookie = this.authService.getCookieWithJwtToken(user.id);
-    console.log(cookie);
-    request.res.setHeader('Set-Cookie', cookie);
+    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
+      user.id,
+    );
+    const { cookie: refreshTokenCookie, token: refreshToken } =
+      this.authService.getCookieWithJwtRefreshToken(user.id);
+
+    await this.usersService.setCurrentRefreshToken(refreshToken, user.id);
+
+    request.res.setHeader('Set-Cookie', [
+      accessTokenCookie,
+      refreshTokenCookie,
+    ]);
     return user;
   }
 
-  @UseGuards(JwtauthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('log-out')
-  async logOut(@Res() response: Response) {
-    response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
-    return response.sendStatus(200);
+  @HttpCode(200)
+  async logOut(@Req() request: RequestWithUser) {
+    await this.usersService.removeRefreshToken(request.user.id);
+    request.res.setHeader('Set-Cookie', this.authService.getCookiesForLogOut());
   }
 
-  @UseGuards(JwtauthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
     user.password = undefined;
-    return user;
+    return user.isActive;
   }
 }

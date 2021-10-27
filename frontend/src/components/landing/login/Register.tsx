@@ -6,6 +6,9 @@ import { useHistory } from 'react-router'
 import { http } from '../../../api/auth'
 
 type RegisterInputs = {
+  firstName: string
+  lastName: string
+  username: string
   email: string
   password: string
   passwordRepeat: string
@@ -33,6 +36,9 @@ const Register: React.FC = () => {
   const [serverErrors, setServerErrors] = useState({} as serverErrors)
 
   const onSubmit: SubmitHandler<RegisterInputs> = async ({
+    firstName,
+    lastName,
+    username,
     email,
     password,
   }: RegisterInputs) => {
@@ -41,11 +47,12 @@ const Register: React.FC = () => {
 
     // Send credentials to server
     try {
-      await http.post('/user/create/', { email, password, username: email })
-      const response = await http.post('/token/obtain/', {
+      const response = await http.post('/auth/register/', {
+        firstName,
+        lastName,
+        username,
         email,
         password,
-        username: email,
       })
       http.defaults.headers.Authorization = `Bearer response.data.access`
       localStorage.setItem('access_token', response.data.access)
@@ -86,10 +93,102 @@ const Register: React.FC = () => {
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label
+                  htmlFor="firstName"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  First Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="name"
+                    {...register('firstName', {
+                      required: 'First Name is required.',
+                      minLength: {
+                        value: 1,
+                        message: 'First name must be at least 8 characters.',
+                      },
+                      maxLength: {
+                        value: 128,
+                        message: 'First name must be less than 128 charactrs.',
+                      },
+                    })}
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  {errors.firstName && (
+                    <span className="input-error">
+                      {errors.firstName.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Last Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="name"
+                    {...register('lastName', {
+                      required: 'Last name is required.',
+                      minLength: {
+                        value: 1,
+                        message: 'First name must be at least 8 characters.',
+                      },
+                      maxLength: {
+                        value: 128,
+                        message: 'First name must be less than 128 charactrs.',
+                      },
+                    })}
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  {errors.lastName && (
+                    <span className="input-error">
+                      {errors.lastName.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Username
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="username"
+                    {...register('username', {
+                      required: 'Username is required.',
+                      minLength: {
+                        value: 1,
+                        message: 'Username must be at least 1 characters.',
+                      },
+                      maxLength: {
+                        value: 15,
+                        message: 'Username must be less than 15 charactrs.',
+                      },
+                    })}
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
+                  {errors.username && (
+                    <span className="input-error">
+                      {errors.username.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <input type="text" />
                   Email address
                 </label>
                 <div className="mt-1">
@@ -118,7 +217,6 @@ const Register: React.FC = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <input type="text" />
                   Password
                 </label>
                 <div className="mt-1">
@@ -150,7 +248,6 @@ const Register: React.FC = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <input type="text" />
                   Confirm Password
                 </label>
                 <div className="mt-1">
@@ -173,7 +270,7 @@ const Register: React.FC = () => {
               <div>
                 <button
                   type="submit"
-                  // onClick={() => history.push("/feed")}
+                  onClick={() => history.push('/feed')}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium-roboto text-white bg-green2 hover:bg-green1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Create Account

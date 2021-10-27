@@ -1,29 +1,31 @@
 version: "3.9"
    
 services:
-  postgres:
-    container_name: postgres
-    image: postgres:latest
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    env_file:
-      - docker.env
-
   api:
     container_name: api
     build: 
       dockerfile: Dockerfile
       context: ./backend
-    volumes:
-      - ./backend:/code
-    ports:
-      - "8000:8000"
     depends_on:
       - postgres
-    links:
-      - postgres:postgres
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/db
+      NODE_ENV: development
+      PORT: 8000
+    ports:
+      - 8080:8000
+
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    ports:
+      - "35000:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
 
   web:
     container_name: web
@@ -38,15 +40,3 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend:/app # live updates
-
-  pgadmin:
-    links:
-      - postgres:postgres
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    ports:
-      - "80:80"
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    env_file:
-      - docker.env

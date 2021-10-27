@@ -5,28 +5,22 @@ import { Route } from 'react-router-dom'
 import LandingNav from '../components/nav/LandingNav'
 
 interface Props {
+  exact?: boolean
   path: string
   component: React.ComponentType<any>
-  exact?: boolean
 }
-
-const LoggedOutRoute: React.FC<Props> = ({
-  path,
-  component: Component,
-  exact = false,
-}: Props) => {
+const LoggedOutRoute = ({ component: Component, ...otherProps }: Props) => {
   return (
-    <Route
-      path={path}
-      exact={exact}
-      component={Component}
-      render={() => (
-        <>
-          <LandingNav />
-          <Component />
-        </>
-      )}
-    />
+    <>
+      <Route
+        render={otherProps => (
+          <>
+            <LandingNav />
+            <Component {...otherProps} />
+          </>
+        )}
+      />
+    </>
   )
 }
 

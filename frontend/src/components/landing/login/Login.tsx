@@ -26,10 +26,9 @@ const Login: React.FC = () => {
     setServerErrors({} as serverErrors)
 
     try {
-      const response = await http.post('/token/obtain/', {
+      const response = await http.post('auth/log-in', {
         email,
         password,
-        username: email,
       })
       http.defaults.headers.Authorization = `Bearer ${response.data.access}`
       localStorage.setItem('access_token', response.data.access)
@@ -71,7 +70,6 @@ const Login: React.FC = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <input type="text" />
                   Email address
                 </label>
                 <div className="mt-1">
@@ -92,7 +90,6 @@ const Login: React.FC = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  <input type="text" />
                   Password
                 </label>
                 <div className="mt-1">
@@ -119,6 +116,7 @@ const Login: React.FC = () => {
               <div>
                 <button
                   type="submit"
+                  onClick={() => history.push('/login')}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium-roboto text-white bg-green2 hover:bg-green1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Sign in

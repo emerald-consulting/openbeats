@@ -22,9 +22,9 @@ const Pages: React.FC = () => {
       <LoggedOutRoute exact path="/login" component={Login} />
       <LoggedOutRoute exact path="/register" component={Register} />
       <LoggedOutRoute exact path="/about" component={About} />
-      <LoggedInRoute path="/feed" component={Feed} />
-      <LoggedInRoute path="/activity" component={Activity} />
-      <LoggedInRoute path="/settings" component={Settings} />
+      <LoggedInRoute exact path="/feed" component={Feed} />
+      <LoggedInRoute exact path="/activity" component={Activity} />
+      <LoggedInRoute exact path="/settings" component={Settings} />
       <LoggedOutRoute exact path="/pricing" component={Pricing} />
       <LoggedOutRoute exact path="/reset" component={ResetPassword} />
       <Route component={NotFound} />

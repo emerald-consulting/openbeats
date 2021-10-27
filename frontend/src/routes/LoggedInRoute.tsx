@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { useQuery } from 'react-query'
-import { Redirect, Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 import { isUserLoggedIn } from '../api/auth'
 import AuthenticatedNav from '../components/nav/AuthenticatedNav'
-
 interface Props {
+  exact?: boolean
   path: string
   component: React.ComponentType<any>
 }
@@ -24,9 +24,8 @@ const LoggedInRoute = ({ component: Component }: Props) => {
     return null
   }
 
-  const userNotLoggedIn = data === false || data === undefined
   // Redirect to the landing page if the user isn't logged in
-  if (userNotLoggedIn) {
+  if (data === false || data === undefined) {
     return (
       <>
         <Redirect to="/" />

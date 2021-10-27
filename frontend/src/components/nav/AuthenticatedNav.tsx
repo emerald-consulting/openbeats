@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 import { http } from '../../api/auth'
 import { classNames } from '../../utils/tailwind'
 
-export default function Example() {
+export default function Example(): JSX.Element {
   const history = useHistory()
   const location = useLocation()
 

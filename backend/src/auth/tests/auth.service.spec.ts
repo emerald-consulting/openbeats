@@ -8,7 +8,7 @@ import mockedConfigService from '../../utils/mocks/config.service';
 import { AuthService } from '../auth.service';
 import User from '../../users/entities/user.entity';
 
-describe('The AuthenticationService', () => {
+describe('The AuthService', () => {
   let authService: AuthService;
   beforeEach(async () => {
     const module = await Test.createTestingModule({

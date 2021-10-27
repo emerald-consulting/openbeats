@@ -13,7 +13,7 @@ import Address from './address.entity';
 @Entity()
 export default class User {
   @PrimaryGeneratedColumn()
-  public userId: number;
+  public id?: number;
 
   @Column()
   @Expose()
@@ -23,7 +23,7 @@ export default class User {
   @Expose()
   public lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   @Expose()
   public username: string;
 
@@ -35,36 +35,36 @@ export default class User {
   @Exclude()
   public password: string;
 
-  @Column()
-  @Expose()
-  public isAuthenticated: boolean;
-
-  @Column()
-  @Expose()
-  public isPremiumUser: boolean;
-
-  @Column()
-  @Expose()
-  public isStudent: boolean;
-
   @Column({ default: true })
   @Expose()
-  public isActive: boolean;
+  public isAuthenticated?: boolean;
 
-  @Column()
+  @Column({ default: false, nullable: true })
   @Expose()
-  public age: number;
+  public isPremiumUser?: boolean;
 
-  @Column()
+  @Column({ default: false, nullable: true })
   @Expose()
-  public bio: string;
+  public isStudent?: boolean;
+
+  @Column({ default: true, nullable: true })
+  @Expose()
+  public isActive?: boolean;
+
+  @Column({ nullable: true })
+  @Expose()
+  public age?: number;
+
+  @Column({ nullable: true })
+  @Expose()
+  public bio?: string;
 
   @OneToOne(() => Address, {
     eager: true,
     cascade: true,
   })
   @JoinColumn()
-  public address: Address;
+  public address?: Address;
 
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];

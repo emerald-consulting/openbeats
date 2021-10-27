@@ -56,6 +56,7 @@ export class AuthService {
       await this.verifyPassword(plainTextPassword, user.password);
       return user;
     } catch (error) {
+      console.log(error);
       throw new HttpException(
         'Wrong credentials provided',
         HttpStatus.BAD_REQUEST,
@@ -63,17 +64,11 @@ export class AuthService {
     }
   }
 
-  private async verifyPassword(
-    plainTextPassword: string,
-    hashedPassword: string,
-  ) {
-    const isPasswordMatching = await bcrypt.compare(
-      plainTextPassword,
-      hashedPassword,
-    );
-    if (!isPasswordMatching) {
+  private async verifyPassword(password: string, hashedPassword: string) {
+    const passwordIsMatching = await bcrypt.compare(password, hashedPassword);
+    if (!passwordIsMatching) {
       throw new HttpException(
-        'Wrong credentials provided',
+        'Wrong credentials provided, hashed password differs from provided password.',
         HttpStatus.BAD_REQUEST,
       );
     }

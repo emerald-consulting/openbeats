@@ -1,7 +1,7 @@
 import User from '../../users/entities/user.entity';
 
 const mockedUser: User = {
-  userId: 1,
+  id: 1,
   firstName: 'Ryan',
   lastName: 'Dils',
   username: 'RyChrome',

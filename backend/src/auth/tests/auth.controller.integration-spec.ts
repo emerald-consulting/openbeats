@@ -55,7 +55,7 @@ describe('The AuthController', () => {
         };
         delete expectedData.password;
         return request(app.getHttpServer())
-          .post('/authentication/register')
+          .post('/auth/register')
           .send({
             email: mockedUser.email,
             firstName: mockedUser.firstName,
@@ -69,7 +69,7 @@ describe('The AuthController', () => {
     describe('and using invalid data', () => {
       it('should throw an error', () => {
         return request(app.getHttpServer())
-          .post('/authentication/register')
+          .post('/auth/register')
           .send({
             firstName: mockedUser.firstName,
           })

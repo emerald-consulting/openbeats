@@ -1,21 +1,98 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, Connection } from 'typeorm';
+import { FilesService } from '../files/files.service';
+import * as bcrypt from 'bcrypt';
+import User from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import User from './entities/user.entity';
-import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+    private readonly filesService: FilesService,
+    private connection: Connection,
   ) {}
 
-  async removeRefreshToken(userId: number) {
-    return this.usersRepository.update(userId, {
-      currentHashedRefreshToken: null,
+  async getByEmail(email: string) {
+    const user = await this.usersRepository.findOne({ email });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this email does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
+  async getById(id: number) {
+    const user = await this.usersRepository.findOne({ id });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
+  async create(userData: CreateUserDto) {
+    const newUser = await this.usersRepository.create(userData);
+    await this.usersRepository.save(newUser);
+    return newUser;
+  }
+
+  async addAvatar(userId: number, imageBuffer: Buffer, filename: string) {
+    const user = await this.getById(userId);
+    if (user.avatar) {
+      await this.usersRepository.update(userId, {
+        ...user,
+        avatar: null,
+      });
+      await this.filesService.deletePublicFile(user.avatar.id);
+    }
+    const avatar = await this.filesService.uploadPublicFile(
+      imageBuffer,
+      filename,
+    );
+    await this.usersRepository.update(userId, {
+      ...user,
+      avatar,
     });
+    return avatar;
+  }
+
+  async deleteAvatar(userId: number) {
+    const queryRunner = this.connection.createQueryRunner();
+    const user = await this.getById(userId);
+    const fileId = user.avatar?.id;
+    if (fileId) {
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
+      try {
+        await queryRunner.manager.update(User, userId, {
+          ...user,
+          avatar: null,
+        });
+        await this.filesService.deletePublicFileWithQueryRunner(
+          fileId,
+          queryRunner,
+        );
+        await queryRunner.commitTransaction();
+      } catch (error) {
+        await queryRunner.rollbackTransaction();
+        throw new InternalServerErrorException();
+      } finally {
+        await queryRunner.release();
+      }
+    }
   }
 
   async setCurrentRefreshToken(refreshToken: string, userId: number) {
@@ -25,62 +102,31 @@ export class UsersService {
     });
   }
 
-  async create(user: CreateUserDto) {
-    const newUser = await this.usersRepository.create(user);
-    await this.usersRepository.save(newUser);
-    return newUser;
-  }
-
-  findAll() {
-    return this.usersRepository.find();
-  }
-
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: number) {
-    const user = await this.findOneById(userId);
+    const user = await this.getById(userId);
+
     const isRefreshTokenMatching = await bcrypt.compare(
       refreshToken,
       user.currentHashedRefreshToken,
     );
 
-    if (isRefreshTokenMatching == true) {
+    if (isRefreshTokenMatching) {
       return user;
     }
   }
 
-  async findOneById(userId: number): Promise<User | undefined> {
-    const user = await this.usersRepository.findOne(userId);
-    if (user) {
-      return user;
-    } else {
-      throw new HttpException(
-        'User with this id does not exist',
-        HttpStatus.NOT_FOUND,
-      );
-    }
+  async removeRefreshToken(userId: number) {
+    return this.usersRepository.update(userId, {
+      currentHashedRefreshToken: null,
+    });
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
-    const user = await this.usersRepository.findOne(email);
-    if (user) {
-      return user;
-    } else {
-      throw new HttpException(
-        'User was not found in the database.',
-        HttpStatus.NOT_FOUND,
-      );
-    }
+  async deleteUserById(userId: number) {
+    return this.usersRepository.delete(userId);
   }
 
-  async findOneByUsername(username: string): Promise<User | undefined> {
-    const user = await this.usersRepository.findOne(username);
-    if (user) {
-      return user;
-    } else {
-      throw new HttpException(
-        'User was not found in the database.',
-        HttpStatus.NOT_FOUND,
-      );
-    }
+  async findAll() {
+    return this.usersRepository.find();
   }
 
   async update(id: number, user: UpdateUserDto) {
@@ -93,12 +139,5 @@ export class UsersService {
       'User was not found in the database',
       HttpStatus.NOT_FOUND,
     );
-  }
-
-  async remove(id: number) {
-    const deleteResponse = await this.usersRepository.delete(id);
-    if (!deleteResponse.affected) {
-      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
-    }
   }
 }

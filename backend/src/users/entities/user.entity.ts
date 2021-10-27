@@ -7,6 +7,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import PublicFile from '../../files/publicFile.entity';
 import Post from '../../posts/entities/post.entity';
 import Address from './address.entity';
 
@@ -71,4 +72,11 @@ export default class User {
 
   @Exclude()
   public currentHashedRefreshToken?: string;
+
+  @JoinColumn()
+  @OneToOne(() => PublicFile, {
+    eager: true,
+    nullable: true,
+  })
+  public avatar?: PublicFile;
 }

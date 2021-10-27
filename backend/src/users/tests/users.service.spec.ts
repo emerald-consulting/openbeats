@@ -29,7 +29,7 @@ describe('The UsersService', () => {
         findOne.mockReturnValue(Promise.resolve(user));
       });
       it('should return the user', async () => {
-        const fetchedUser = await usersService.findOneByEmail('test@test.com');
+        const fetchedUser = await usersService.getByEmail('test@test.com');
         expect(fetchedUser).toEqual(user);
       });
     });
@@ -39,7 +39,7 @@ describe('The UsersService', () => {
       });
       it('should throw an error', async () => {
         await expect(
-          usersService.findOneByEmail('test@test.com'),
+          usersService.getByEmail('test@test.com'),
         ).rejects.toThrow();
       });
     });

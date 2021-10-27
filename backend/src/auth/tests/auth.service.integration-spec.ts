@@ -6,13 +6,13 @@ import { UsersService } from '../../users/users.service';
 import mockedJwtService from '../../utils/mocks/jwt.service';
 import mockedConfigService from '../../utils/mocks/config.service';
 import * as bcrypt from 'bcrypt';
+import mockedUser from './user.mock';
 import User from '../../users/entities/user.entity';
 import { AuthService } from '../auth.service';
-import mockedUser from './user.mock';
 
 jest.mock('bcrypt');
 
-describe('The AuthenticationService', () => {
+describe('The AuthService', () => {
   let authService: AuthService;
   let usersService: UsersService;
   let bcryptCompare: jest.Mock;
@@ -53,7 +53,7 @@ describe('The AuthenticationService', () => {
   });
   describe('when accessing the data of authenticating user', () => {
     it('should attempt to get a user by email', async () => {
-      const getByEmailSpy = jest.spyOn(usersService, 'findOneByEmail');
+      const getByEmailSpy = jest.spyOn(usersService, 'getByEmail');
       await authService.getAuthenticatedUser(
         'user@email.com',
         'strongPassword',

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useQuery } from 'react-query'
-import { Route, Redirect } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
 import { isUserLoggedIn } from '../api/auth'
 import AuthenticatedNav from '../components/nav/AuthenticatedNav'

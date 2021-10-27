@@ -18,15 +18,15 @@ import LoggedOutRoute from './LoggedOutRoute'
 const Pages: React.FC = () => {
   return (
     <Switch>
-      <LoggedOutRoute exactx path="/" component={Landing} />
-      <LoggedOutRoute exactx path="/login" component={Login} />
-      <LoggedOutRoute path="/register" component={Register} />
-      <LoggedOutRoute path="/about" component={About} />
+      <LoggedOutRoute exact path="/" component={Landing} />
+      <LoggedOutRoute exact path="/login" component={Login} />
+      <LoggedOutRoute exact path="/register" component={Register} />
+      <LoggedOutRoute exact path="/about" component={About} />
       <LoggedInRoute path="/feed" component={Feed} />
       <LoggedInRoute path="/activity" component={Activity} />
       <LoggedInRoute path="/settings" component={Settings} />
-      <LoggedOutRoute path="/pricing" component={Pricing} />
-      <LoggedOutRoute path="/reset" component={ResetPassword} />
+      <LoggedOutRoute exact path="/pricing" component={Pricing} />
+      <LoggedOutRoute exact path="/reset" component={ResetPassword} />
       <Route component={NotFound} />
     </Switch>
   )

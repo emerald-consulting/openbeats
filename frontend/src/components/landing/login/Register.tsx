@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useHistory } from 'react-router'
 
-import { http } from 'api/auth'
+import { http } from '../../../api/auth'
 
 type RegisterInputs = {
   email: string

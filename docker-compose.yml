@@ -13,7 +13,7 @@ services:
       NODE_ENV: development
       PORT: 8000
     ports:
-      - 8080:8000
+      - 8000:8000
 
 
   postgres:
@@ -21,7 +21,7 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - "35000:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
@@ -40,3 +40,13 @@ services:
     volumes:
       - /app/node_modules # don't want to override node_modules
       - ./frontend:/app # live updates
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@openbeats716.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "80:80"
+      - "5050:5050"

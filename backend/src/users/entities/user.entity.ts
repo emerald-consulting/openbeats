@@ -12,7 +12,7 @@ import Post from '../../posts/entities/post.entity';
 import Address from './address.entity';
 
 @Entity()
-export default class User {
+class User {
   @PrimaryGeneratedColumn()
   public id?: number;
 
@@ -70,6 +70,7 @@ export default class User {
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];
 
+  @Column({ nullable: true })
   @Exclude()
   public currentHashedRefreshToken?: string;
 
@@ -80,3 +81,5 @@ export default class User {
   })
   public avatar?: PublicFile;
 }
+
+export default User;

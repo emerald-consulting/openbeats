@@ -8,10 +8,10 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';
 import { FilesService } from './files/files.service';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
-    PostsModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         POSTGRES_HOST: Joi.string().required(),
@@ -32,12 +32,13 @@ import { FilesService } from './files/files.service';
         REDIS_PORT: Joi.number().required(),
       }),
     }),
-    DatabaseModule,
     AuthModule,
-    UsersModule,
     CategoriesModule,
+    DatabaseModule,
+    PostsModule,
+    UsersModule,
   ],
   controllers: [],
-  providers: [UsersService, FilesService],
+  providers: [],
 })
 export class AppModule {}

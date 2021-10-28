@@ -8,7 +8,6 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';
 import { FilesService } from './files/files.service';
-import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [

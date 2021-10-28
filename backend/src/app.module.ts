@@ -6,8 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersService } from './users/users.service';
-import { FilesService } from './files/files.service';
+import { RedisCacheModule } from './redis-cache/redis-cache.module';
 
 @Module({
   imports: [
@@ -36,6 +35,7 @@ import { FilesService } from './files/files.service';
     DatabaseModule,
     PostsModule,
     UsersModule,
+    RedisCacheModule,
   ],
   controllers: [],
   providers: [],

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { RedisCacheService } from '../redis-cache/redis-cache.service';
 import User from '../users/entities/user.entity';
 import CreatePostDto from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -12,6 +13,9 @@ export default class PostsService {
   constructor(
     @InjectRepository(Post)
     private postsRepository: Repository<Post>,
+
+    // REMEMBER TO INJECT THIS
+    private readonly redisCacheService: RedisCacheService,
   ) {}
 
   getAllPosts() {

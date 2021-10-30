@@ -8,10 +8,17 @@ import { JwtStrategy } from './jwt.strategy';
 import { JwtRefreshTokenStrategy } from './jwt-refresh-token.strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { Strategy } from 'passport-spotify';
 
 @Module({
   imports: [UsersModule, PassportModule, ConfigModule, JwtModule.register({})],
-  providers: [AuthService, LocalStrategy, JwtStrategy, JwtRefreshTokenStrategy],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    JwtRefreshTokenStrategy,
+    Strategy,
+  ],
   controllers: [AuthController],
 })
 export class AuthModule {}

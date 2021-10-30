@@ -6,6 +6,8 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { RegisterDto } from './dto/register.dto';
 import TokenPayload from './tokenPayload.interface';
+import { Strategy } from 'passport-spotify';
+import passport from 'passport';
 
 @Injectable()
 export class AuthService {
@@ -109,5 +111,27 @@ export class AuthService {
         HttpStatus.BAD_REQUEST,
       );
     }
+  }
+
+  public async logInWithSpotify() {
+    const SpotifyStrategy = Strategy;
+    passport.use(
+      new SpotifyStrategy(
+        {
+          clientID: 'id',
+          clientSecret: 'secret',
+          callbackURL: 'http://0.0.0.0:8000/auth/spotify/callback',
+          scope: ['user-read-email'],
+        },
+        function (accessToken, refreshToken, expires_in, profile, done) {
+          this.usersService.getByEmail(
+            { spotifyEmail: profile.emails },
+            function (err, user) {
+              return done(err, user);
+            },
+          );
+        },
+      ),
+    );
   }
 }

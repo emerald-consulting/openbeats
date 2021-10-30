@@ -20,8 +20,8 @@ services:
     container_name: postgres
     image: postgres:latest
     restart: always
-    ports:
-      - "5432:5432"
+    #ports:
+      #- "5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password

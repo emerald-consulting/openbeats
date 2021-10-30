@@ -1,24 +1,25 @@
 import {
   Body,
-  Req,
+  ClassSerializerInterceptor,
   Controller,
+  Get,
   HttpCode,
   Post,
-  UseGuards,
+  Req,
   Res,
-  Get,
-  UseInterceptors,
-  ClassSerializerInterceptor,
   SerializeOptions,
+  UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { StorageGateway } from 'aws-sdk';
 import { Response } from 'express';
+import User from 'src/users/entities/user.entity';
 import { AuthService } from './auth.service';
-import RequestWithUser from './requestWithUser.interface';
-import { LocalAuthGuard } from './local-auth.guard';
-import JwtAuthGuard from './jwt-auth.guard';
 import { RegisterDto } from './dto/register.dto';
-import { UsersService } from '../users/users.service';
-import JwtRefreshGuard from './jwt-refresh.guard';
+import JwtauthGuard from './jwt-auth.guard';
+import { LocalAuthGuard } from './local-auth.guard';
+import RequestWithUser from './requestWithUser.interface';
+import passport from 'passport';
 
 @Controller('auth')
 @SerializeOptions({
@@ -26,21 +27,7 @@ import JwtRefreshGuard from './jwt-refresh.guard';
 })
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly usersService: UsersService,
-  ) {}
-
-  @UseGuards(JwtRefreshGuard)
-  @Get('refresh')
-  refresh(@Req() request: RequestWithUser) {
-    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
-      request.user.id,
-    );
-
-    request.res.setHeader('Set-Cookie', accessTokenCookie);
-    return request.user;
-  }
+  constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   async register(@Body() registrationData: RegisterDto) {
@@ -52,34 +39,37 @@ export class AuthController {
   @Post('log-in')
   async logIn(@Req() request: RequestWithUser) {
     const { user } = request;
-    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
-      user.id,
-    );
-    const { cookie: refreshTokenCookie, token: refreshToken } =
-      this.authService.getCookieWithJwtRefreshToken(user.id);
-
-    await this.usersService.setCurrentRefreshToken(refreshToken, user.id);
-
-    request.res.setHeader('Set-Cookie', [
-      accessTokenCookie,
-      refreshTokenCookie,
-    ]);
+    const cookie = this.authService.getCookieWithJwtToken(user.id);
+    request.res.setHeader('Set-Cookie', cookie);
     return user;
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtauthGuard)
   @Post('log-out')
-  @HttpCode(200)
-  async logOut(@Req() request: RequestWithUser) {
-    await this.usersService.removeRefreshToken(request.user.id);
-    request.res.setHeader('Set-Cookie', this.authService.getCookiesForLogOut());
+  async logOut(@Res() response: Response) {
+    response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
+    return response.sendStatus(200);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtauthGuard)
   @Get()
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
     user.password = undefined;
-    return user.isActive;
+    return user;
+  }
+
+  @Get('spotify/login')
+  async spotifyLogIn() {
+    this.authService.logInWithSpotify();
+    passport.authenticate('spotify', {});
+  }
+
+  @Get('spotify/callback')
+  async spotifyCallback() {
+    passport.authenticate('spotify', { failureRedirect: 'login' }),
+      (req, res) => {
+        res.redirect('/');
+      };
   }
 }

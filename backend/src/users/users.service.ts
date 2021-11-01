@@ -102,8 +102,8 @@ export class UsersService {
     });
   }
 
-  async getUserIfRefreshTokenMatches(refreshToken: string, userId: number) {
-    const user = await this.getById(userId);
+  async getUserIfRefreshTokenMatches(refreshToken: string, email: string) {
+    const user = await this.getByEmail(email);
 
     const isRefreshTokenMatching = await bcrypt.compare(
       refreshToken,

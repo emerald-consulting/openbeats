@@ -5,13 +5,12 @@ import {
   HttpCode,
   Post,
   UseGuards,
-  Res,
   Get,
   UseInterceptors,
   ClassSerializerInterceptor,
   SerializeOptions,
+  Logger,
 } from '@nestjs/common';
-import { Response } from 'express';
 import { AuthService } from './auth.service';
 import RequestWithUser from './requestWithUser.interface';
 import { LocalAuthGuard } from './local-auth.guard';
@@ -35,7 +34,7 @@ export class AuthController {
   @Get('refresh')
   refresh(@Req() request: RequestWithUser) {
     const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
-      request.user.id,
+      request.user.email,
     );
 
     request.res.setHeader('Set-Cookie', accessTokenCookie);
@@ -53,10 +52,10 @@ export class AuthController {
   async logIn(@Req() request: RequestWithUser) {
     const { user } = request;
     const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
-      user.id,
+      user.email,
     );
     const { cookie: refreshTokenCookie, token: refreshToken } =
-      this.authService.getCookieWithJwtRefreshToken(user.id);
+      this.authService.getCookieWithJwtRefreshToken(user.email);
 
     await this.usersService.setCurrentRefreshToken(refreshToken, user.id);
 

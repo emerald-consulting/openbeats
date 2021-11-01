@@ -22,8 +22,8 @@ export class AuthService {
     ];
   }
 
-  public getCookieWithJwtAccessToken(userId: number) {
-    const payload: TokenPayload = { userId };
+  public getCookieWithJwtAccessToken(email: string) {
+    const payload: TokenPayload = { email };
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET'),
       expiresIn: `${this.configService.get(
@@ -35,8 +35,8 @@ export class AuthService {
     )}`;
   }
 
-  public getCookieWithJwtRefreshToken(userId: number) {
-    const payload: TokenPayload = { userId };
+  public getCookieWithJwtRefreshToken(email: string) {
+    const payload: TokenPayload = { email };
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET'),
       expiresIn: `${this.configService.get(
@@ -75,8 +75,8 @@ export class AuthService {
     }
   }
 
-  public getCookieWithJwtToken(userId: number) {
-    const payload: TokenPayload = { userId };
+  public getCookieWithJwtToken(email: string) {
+    const payload: TokenPayload = { email };
     const token = this.jwtService.sign(payload);
     return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get(
       'JWT_EXPIRATION_TIME',
@@ -95,7 +95,7 @@ export class AuthService {
     } catch (error) {
       console.log(error);
       throw new HttpException(
-        'Wrong credentials provided',
+        'Wrong password provided for given user. Please try again',
         HttpStatus.BAD_REQUEST,
       );
     }

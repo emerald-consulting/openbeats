@@ -1,6 +1,6 @@
 # action.yml
-name: 'Helm'
-description: 'The helm CLI as a GitHub Action'
+name: "Helm"
+description: "The helm CLI as a GitHub Action"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"

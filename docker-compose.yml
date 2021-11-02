@@ -1,9 +1,9 @@
 version: "3.9"
-   
+
 services:
   api:
-    container_name: api
-    build: 
+    container_name: openbeats_442_api
+    build:
       dockerfile: Dockerfile
       context: ./backend
     depends_on:
@@ -11,14 +11,11 @@ services:
     environment:
       DATABASE_URL: postgres://user:password@postgres:5432/db
       NODE_ENV: development
-      PORT: 8000
     ports:
       - 8000:8000
-    links:
-      - redis
 
   postgres:
-    container_name: postgres
+    container_name: openbeats_442_postgres
     image: postgres:latest
     restart: always
     ports:
@@ -29,7 +26,7 @@ services:
       POSTGRES_DB: db
 
   web:
-    container_name: web
+    container_name: openbeats_442_web
     stdin_open: true
     ports:
       - "3000:3000"
@@ -39,11 +36,10 @@ services:
       dockerfile: Dockerfile
       context: ./frontend/
     volumes:
-      - /app/node_modules # don't want to override node_modules
       - ./frontend:/app # live updates
 
   pgadmin:
-    container_name: pgadmin
+    container_name: openbeats_442_pgadmin
     image: dpage/pgadmin4:latest
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@openbeats716.com
@@ -51,20 +47,3 @@ services:
     ports:
       - "80:80"
       - "5050:5050"
-
-  redis:
-    container_name: redis
-    image: "redis:alpine"
-    ports:
-      - "6379:6379"
-    restart: always
-
-  redis-commander:
-    container_name: redis-commander
-    hostname: redis-commander
-    image: rediscommander/redis-commander:latest
-    restart: always
-    environment:
-      - REDIS_HOSTS=local:redis:6379
-    ports:
-      - "8081:8081"

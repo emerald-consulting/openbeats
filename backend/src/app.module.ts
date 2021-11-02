@@ -26,8 +26,6 @@ import { RedisCacheModule } from './redis-cache/redis-cache.module';
         AWS_SECRET_ACCESS_KEY: Joi.string().required(),
         AWS_PUBLIC_BUCKET_NAME: Joi.string().required(),
         PORT: Joi.number(),
-        REDIS_HOST: Joi.string().required(),
-        REDIS_PORT: Joi.number().required(),
       }),
     }),
     AuthModule,

@@ -18,7 +18,9 @@ import JwtAuthGuard from '../auth/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import RequestWithUser from '../auth/requestWithUser.interface';
 import { Express } from 'express';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

@@ -18,7 +18,9 @@ import JwtAuthGuard from './jwt-auth.guard';
 import { RegisterDto } from './dto/register.dto';
 import { UsersService } from '../users/users.service';
 import JwtRefreshGuard from './jwt-refresh.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 @SerializeOptions({
   strategy: 'excludeAll',

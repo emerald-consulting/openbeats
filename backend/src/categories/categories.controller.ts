@@ -10,12 +10,14 @@ import {
   ClassSerializerInterceptor,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import JwtAuthGuard from '../auth/jwt-auth.guard';
 import { FindOneParams } from '../utils/exceptionsLogger.filter';
 import CategoriesService from './categories.service';
 import CreateCategoryDto from './dto/createCategory.dto';
 import UpdateCategoryDto from './dto/updateCategory.dto';
 
+@ApiTags('categories')
 @Controller('categories')
 @UseInterceptors(ClassSerializerInterceptor)
 export default class CategoriesController {

@@ -1,30 +1,5 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          sky: colors.sky,
-          teal: colors.teal,
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { useState } from 'react'
+import React, { useState } from 'react'
+
 import { Disclosure, Switch } from '@headlessui/react'
 import {
   BellIcon,
@@ -39,8 +14,7 @@ const user = {
   name: 'Ryan Dils',
   handle: 'rychrome',
   email: 'ryandils@buffalo.edu',
-  imageUrl:
-    '/exampleProfilePic.jpg',
+  imageUrl: '/exampleProfilePic.jpg',
 }
 const subNavigation = [
   { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
@@ -51,11 +25,11 @@ const subNavigation = [
   { name: 'Integrations', href: '#', icon: ViewGridAddIcon, current: false },
 ]
 
-function classNames(...classes:any) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example(): JSX.Element {
   const [availableToHire, setAvailableToHire] = useState(true)
   const [privateAccount, setPrivateAccount] = useState(false)
   const [allowCommenting, setAllowCommenting] = useState(true)
@@ -63,10 +37,12 @@ export default function Example() {
 
   return (
     <div>
-      <Disclosure as="div" className="relative bg-sky-700 pb-32 overflow-hidden">
+      <Disclosure
+        as="div"
+        className="relative bg-sky-700 pb-32 overflow-hidden"
+      >
         {({ open }) => (
           <>
-          
             <div
               aria-hidden="true"
               className={classNames(
@@ -75,8 +51,14 @@ export default function Example() {
               )}
             >
               <div className="absolute inset-0 flex">
-                <div className="h-full w-1/2" style={{ backgroundColor: '#158236' }} />
-                <div className="h-full w-1/2" style={{ backgroundColor: '#359E50' }} />
+                <div
+                  className="h-full w-1/2"
+                  style={{ backgroundColor: '#158236' }}
+                />
+                <div
+                  className="h-full w-1/2"
+                  style={{ backgroundColor: '#359E50' }}
+                />
               </div>
               <div className="relative flex justify-center">
                 <svg
@@ -86,10 +68,22 @@ export default function Example() {
                   viewBox="0 0 1750 308"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M284.161 308H1465.84L875.001 182.413 284.161 308z" fill="#158236" />
-                  <path d="M1465.84 308L16.816 0H1750v308h-284.16z" fill="#359E50" />
-                  <path d="M1733.19 0L284.161 308H0V0h1733.19z" fill="#158236" />
-                  <path d="M875.001 182.413L1733.19 0H16.816l858.185 182.413z" fill="#006622" />
+                  <path
+                    d="M284.161 308H1465.84L875.001 182.413 284.161 308z"
+                    fill="#158236"
+                  />
+                  <path
+                    d="M1465.84 308L16.816 0H1750v308h-284.16z"
+                    fill="#359E50"
+                  />
+                  <path
+                    d="M1733.19 0L284.161 308H0V0h1733.19z"
+                    fill="#158236"
+                  />
+                  <path
+                    d="M875.001 182.413L1733.19 0H16.816l858.185 182.413z"
+                    fill="#006622"
+                  />
                 </svg>
               </div>
             </div>
@@ -108,7 +102,7 @@ export default function Example() {
             <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
               <aside className="py-6 lg:col-span-3">
                 <nav className="space-y-1">
-                  {subNavigation.map((item) => (
+                  {subNavigation.map(item => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -135,24 +129,34 @@ export default function Example() {
                 </nav>
               </aside>
 
-              <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
+              <form
+                className="divide-y divide-gray-200 lg:col-span-9"
+                action="#"
+                method="POST"
+              >
                 {/* Profile section */}
                 <div className="py-6 px-4 sm:p-6 lg:pb-8">
                   <div>
-                    <h2 className="text-lg leading-6 font-medium text-gray-900">Profile</h2>
+                    <h2 className="text-lg leading-6 font-medium text-gray-900">
+                      Profile
+                    </h2>
                     <p className="mt-1 text-sm text-gray-500">
-                      This information will be displayed publicly so be careful what you share.
+                      This information will be displayed publicly so be careful
+                      what you share.
                     </p>
                   </div>
 
                   <div className="mt-6 flex flex-col lg:flex-row">
                     <div className="flex-grow space-y-6">
                       <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="username"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          <input type="text" />
                           Username
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
-                        
                           <input
                             type="text"
                             name="username"
@@ -165,7 +169,11 @@ export default function Example() {
                       </div>
 
                       <div>
-                        <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="about"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          <input type="text" />
                           About
                         </label>
                         <div className="mt-1">
@@ -174,17 +182,21 @@ export default function Example() {
                             name="about"
                             rows={3}
                             className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            defaultValue={''}
+                            defaultValue=""
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                          Brief description for your profile. URLs are hyperlinked.
+                          Brief description for your profile. URLs are
+                          hyperlinked.
                         </p>
                       </div>
                     </div>
 
                     <div className="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">
-                      <p className="text-sm font-medium text-gray-700" aria-hidden="true">
+                      <p
+                        className="text-sm font-medium text-gray-700"
+                        aria-hidden="true"
+                      >
                         Photo
                       </p>
                       <div className="mt-1 lg:hidden">
@@ -193,7 +205,11 @@ export default function Example() {
                             className="flex-shrink-0 inline-block rounded-full overflow-hidden h-40 w-40"
                             aria-hidden="true"
                           >
-                            <img className="relative rounded-full w-40 h-40 object-cover" src={user.imageUrl} alt="" />
+                            <img
+                              className="relative rounded-full w-40 h-40 object-cover"
+                              src={user.imageUrl}
+                              alt=""
+                            />
                           </div>
                           <div className="ml-5 rounded-md shadow-sm">
                             <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50">
@@ -201,21 +217,25 @@ export default function Example() {
                                 htmlFor="mobile-user-photo"
                                 className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
                               >
+                                <input
+                                  id="mobile-user-photo"
+                                  name="user-photo"
+                                  type="file"
+                                  className="absolute w-full h-full opacity-0 border-gray-300 rounded-md"
+                                />
                                 <span>Change</span>
                               </label>
-                              <input
-                                id="mobile-user-photo"
-                                name="user-photo"
-                                type="file"
-                                className="absolute w-full h-full opacity-0 border-gray-300 rounded-md"
-                              />
                             </div>
                           </div>
                         </div>
                       </div>
 
                       <div className="hidden relative rounded-full overflow-hidden lg:block">
-                        <img className="relative rounded-full w-40 h-40 object-cover" src={user.imageUrl} alt="" />
+                        <img
+                          className="relative rounded-full w-40 h-40 object-cover"
+                          src={user.imageUrl}
+                          alt=""
+                        />
                         <label
                           htmlFor="desktop-user-photo"
                           className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
@@ -235,54 +255,66 @@ export default function Example() {
 
                   <div className="mt-6 grid grid-cols-12 gap-6">
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        <input
+                          type="text"
+                          name="first-name"
+                          id="first-name"
+                          autoComplete="given-name"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                         First name
                       </label>
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="last-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        <input
+                          type="text"
+                          name="last-name"
+                          id="last-name"
+                          autoComplete="family-name"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                         Last name
                       </label>
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
 
                     <div className="col-span-12">
-                      <label htmlFor="url" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="url"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         URL
+                        <input
+                          type="text"
+                          name="url"
+                          id="url"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                       </label>
-                      <input
-                        type="text"
-                        name="url"
-                        id="url"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Company
+                        <input
+                          type="text"
+                          name="company"
+                          id="company"
+                          autoComplete="organization"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
                       </label>
-                      <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        autoComplete="organization"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
                     </div>
                   </div>
                 </div>
@@ -291,19 +323,30 @@ export default function Example() {
                 <div className="pt-6 divide-y divide-gray-200">
                   <div className="px-4 sm:px-6">
                     <div>
-                      <h2 className="text-lg leading-6 font-medium text-gray-900">Privacy</h2>
+                      <h2 className="text-lg leading-6 font-medium text-gray-900">
+                        Privacy
+                      </h2>
                       <p className="mt-1 text-sm text-gray-500">
-                        Ornare eu a volutpat eget vulputate. Fringilla commodo amet.
+                        Ornare eu a volutpat eget vulputate. Fringilla commodo
+                        amet.
                       </p>
                     </div>
                     <ul className="mt-2 divide-y divide-gray-200">
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Available to hire
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Nulla amet tempus sit accumsan. Aliquet turpis sed sit lacinia.
+                            Nulla amet tempus sit accumsan. Aliquet turpis sed
+                            sit lacinia.
                           </Switch.Description>
                         </div>
                         <Switch
@@ -317,19 +360,29 @@ export default function Example() {
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              availableToHire ? 'translate-x-5' : 'translate-x-0',
+                              availableToHire
+                                ? 'translate-x-5'
+                                : 'translate-x-0',
                               'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
                             )}
                           />
                         </Switch>
                       </Switch.Group>
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Make account private
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Pharetra morbi dui mi mattis tellus sollicitudin cursus pharetra.
+                            Pharetra morbi dui mi mattis tellus sollicitudin
+                            cursus pharetra.
                           </Switch.Description>
                         </div>
                         <Switch
@@ -343,19 +396,29 @@ export default function Example() {
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              privateAccount ? 'translate-x-5' : 'translate-x-0',
+                              privateAccount
+                                ? 'translate-x-5'
+                                : 'translate-x-0',
                               'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
                             )}
                           />
                         </Switch>
                       </Switch.Group>
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Allow commenting
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Integer amet, nunc hendrerit adipiscing nam. Elementum ame
+                            Integer amet, nunc hendrerit adipiscing nam.
+                            Elementum ame
                           </Switch.Description>
                         </div>
                         <Switch
@@ -369,19 +432,29 @@ export default function Example() {
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              allowCommenting ? 'translate-x-5' : 'translate-x-0',
+                              allowCommenting
+                                ? 'translate-x-5'
+                                : 'translate-x-0',
                               'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
                             )}
                           />
                         </Switch>
                       </Switch.Group>
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Allow mentions
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Adipiscing est venenatis enim molestie commodo eu gravid
+                            Adipiscing est venenatis enim molestie commodo eu
+                            gravid
                           </Switch.Description>
                         </div>
                         <Switch

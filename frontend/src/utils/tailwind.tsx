@@ -1,5 +1,3 @@
-// Provided by tailwind, used in many places
-export function classNames(...classes: any) {
-    return classes.filter(Boolean).join(' ');
+export function classNames(...classes: any): string | undefined {
+  return classes.filter(Boolean).join(' ')
 }
-  

@@ -1,34 +1,35 @@
-import { Route, Switch } from 'react-router-dom';
+import React from 'react'
 
-import Feed from '../components/dashboard/Feed';
-import LoggedOutRoute from './LoggedOutRoute';
-import LoggedInRoute from './LoggedInRoute';
-import NotFound from '../components/notFound/NotFound';
-import Landing from '../components/landing/landing/LandingMain';
-import Register from '../components/landing/login/Register';
-import Login from '../components/landing/login/Login';
+import { Route, Switch } from 'react-router-dom'
+
+import Activity from '../components/dashboard/Activity'
+import Feed from '../components/dashboard/Feed'
+import About from '../components/landing/about/About'
+import Landing from '../components/landing/landing/LandingMain'
+import Login from '../components/landing/login/Login'
+import Register from '../components/landing/login/Register'
+import ResetPassword from '../components/landing/login/ResetPassword'
+import NotFound from '../components/notFound/NotFound'
+import Pricing from '../components/pricing/Pricing'
 import Settings from '../components/settings/Settings'
-import About from '../components/landing/about/About';
-import Pricing from '../components/pricing/Pricing';
-import Activity from '../components/dashboard/Activity';
+import LoggedInRoute from './LoggedInRoute'
+import LoggedOutRoute from './LoggedOutRoute'
 
-const Pages = () => {
-
-
-    return (
-        <Switch>
-            <LoggedOutRoute path='/' exact={true} component={Landing} />
-            <LoggedOutRoute path='/login' exact={true} component={Login} />
-            <LoggedOutRoute path='/register' exact={true} component={Register} />
-            <LoggedOutRoute path='/about' exact={true} component={About} />
-            <LoggedInRoute path='/feed' exact={true} component={Feed} />
-            <LoggedInRoute path='/activity' exact={true} component={Activity} />
-            <LoggedInRoute path='/settings' exact={true} component={Settings} />
-            <LoggedOutRoute path='/pricing' exact={true} component={Pricing} />
-
-            <Route component={NotFound} />
-        </Switch>
-    )
+const Pages: React.FC = () => {
+  return (
+    <Switch>
+      <LoggedOutRoute exact path="/" component={Landing} />
+      <LoggedOutRoute exact path="/login" component={Login} />
+      <LoggedOutRoute exact path="/register" component={Register} />
+      <LoggedOutRoute exact path="/about" component={About} />
+      <LoggedInRoute exact path="/feed" component={Feed} />
+      <LoggedInRoute exact path="/activity" component={Activity} />
+      <LoggedInRoute exact path="/settings" component={Settings} />
+      <LoggedOutRoute exact path="/pricing" component={Pricing} />
+      <LoggedOutRoute exact path="/reset" component={ResetPassword} />
+      <Route component={NotFound} />
+    </Switch>
+  )
 }
 
-export default Pages;
+export default Pages

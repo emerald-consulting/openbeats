@@ -1,28 +1,32 @@
 version: "3.9"
-   
+
 services:
-  db:
-    container_name: db
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
   api:
-    container_name: api
-    build: 
-      dockerfile: Dockerfile.dev
+    container_name: openbeats_442_api
+    build:
+      dockerfile: Dockerfile
       context: ./backend
-    volumes:
-      - ./backend:/code
-    ports:
-      - "8000:8000"
     depends_on:
-      - db
-  frontend:
-    container_name: frontend 
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/db
+      NODE_ENV: development
+    ports:
+      - 8000:8000
+
+  postgres:
+    container_name: openbeats_442_postgres
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+
+  web:
+    container_name: openbeats_442_web
     stdin_open: true
     ports:
       - "3000:3000"
@@ -30,18 +34,16 @@ services:
       - CHOKIDAR_USEPOLLING=true
     build:
       dockerfile: Dockerfile
-      context: ./frontend
+      context: ./frontend/
     volumes:
-      - /app/node_modules # don't want to override node_modules
       - ./frontend:/app # live updates
-  nginx:
-    container_name: nginx
-    depends_on:
-      - api
-      - frontend
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
+
+  pgadmin:
+    container_name: openbeats_442_pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@openbeats716.com
+      PGADMIN_DEFAULT_PASSWORD: password
     ports:
-      - '80:80'
+      - "80:80"
+      - "5050:5050"

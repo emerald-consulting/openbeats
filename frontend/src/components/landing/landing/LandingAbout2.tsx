@@ -1,49 +1,46 @@
+import React from 'react'
 
-
-/* This example requires Tailwind CSS v2.0+ */
-import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, MailIcon, ScaleIcon } from '@heroicons/react/outline'
+import {
+  GlobeAltIcon,
+  MailIcon,
+  MusicNoteIcon,
+  UploadIcon,
+} from '@heroicons/react/outline'
 
 const transferFeatures = [
   {
-    id: 1,
-    name: 'Competitive exchange rates',
-    description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: GlobeAltIcon,
-  },
-  {
     id: 2,
-    name: 'No hidden fees',
+    name: 'Stream',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ScaleIcon,
+      'Stream music from your favorite artists no matter how underground or mainstream.',
+    icon: MusicNoteIcon,
   },
   {
     id: 3,
-    name: 'Transfers are instant',
+    name: 'Upload',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: LightningBoltIcon,
+      'Upload your own tracks that you produce in the Open Beats DAW.',
+    icon: UploadIcon,
   },
 ]
 const communicationFeatures = [
   {
     id: 1,
-    name: 'Mobile notifications',
+    name: 'Invite artists',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: AnnotationIcon,
+      'Generate an Open Beats studio session ID, and invite other musical artists by sharing that unique link with them.',
+    icon: MailIcon,
   },
   {
     id: 2,
-    name: 'Reminder emails',
+    name: 'Collaborate',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: MailIcon,
+      'Collaborate with anyone in the world with Open Beats. Find others to collaborate with on the Open Beats social media site.',
+    icon: GlobeAltIcon,
   },
 ]
 
-export default function LandingAbout2() {
+export default function LandingAbout2(): JSX.Element {
   return (
     <div className="pb-20 pt-3 bg-gray-50 overflow-hidden">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -64,13 +61,22 @@ export default function LandingAbout2() {
               height={20}
               patternUnits="userSpaceOnUse"
             >
-              <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              <rect
+                x={0}
+                y={0}
+                width={4}
+                height={4}
+                className="text-gray-200"
+                fill="currentColor"
+              />
             </pattern>
           </defs>
-          <rect width={404} height={784} fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)" />
+          <rect
+            width={404}
+            height={784}
+            fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)"
+          />
         </svg>
-
-
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div className="relative">
@@ -78,21 +84,24 @@ export default function LandingAbout2() {
               Play Music
             </h3>
             <p className="mt-3 text-lg text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minima sequi recusandae, porro maiores
-              officia assumenda aliquam laborum ab aliquid veritatis impedit odit adipisci optio iste blanditiis facere.
-              Totam, velit.
+              With Open Beats, you can stream and download music from your
+              favorite artists, no matter how big or small.
             </p>
 
             <dl className="mt-10 space-y-10">
-              {transferFeatures.map((item) => (
+              {transferFeatures.map(item => (
                 <div key={item.id} className="relative">
                   <dt>
                     <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-green3 text-white">
                       <item.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{item.name}</p>
+                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                      {item.name}
+                    </p>
                   </dt>
-                  <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
+                  <dd className="mt-2 ml-16 text-base text-gray-500">
+                    {item.description}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -115,16 +124,27 @@ export default function LandingAbout2() {
                   height={20}
                   patternUnits="userSpaceOnUse"
                 >
-                  <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                  <rect
+                    x={0}
+                    y={0}
+                    width={4}
+                    height={4}
+                    className="text-gray-200"
+                    fill="currentColor"
+                  />
                 </pattern>
               </defs>
-              <rect width={784} height={404} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
+              <rect
+                width={784}
+                height={404}
+                fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)"
+              />
             </svg>
             <img
               className="relative mx-auto"
-              width={490}
-              src="https://tailwindui.com/img/features/feature-example-1.png"
-              alt=""
+              width={900}
+              src="two-people-music-frame.png"
+              alt="two people listening to music"
             />
           </div>
         </div>
@@ -146,31 +166,48 @@ export default function LandingAbout2() {
               height={20}
               patternUnits="userSpaceOnUse"
             >
-              <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              <rect
+                x={0}
+                y={0}
+                width={4}
+                height={4}
+                className="text-gray-200"
+                fill="currentColor"
+              />
             </pattern>
           </defs>
-          <rect width={404} height={784} fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
+          <rect
+            width={404}
+            height={784}
+            fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)"
+          />
         </svg>
 
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Always in the loop</h3>
+              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+                Always on beat.
+              </h3>
               <p className="mt-3 text-lg text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus,
-                cum deleniti sunt in labore nihil quod quibusdam expedita nemo.
+                With Open Beats, multiple artists can join a studio session to
+                work on a musical project at the same time.
               </p>
 
               <dl className="mt-10 space-y-10">
-                {communicationFeatures.map((item) => (
+                {communicationFeatures.map(item => (
                   <div key={item.id} className="relative">
                     <dt>
                       <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-green3 text-white">
                         <item.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
-                      <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{item.name}</p>
+                      <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                        {item.name}
+                      </p>
                     </dt>
-                    <dd className="mt-2 ml-16 text-base text-gray-500">{item.description}</dd>
+                    <dd className="mt-2 ml-16 text-base text-gray-500">
+                      {item.description}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -194,16 +231,26 @@ export default function LandingAbout2() {
                     height={20}
                     patternUnits="userSpaceOnUse"
                   >
-                    <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+                    <rect
+                      x={0}
+                      y={0}
+                      width={4}
+                      height={4}
+                      className="text-gray-200"
+                      fill="currentColor"
+                    />
                   </pattern>
                 </defs>
-                <rect width={784} height={404} fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
+                <rect
+                  width={784}
+                  height={404}
+                  fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)"
+                />
               </svg>
               <img
                 className="relative mx-auto"
-                width={490}
-                src="https://tailwindui.com/img/features/feature-example-2.png"
-                alt=""
+                src="Untitled-2.png"
+                alt="artists in joined session"
               />
             </div>
           </div>

@@ -125,3 +125,81 @@ GitHub.sublime-settings
 **/node_modules
 **/build
 .yarn
+docker.env
+
+# compiled output
+/dist
+/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Redis
+.*.swp
+*.o
+*.xo
+*.so
+*.d
+*.log
+dump.rdb
+redis-benchmark
+redis-check-aof
+redis-check-rdb
+redis-check-dump
+redis-cli
+redis-sentinel
+redis-server
+doc-tools
+release
+misc/*
+src/release.h
+appendonly.aof
+SHORT_TERM_TODO
+release.h
+src/transfer.sh
+src/configs
+redis.ds
+src/redis.conf
+src/nodes.conf
+deps/lua/src/lua
+deps/lua/src/luac
+deps/lua/src/liblua.a
+tests/tls/*
+.make-*
+.prerequisites
+*.dSYM
+Makefile.dep
+.vscode/*
+.idea/*
+.ccls
+.ccls-cache/*
+compile_commands.json
+redis.code-workspace

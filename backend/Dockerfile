@@ -1,8 +1,6 @@
-# syntax=docker/dockerfile:1
-FROM python:3
-ENV PYTHONUNBUFFERED=1
-WORKDIR /code
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["./wait-for-it.sh","python3", "manage.py","runserver", "0.0.0.0:8000"]
+FROM node:17-alpine3.12
+WORKDIR /node
+COPY ./package.json .
+RUN yarn install --network-timeout 1000000
+COPY . /node/
+CMD ["yarn", "start:debug"]

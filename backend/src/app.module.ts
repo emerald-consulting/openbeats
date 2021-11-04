@@ -6,6 +6,9 @@ import { DatabaseModule } from './database/database.module';
 import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { FacebookStrategy } from './facebook.strategy';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -25,6 +28,8 @@ import { AuthModule } from './auth/auth.module';
         AWS_SECRET_ACCESS_KEY: Joi.string().required(),
         AWS_PUBLIC_BUCKET_NAME: Joi.string().required(),
         PORT: Joi.number(),
+        FACEBOOK_APP_ID: Joi.number().required(),
+        FACEBOOK_APP_SECRET: Joi.string().required(),
       }),
     }),
     AuthModule,

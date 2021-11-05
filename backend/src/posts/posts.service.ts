@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { FilesService } from 'src/files/files.service';
 import { Repository } from 'typeorm';
 import User from '../users/entities/user.entity';
 import CreatePostDto from './dto/create-post.dto';
@@ -12,6 +13,7 @@ export default class PostsService {
   constructor(
     @InjectRepository(Post)
     private postsRepository: Repository<Post>,
+    private filesService: FilesService,
   ) {}
 
   getAllPosts() {

@@ -36,13 +36,8 @@ The project is currently beginning development for [Jesse Hartloff's CSE 442 cla
 
 3. Run the `docker-compose up --build` command
 
-4. In a separate terminal window, run the command `docker exec -it api python manage.py migrate` to make database migrations
+If you're receiving errors regarding config settings it's because you don't have a `.env` file set up in the api directory.
 
-##
-
-1. Navigate to your terminal or git bash script and navigate to the openbeats directory
-
-2. Run the `docker-compose up --build` command
 
 ## Authors
 

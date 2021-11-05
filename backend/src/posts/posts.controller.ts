@@ -10,7 +10,9 @@ import {
   Req,
   UseInterceptors,
   ClassSerializerInterceptor,
+  UploadedFile,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express/multer';
 import { ApiTags } from '@nestjs/swagger';
 import JwtAuthGuard from '../auth/jwt-auth.guard';
 import RequestWithUser from '../auth/requestWithUser.interface';
@@ -37,7 +39,9 @@ export default class PostsController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
+  @UseInterceptors(FileInterceptor('file'))
   async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {
+    console.log(post.file);
     return this.postsService.createPost(post, req.user);
   }
 

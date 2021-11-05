@@ -24,6 +24,9 @@ class Post {
   @Column({ nullable: true })
   public category?: string;
 
+  @Column({ nullable: true })
+  public fileurl?: string;
+
   @ManyToOne(() => User, (author: User) => author.posts)
   public author: User;
 

@@ -3,10 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { FilesService } from './files.service';
 import { ConfigModule } from '@nestjs/config';
 import PublicFile from './publicFile.entity';
+import PostsRepository from 'src/posts/posts.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PublicFile]), ConfigModule],
-  providers: [FilesService],
+  providers: [PostsRepository],
   exports: [FilesService],
 })
 export class FilesModule {}

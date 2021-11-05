@@ -37,8 +37,8 @@ export default class PostsController {
     return this.postsService.getPostById(Number(id));
   }
 
-  @Post()
-  @UseGuards(JwtAuthGuard)
+  @Post('create')
+  //@UseGuards(JwtAuthGuard)
   @UseInterceptors(FileInterceptor('file'))
   async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {
     console.log(post.file);

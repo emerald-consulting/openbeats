@@ -7,7 +7,6 @@ export class CreatePostDto {
   title: string;
 
   @IsString()
-  @IsNotEmpty()
   content: string;
 
   /* Uploading a file is optional */

@@ -36,6 +36,8 @@ The project is currently beginning development for [Jesse Hartloff's CSE 442 cla
 
 3. Run the `docker-compose up --build` command
 
+If you're receiving errors regarding config settings it's because you don't have a `.env` file set up in the api directory.
+
 
 ## Authors
 

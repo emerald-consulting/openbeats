@@ -19,7 +19,7 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req) {
-    this.logger.log(`Getting authenticated user: ${req.user}`);
+    this.logger.debug(`Getting authenticated user: ${req.user}`);
     return this.authService.getAuthenticatedUser(req.user, req.password);
   }
 
@@ -30,15 +30,17 @@ export class AppController {
     return req.user;
   }
 
-  @Get("facebook")
+  @Get("/facebook")
   @UseGuards(AuthGuard("facebook"))
   async facebookLogin(): Promise<any> {
+    this.logger.log(`Facebook`);
     return HttpStatus.OK;
   }
 
-  @Get("facebook/redirect")
+  @Get("/facebook/redirect")
   @UseGuards(AuthGuard("facebook"))
   async facebookLoginRedirect(@Request() req): Promise<any> {
+    this.logger.log(`Returnin ${req.user}`);
     return {
       statusCode: HttpStatus.OK,
       data: req.user,

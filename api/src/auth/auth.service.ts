@@ -15,6 +15,15 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
 
+  public async getUserFromAuthenticationToken(token: string) {
+    const payload: TokenPayload = this.jwtService.verify(token, {
+      secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET')
+    });
+    if (payload.email) {
+      return this.usersService.getByEmail(payload.email);
+    }
+  }
+
   public getCookiesForLogOut() {
     return [
       'Authentication=; HttpOnly; Path=/; Max-Age=0',

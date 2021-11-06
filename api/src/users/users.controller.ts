@@ -60,6 +60,11 @@ export class UsersController {
     return this.usersService.getById(+id);
   }
 
+  @Get(':genre')
+  getUserByGenre(@Param('genre') genre: string) {
+    return this.usersService.getByGenre(genre);
+  }
+
   @Patch(':id')
   updateUserById(
     @Param('id') id: string,

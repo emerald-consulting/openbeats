@@ -30,15 +30,15 @@ export class AppController {
     return req.user;
   }
 
-  @Get("/facebook")
-  @UseGuards(AuthGuard("facebook"))
+  @Get('/facebook')
+  @UseGuards(AuthGuard('facebook'))
   async facebookLogin(): Promise<any> {
     this.logger.log(`Facebook`);
     return HttpStatus.OK;
   }
 
-  @Get("/facebook/redirect")
-  @UseGuards(AuthGuard("facebook"))
+  @Get('/facebook/redirect')
+  @UseGuards(AuthGuard('facebook'))
   async facebookLoginRedirect(@Request() req): Promise<any> {
     this.logger.log(`Returnin ${req.user}`);
     return {

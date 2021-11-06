@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty } from 'class-validator';
+import User from '../../users/entities/user.entity';
 
 export class CreatePostDto {
   /* Title is required */
@@ -6,8 +7,10 @@ export class CreatePostDto {
   @IsNotEmpty()
   title: string;
 
+  author: User;
+
   @IsString()
-  content: string;
+  description?: string;
 
   /* Uploading a file is optional */
   file?: Express.Multer.File;

@@ -7,7 +7,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import PublicFile from '../../files/publicFile.entity';
+import PublicFile from '../../files/file.entity';
 import Post from '../../posts/entities/post.entity';
 import Address from './address.entity';
 

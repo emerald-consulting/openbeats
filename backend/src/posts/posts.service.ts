@@ -34,13 +34,23 @@ export default class PostsService {
     const newPost = await this.postsRepository.create({
       ...post,
       author: user,
+      filemeta: await this.filesService.uploadPublicFile(
+        post.file?.buffer,
+        post.file?.originalname,
+      ),
     });
     await this.postsRepository.save(newPost);
     return newPost;
   }
 
   async updatePost(id: number, post: UpdatePostDto) {
-    await this.postsRepository.update(id, post);
+    await this.postsRepository.update(id, {
+      ...post,
+      filemeta: await this.filesService.uploadPublicFile(
+        post.file?.buffer,
+        post.file?.originalname,
+      ),
+    });
     const updatedPost = await this.postsRepository.findOne(id, {
       relations: ['author'],
     });

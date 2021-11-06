@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import Category from '../../categories/category.entity';
 import User from '../../users/entities/user.entity';
+import PublicFile from '../../files/file.entity';
 
 @Entity()
 class Post {
@@ -25,7 +26,10 @@ class Post {
   public category?: string;
 
   @Column({ nullable: true })
-  public fileurl?: string;
+  public filemeta: PublicFile;
+
+  @Column({ nullable: true })
+  public filename: string;
 
   @ManyToOne(() => User, (author: User) => author.posts)
   public author: User;

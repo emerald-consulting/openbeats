@@ -22,7 +22,7 @@ const Pages: React.FC = () => {
       <LoggedOutRoute exact path="/login" component={Login} />
       <LoggedOutRoute exact path="/register" component={Register} />
       <LoggedOutRoute exact path="/about" component={About} />
-      <LoggedInRoute exact path="/feed" component={Feed} />
+      <LoggedOutRoute exact path="/feed" component={Feed} />
       <LoggedInRoute exact path="/activity" component={Activity} />
       <LoggedInRoute exact path="/settings" component={Settings} />
       <LoggedOutRoute exact path="/pricing" component={Pricing} />

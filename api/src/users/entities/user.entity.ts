@@ -64,6 +64,14 @@ class User {
   @Expose()
   public genre?: string;
 
+  @Column({ nullable: true })
+  @Expose()
+  public comapny?: string;
+
+  @Column({ nullable: true })
+  @Expose()
+  public url?: string;
+
   @OneToOne(() => Address, {
     eager: true,
     cascade: true,

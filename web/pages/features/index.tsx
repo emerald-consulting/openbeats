@@ -9,7 +9,6 @@ import {
     ServerIcon,
     ShieldCheckIcon,
   } from '@heroicons/react/outline'
-  import Navbar from '../navbar/navbar'
   import Footer from '../footer/footer'
 
   const features = [
@@ -25,12 +24,8 @@ import {
   export default function Example() {
     return (
       <div className="bg-emerald-900">
-        <Navbar></Navbar>   
-      
-      <div className="relative bg-emerald-900 py-16 sm:py-24 lg:py-32">
-        
-        <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-        
+        <div className="relative bg-emerald-900 py-16 sm:py-24 lg:py-32">
+          <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
           <h2 className="text-base font-semibold tracking-wider text-green-400 uppercase ">Deploy faster</h2>
           <p className="mt-2 text-3xl font-extrabold text-green-400 tracking-tight sm:text-4xl">
             Everything you need to create your song

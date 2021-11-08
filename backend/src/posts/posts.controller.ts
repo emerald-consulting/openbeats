@@ -9,23 +9,28 @@ import {
   UseGuards,
   Req,
   UseInterceptors,
+  Optional,
   ClassSerializerInterceptor,
   UploadedFile,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express/multer';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
+import { FilesService } from 'src/files/files.service';
 import JwtAuthGuard from '../auth/jwt-auth.guard';
 import RequestWithUser from '../auth/requestWithUser.interface';
 import { FindOneParams } from '../utils/exceptionsLogger.filter';
 import CreatePostDto from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import PostsService from './posts.service';
+import { PostsService } from './posts.service';
 
 @ApiTags('posts')
 @Controller('posts')
 @UseInterceptors(ClassSerializerInterceptor)
-export default class PostsController {
-  constructor(private readonly postsService: PostsService) {}
+export class PostsController {
+  constructor(
+    private readonly postsService: PostsService,
+    private filesService: FilesService,
+  ) {}
 
   @Get()
   getAllPosts() {

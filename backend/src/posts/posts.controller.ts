@@ -13,7 +13,6 @@ import {
   ClassSerializerInterceptor,
   UploadedFile,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 import { FilesService } from 'src/files/files.service';
 import JwtAuthGuard from '../auth/jwt-auth.guard';
@@ -45,7 +44,6 @@ export class PostsController {
   // Auth guard
   @Post('create')
   //@UseGuards(JwtAuthGuard)
-  @UseInterceptors(FileInterceptor('file'))
   async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {
     return this.postsService.createPost(post, req.user);
   }

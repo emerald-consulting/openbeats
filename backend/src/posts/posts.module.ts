@@ -1,17 +1,15 @@
 import { Module } from '@nestjs/common';
-//import PostsController from './posts.controller';
-//import PostsService from './posts.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import Post from './entities/post.entity';
+import { PostsController } from './posts.controller';
+import { PostsService } from './posts.service';
+import { Post } from './entities/post.entity';
 import { FilesModule } from 'src/files/files.module';
-import { FilesService } from 'src/files/files.service';
-import PostsController from './posts.controller';
-import PostsService from './posts.service';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post]), FilesModule],
+  imports: [TypeOrmModule.forFeature([Post]), FilesModule, UsersModule],
+  providers: [PostsService],
   controllers: [PostsController],
-  providers: [PostsService, FilesService],
   exports: [PostsService],
 })
 export class PostsModule {}

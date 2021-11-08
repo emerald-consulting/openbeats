@@ -15,7 +15,7 @@ export class FilesService {
     private readonly configService: ConfigService,
   ) {}
 
-  async uploadPublicFile(dataBuffer: Buffer, filename: string) {
+  public async uploadPublicFile(@Optional() file: Express.Multer.File) {
     const s3 = new S3();
     const uploadResult = await s3
       .upload({

@@ -25,13 +25,13 @@ const LoggedInRoute = ({ component: Component }: Props) => {
   }
 
   // Redirect to the landing page if the user isn't logged in
-  if (data === false || data === undefined) {
-    return (
-      <>
-        <Redirect to="/" />
-      </>
-    )
-  }
+  // if (data === false || data === undefined) {
+  //   return (
+  //     <>
+  //       <Redirect to="/" />
+  //     </>
+  //   )
+  // }
 
   return (
     <>

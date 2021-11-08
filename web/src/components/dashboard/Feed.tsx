@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+import React from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
@@ -41,7 +42,11 @@ export default function Example() {
       */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 flex z-40 md:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -79,22 +84,25 @@ export default function Example() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                      <XIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </Transition.Child>
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
-                  <a href="../">
+                    <a href="../">
                       <img
                         className="h-8 w-auto"
                         src="/openbeats-teal.png"
                         alt="Open Beats"
                       />
-                  </a>
+                    </a>
                   </div>
                   <nav className="mt-5 px-2 space-y-1">
-                    {navigation.map((item) => (
+                    {navigation.map(item => (
                       <a
                         key={item.name}
                         href={item.href}
@@ -105,7 +113,10 @@ export default function Example() {
                           'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                         )}
                       >
-                        <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-green-300" aria-hidden="true" />
+                        <item.icon
+                          className="mr-4 flex-shrink-0 h-6 w-6 text-green-300"
+                          aria-hidden="true"
+                        />
                         {item.name}
                       </a>
                     ))}
@@ -122,8 +133,12 @@ export default function Example() {
                         />
                       </div>
                       <div className="ml-3">
-                        <p className="text-base font-medium text-white">Tom Cook</p>
-                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">View profile</p>
+                        <p className="text-base font-medium text-white">
+                          Tom Cook
+                        </p>
+                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">
+                          View profile
+                        </p>
                       </div>
                     </div>
                   </a>
@@ -142,25 +157,30 @@ export default function Example() {
           <div className="flex-1 flex flex-col min-h-0 bg-green-900">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
-              <a href="../">
-                <img
-                  className="h-8 w-auto"
-                  src="/openbeats-teal.png"
-                  alt="Open Beats"
-                />
+                <a href="../">
+                  <img
+                    className="h-8 w-auto"
+                    src="/openbeats-teal.png"
+                    alt="Open Beats"
+                  />
                 </a>
               </div>
               <nav className="mt-5 flex-1 px-2 space-y-1">
-                {navigation.map((item) => (
+                {navigation.map(item => (
                   <a
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-green-800 text-white' : 'text-white hover:bg-green-400 hover:bg-opacity-75',
+                      item.current
+                        ? 'bg-green-800 text-white'
+                        : 'text-white hover:bg-green-400 hover:bg-opacity-75',
                       'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                     )}
                   >
-                    <item.icon className="mr-3 flex-shrink-0 h-6 w-6 text-green-300" aria-hidden="true" />
+                    <item.icon
+                      className="mr-3 flex-shrink-0 h-6 w-6 text-green-300"
+                      aria-hidden="true"
+                    />
                     {item.name}
                   </a>
                 ))}
@@ -178,7 +198,9 @@ export default function Example() {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <p className="text-xs font-medium text-green-200 group-hover:text-white">View profile</p>
+                    <p className="text-xs font-medium text-green-200 group-hover:text-white">
+                      View profile
+                    </p>
                   </div>
                 </div>
               </a>

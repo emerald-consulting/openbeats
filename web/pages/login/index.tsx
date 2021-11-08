@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
 
 const baseURL = 'http://localhost:8000/users/';
@@ -9,14 +10,24 @@ export default function Example() {
   const onEmailChange = (event: any) => {
     setEmail(event.target.value);
   };
+  const router = useRouter()
 
   const [password, setPassword] = useState('');
   const onPasswordChange = (event: any) => {
     setPassword(event.target.value);
   };
 
-  const onSubmit = () => {
-     axios.get(`${baseURL}`, { email: email, password: password });
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    axios.get('/user/:email').then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(r => router.push('/feed'));
   }
 
   return (

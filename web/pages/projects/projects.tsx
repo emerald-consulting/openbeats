@@ -1,13 +1,27 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { PlusIcon } from '@heroicons/react/solid'
 import axios from 'axios'
+import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react'
 const baseURL = 'http://localhost:8000/users/';
 
 export default function Projects() {
-  const onSubmit = () => {
-    axios.post(`${baseURL}`, { email: email, password: password });
- }
+
+  const router = useRouter();
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    axios.get('/user/:email').then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(r => router.push('/feed'));
+  }
+
   return (
     <div className="text-center">
       <svg

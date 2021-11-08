@@ -190,6 +190,28 @@ export default function Example(): JSX.Element {
                           hyperlinked.
                         </p>
                       </div>
+
+                      <div>
+                        <label
+                          htmlFor="Genre"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          <input type="text" />
+                          Genre
+                        </label>
+                        <div className="mt-1">
+                          <textarea
+                            id="about"
+                            name="about"
+                            rows={3}
+                            className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            defaultValue=""
+                          />
+                        </div>
+                        <p className="mt-2 text-sm text-gray-500">
+                          List your fevourite genre in music
+                        </p>
+                      </div>
                     </div>
 
                     <div className="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">

@@ -1,7 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
 
-import Wav from "../wav"
-
 const people = [
     {
       name: 'Ryan Dils',
@@ -30,7 +28,6 @@ const people = [
                   </div>
                   <p className="text-sm text-gray-500">
                     Uploaded "{activityItem.song}" by {activityItem.artist} 
-                    <Wav></Wav>
                   </p>
                 </div>
               </div>
@@ -40,4 +37,3 @@ const people = [
       </div>
     )
   }
-  

@@ -31,6 +31,16 @@ export class UsersService {
       HttpStatus.NOT_FOUND,
     );
   }
+  async getByGenre(genre: string) {
+    const GenreList: unknown = await this.usersRepository.find({ genre });
+    if (GenreList) {
+      return GenreList;
+    }
+    throw new HttpException(
+      'Users with this genre does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
 
   async getById(id: number) {
     const user = await this.usersRepository.findOne({ id });

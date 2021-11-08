@@ -60,6 +60,10 @@ class User {
   @Expose()
   public bio?: string;
 
+  @Column({ nullable: true })
+  @Expose()
+  public genre?: string;
+
   @OneToOne(() => Address, {
     eager: true,
     cascade: true,

@@ -15,7 +15,6 @@
   ```
 */
 import { Fragment } from 'react'
-import { useRouter } from 'next/router'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
@@ -43,8 +42,6 @@ export default function Example() {
   const onPasswordChange = (event: any) => {
     setPassword(event.target.value);
   };
-
-  const router = useRouter()
 
   const onSubmit = (e: any) => {
     e.preventDefault();

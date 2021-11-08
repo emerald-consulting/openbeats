@@ -30,6 +30,7 @@ module.exports = {
     // note you must disable the base rule as it can report incorrect errors
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
+    'react/no-unescaped-entities': 0,
     'import/order': [
       'error',
       {
@@ -42,7 +43,7 @@ module.exports = {
           },
         ],
         pathGroupsExcludedImportTypes: ['react'],
-        'newlines-between': 'always',
+        'newlines-between': 'ignore',
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,

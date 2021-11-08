@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 
 import React from 'react'
+
 import Wav from '../wav/Wav'
 
 const people = [

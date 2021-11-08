@@ -15,19 +15,6 @@ import { Address } from './address.entity';
 export class User {
   @PrimaryGeneratedColumn()
   public id?: number;
-
-  @Column()
-  @Expose()
-  public firstName: string;
-
-  @Column()
-  @Expose()
-  public lastName: string;
-
-  @Column({ unique: true })
-  @Expose()
-  public username: string;
-
   @Column({ unique: true })
   @Expose()
   public email: string;

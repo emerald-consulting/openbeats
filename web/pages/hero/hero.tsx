@@ -15,6 +15,7 @@
   ```
 */
 import { Fragment } from 'react'
+import { useRouter } from 'next/router'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
@@ -36,6 +37,7 @@ export default function Example() {
   const onEmailChange = (event: any) => {
     setEmail(event.target.value);
   };
+  const router = useRouter()
 
   const [password, setPassword] = useState('');
   const onPasswordChange = (event: any) => {
@@ -44,8 +46,10 @@ export default function Example() {
 
   const router = useRouter()
 
-  const onSubmit = async () => {
-     axios.post(`${baseURL}`, { email: email, password: password });
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    axios.post(`${baseURL}`, { email: email, password: password })
+    .then(r => router.push('/feed'));
   }
 
   return (
@@ -262,6 +266,7 @@ export default function Example() {
                             name="email"
                             id="email"
                             autoComplete="email"
+                            onChange={onEmailChange}
                             placeholder="Email"
                             required
                             className="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
@@ -278,6 +283,7 @@ export default function Example() {
                             type="password"
                             placeholder="Password"
                             autoComplete="current-password"
+                            onChange={onPasswordChange}
                             required
                             className="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                           />

@@ -1,73 +1,39 @@
 {
-  "name": "openbeats-frontend",
-  "version": "0.1.0",
+  "name": "web",
   "private": true,
-  "dependencies": {
-    "@angular/common": "^6.0.0-rc.0",
-    "@craco/craco": "^6.3.0",
-    "@headlessui/react": "^1.4.1",
-    "@heroicons/react": "^1.0.4",
-    "@tailwindcss/forms": "^0.3.3",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.11",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
-    "@types/react-router-dom": "^5.1.8",
-    "@types/wavesurfer.js": "^5.2.2",
-    "axios": "^0.21.4",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "install-peers": "^1.0.3",
-    "jsx-runtime": "^1.2.0",
-    "node": "^17.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-hook-form": "^7.16.0",
-    "react-query": "^3.24.4",
-    "react-router": "^5.2.1",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
-    "testing-library": "^0.0.2",
-    "typescript": "^4.4.4",
-    "wavesurfer.js": "^5.2.0",
-    "web-vitals": "^1.0.1"
-  },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "yarn run lint --fix",
-    "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@dschoon/react-waves": "^4.0.3",
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.5",
+    "@tailwindcss/forms": "^0.3.4",
+    "autoprefixer": "^10.4.0",
+    "axios": "^0.24.0",
+    "next": "12.0.3",
+    "postcss": "^8.3.11",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.19.1",
+    "react-native-audiowaveform": "^2.0.5",
+    "react-router": "^6.0.1",
+    "react-router-dom": "^6.0.1",
+    "react-wavesurfer": "^0.8.6",
+    "react-wavesurfer.js": "^0.0.5",
+    "tailwindcss": "^2.2.19",
+    "wavesurfer-react": "^2.0.11",
+    "wavesurfer.js": "^5.2.0"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.2.0",
-    "autoprefixer": "^9.8.6",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.2",
-    "postcss": "^7.0.36",
-    "prettier": "^2.4.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.10"
+    "@types/node": "16.11.6",
+    "@types/react": "17.0.34",
+    "@types/wavesurfer.js": "^5.2.2",
+    "eslint": "7",
+    "eslint-config-next": "12.0.3",
+    "typescript": "4.4.4"
   }
 }

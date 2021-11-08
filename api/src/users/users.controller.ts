@@ -51,9 +51,9 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  getUserById(@Param('id') id: string) {
-    return this.usersService.getById(+id);
+  @Get(':email')
+  getUserById(@Param('email') email: string) {
+    return this.usersService.getByEmail(email);
   }
 
   @Get(':genre')

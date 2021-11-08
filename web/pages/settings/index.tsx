@@ -24,7 +24,6 @@
   }
   ```
 */
-import Navbar from '../navbar/navbar'
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
@@ -66,7 +65,7 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -78,7 +77,6 @@ export default function Example() {
 
   return (
     <div>
-      <Navbar></Navbar>
       <Disclosure as="div" className="relative bg-sky-700 pb-32 overflow-hidden">
         {({ open }) => (
           <>

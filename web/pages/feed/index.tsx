@@ -26,7 +26,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Feed() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (

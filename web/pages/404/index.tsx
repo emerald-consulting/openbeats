@@ -1,7 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { BookmarkAltIcon, BookOpenIcon, RssIcon, ViewListIcon } from '@heroicons/react/outline'
-import Navbar from '../navbar/navbar'
 
 const links = [
   { title: 'Documentation', description: 'Learn how to integrate our tools with your app', icon: BookOpenIcon },
@@ -76,7 +75,6 @@ const social = [
 export default function FourOhFour() {
   return (
     <div className="bg-emerald-800">
-      <Navbar></Navbar>
       <main className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex-shrink-0 pt-16">
           <a href="../">

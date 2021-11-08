@@ -153,7 +153,6 @@ export default function Example(): JSX.Element {
                           htmlFor="username"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          <input type="text" />
                           Username
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
@@ -173,14 +172,13 @@ export default function Example(): JSX.Element {
                           htmlFor="about"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          <input type="text" />
-                          About
+                          Bio
                         </label>
                         <div className="mt-1">
                           <textarea
                             id="about"
                             name="about"
-                            rows={3}
+                            rows={2}
                             className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                             defaultValue=""
                           />
@@ -316,7 +314,6 @@ export default function Example(): JSX.Element {
                         />
                       </label>
                     </div>
-
                     <div className="col-span-12">
                       <label
                         htmlFor="genre"
@@ -331,7 +328,6 @@ export default function Example(): JSX.Element {
                         />
                       </label>
                     </div>
-
                     <div className="col-span-12 sm:col-span-6">
                       <label
                         htmlFor="company"

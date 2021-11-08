@@ -1,11 +1,9 @@
-import { Injectable } from '@nestjs/common';
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
   BaseEntity,
   OneToOne,
-  ManyToOne,
 } from 'typeorm';
 import { Post } from 'src/posts/entities/post.entity';
 

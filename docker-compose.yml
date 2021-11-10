@@ -5,7 +5,7 @@ services:
     container_name: openbeats_442_api
     build:
       dockerfile: Dockerfile
-      context: ./backend
+      context: ./api
     depends_on:
       - postgres
     environment:
@@ -34,9 +34,9 @@ services:
       - CHOKIDAR_USEPOLLING=true
     build:
       dockerfile: Dockerfile
-      context: ./frontend/
+      context: ./web/
     volumes:
-      - ./frontend:/app # live updates
+      - ./web:/app # live updates
 
   pgadmin:
     container_name: openbeats_442_pgadmin

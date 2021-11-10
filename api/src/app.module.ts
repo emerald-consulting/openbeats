@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { AppController } from './app.controller';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AppController } from './app.controller';
     PostsModule,
     FilesModule,
     UsersModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [],

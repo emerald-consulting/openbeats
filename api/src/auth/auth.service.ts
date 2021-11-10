@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable, LoggerService } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  LoggerService,
+} from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 import { PostgresErrorCode } from '../database/postgresErrorCode.enum';
@@ -17,7 +22,7 @@ export class AuthService {
 
   public async getUserFromAuthenticationToken(token: string) {
     const payload: TokenPayload = this.jwtService.verify(token, {
-      secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET')
+      secret: this.configService.get('JWT_ACCESS_TOKEN_SECRET'),
     });
     if (payload.email) {
       return this.usersService.getByEmail(payload.email);

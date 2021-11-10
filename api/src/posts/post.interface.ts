@@ -3,4 +3,5 @@ export interface Post {
   text?: string;
   title: string;
   genre?: string;
+  file?: Express.Multer.File;
 }

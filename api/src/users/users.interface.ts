@@ -10,4 +10,5 @@ export interface User {
   isStudent: boolean;
   isActive: boolean;
   age: number;
+  genre: string;
 }

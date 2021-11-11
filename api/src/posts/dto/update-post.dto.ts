@@ -10,10 +10,12 @@ export class UpdatePostDto extends PartialType(CreatePostDto) {
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  text: string;
+  title: string;
 
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  title: string;
+  description?: string;
+
+  file?: Express.Multer.File;
 }

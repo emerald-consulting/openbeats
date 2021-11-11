@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import Message from './message.entity';
 import { Repository } from 'typeorm';
 import { AuthService } from 'src/auth/auth.service';
-import User from 'src/users/entities/user.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class ChatService {

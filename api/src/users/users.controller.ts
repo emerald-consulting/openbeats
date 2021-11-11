@@ -32,11 +32,7 @@ export class UsersController {
     @Req() request: RequestWithUser,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.usersService.addAvatar(
-      request.user.id,
-      file.buffer,
-      file.originalname,
-    );
+    return this.usersService.addAvatar(request.user.id, file);
   }
 
   @Delete('avatar')
@@ -55,9 +51,9 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  getUserById(@Param('id') id: string) {
-    return this.usersService.getById(+id);
+  @Get(':email')
+  getUserById(@Param('email') email: string) {
+    return this.usersService.getByEmail(email);
   }
 
   @Get(':genre')

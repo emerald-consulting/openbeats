@@ -2,21 +2,21 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
+  Inject,
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
 import { FilesService } from '../files/files.service';
 import * as bcrypt from 'bcrypt';
-import User from './entities/user.entity';
+import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    @InjectRepository(User) private usersRepository: Repository<User>,
     private readonly filesService: FilesService,
     private connection: Connection,
   ) {}
@@ -59,7 +59,7 @@ export class UsersService {
     return newUser;
   }
 
-  async addAvatar(userId: number, imageBuffer: Buffer, filename: string) {
+  async addAvatar(userId: number, img: Express.Multer.File) {
     const user = await this.getById(userId);
     if (user.avatar) {
       await this.usersRepository.update(userId, {
@@ -68,10 +68,7 @@ export class UsersService {
       });
       await this.filesService.deletePublicFile(user.avatar.id);
     }
-    const avatar = await this.filesService.uploadPublicFile(
-      imageBuffer,
-      filename,
-    );
+    const avatar = await this.filesService.uploadPublicFile(img);
     await this.usersRepository.update(userId, {
       ...user,
       avatar,

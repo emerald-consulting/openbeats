@@ -1,13 +1,22 @@
 import { IsString, IsNotEmpty } from 'class-validator';
+import { User } from '../../users/entities/user.entity';
+import { PublicFile } from 'src/files/entities/file.entity';
 
 export class CreatePostDto {
-  @IsString()
-  @IsNotEmpty()
-  content: string;
-
+  /* Title is required */
   @IsString()
   @IsNotEmpty()
   title: string;
+
+  author: User;
+
+  @IsString()
+  description?: string;
+
+  /* Uploading a file is optional */
+  file?: Express.Multer.File;
+
+  pubfile?: PublicFile;
 }
 
 export default CreatePostDto;

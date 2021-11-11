@@ -7,27 +7,14 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import PublicFile from '../../files/publicFile.entity';
-import Post from '../../posts/entities/post.entity';
-import Address from './address.entity';
+import { PublicFile } from '../../files/entities/file.entity';
+import { Post } from '../../posts/entities/post.entity';
+import { Address } from './address.entity';
 
 @Entity()
-class User {
+export class User {
   @PrimaryGeneratedColumn()
   public id?: number;
-
-  @Column()
-  @Expose()
-  public firstName: string;
-
-  @Column()
-  @Expose()
-  public lastName: string;
-
-  @Column({ unique: true })
-  @Expose()
-  public username: string;
-
   @Column({ unique: true })
   @Expose()
   public email: string;
@@ -93,5 +80,3 @@ class User {
   })
   public avatar?: PublicFile;
 }
-
-export default User;

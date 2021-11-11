@@ -53,7 +53,7 @@ export class User {
 
   @Column({ nullable: true })
   @Expose()
-  public comapny?: string;
+  public company?: string;
 
   @Column({ nullable: true })
   @Expose()

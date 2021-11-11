@@ -42,6 +42,17 @@ export class UsersService {
     );
   }
 
+  async getByAge(age: number) {
+    const ageList: unknown = await this.usersRepository.find({ age });
+    if (ageList) {
+      return ageList;
+    }
+    throw new HttpException(
+      'Users with this genre does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
   async getById(id: number) {
     const user = await this.usersRepository.findOne({ id });
     if (user) {
@@ -74,6 +85,55 @@ export class UsersService {
       avatar,
     });
     return avatar;
+  }
+
+  async UpdateBio(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.bio = UserData;
+    const bio = user.bio;
+    await this.usersRepository.update(userid, {
+      ...user,
+      bio,
+    });
+  }
+  async UpdateAge(userid: number, UserData: number) {
+    const user = await this.getById(userid);
+    user.age = UserData;
+    const age = user.age;
+    await this.usersRepository.update(userid, {
+      ...user,
+      age,
+    });
+  }
+
+  async UpdateURL(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.url = UserData;
+    const url = user.url;
+    await this.usersRepository.update(userid, {
+      ...user,
+      url,
+    });
+  }
+
+  async UpdateGenre(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.genre = UserData;
+    const genre = user.genre;
+    await this.usersRepository.update(userid, {
+      ...user,
+      genre,
+    });
+  }
+
+  async UpdateCompany(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.company = UserData;
+    const company = user.url;
+    await this.usersRepository.update(userid, {
+      ...user,
+      company,
+    });
   }
 
   async deleteAvatar(userId: number) {

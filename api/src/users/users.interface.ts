@@ -11,4 +11,6 @@ export interface User {
   isActive: boolean;
   age: number;
   genre: string;
+  company: string;
+  URL: string;
 }

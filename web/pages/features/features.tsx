@@ -22,7 +22,7 @@ const features = [
   {
     name: "Sync",
     description:
-      "Experience seamless collaboration of musical projects with others, while experienceing no lag.",
+      'Experience seamless collaboration of musical projects with others, while experiencing no lag.',
     icon: LightningBoltIcon,
   },
   {

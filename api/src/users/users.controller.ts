@@ -41,7 +41,7 @@ export class UsersController {
     return this.usersService.deleteAvatar(request.user.id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }

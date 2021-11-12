@@ -25,7 +25,7 @@ import { ApiTags } from '@nestjs/swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('genre')
+  @Patch('genre')
   @UseGuards(JwtAuthGuard)
   async addGenre(
     @Req() request: RequestWithUser,
@@ -34,13 +34,13 @@ export class UsersController {
     return this.usersService.UpdateGenre(request.user.id, genre);
   }
 
-  @Post('bio')
+  @Patch('bio')
   @UseGuards(JwtAuthGuard)
   async addBio(@Req() request: RequestWithUser, @Param('bio') bio: string) {
     return this.usersService.UpdateBio(request.user.id, bio);
   }
 
-  @Post('company')
+  @Patch('company')
   @UseGuards(JwtAuthGuard)
   async addCompany(
     @Req() request: RequestWithUser,
@@ -49,13 +49,13 @@ export class UsersController {
     return this.usersService.UpdateCompany(request.user.id, company);
   }
 
-  @Post('url')
+  @Patch('url')
   @UseGuards(JwtAuthGuard)
   async addURL(@Req() request: RequestWithUser, @Param('url') url: string) {
     return this.usersService.UpdateURL(request.user.id, url);
   }
 
-  @Post('age')
+  @Patch('age')
   @UseGuards(JwtAuthGuard)
   async addAge(@Req() request: RequestWithUser, @Param('age') age: number) {
     return this.usersService.UpdateAge(request.user.id, age);

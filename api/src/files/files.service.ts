@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@nestjs/common';
+import { Injectable, Optional, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, QueryRunner } from 'typeorm';
 import { PublicFile } from './entities/file.entity';
@@ -31,6 +31,22 @@ export class FilesService {
     });
     await this.publicFilesRepository.save(newFile);
     return newFile;
+  }
+
+  public async downloadPublicFile(id: number) {
+    const pubfile = await this.publicFilesRepository.findOne({ id: id });
+    if (pubfile) {
+      const s3 = new S3();
+      const stream = await s3
+        .getObject({
+          Bucket: this.configService.get('AWS_PUBLIC_BUCKET_NAME'),
+          Key: pubfile.key,
+        })
+        .createReadStream();
+      return stream;
+    } else {
+      throw new NotFoundException();
+    }
   }
 
   async deletePublicFile(fileId: number) {

@@ -1,14 +1,22 @@
 /* This example requires Tailwind CSS v2.0+ */
+<<<<<<< HEAD
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+=======
+import { Fragment, useState, useEffect } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+>>>>>>> 0f57a3e... Dynamically show newsfeed posts #78
 import {
   FolderIcon,
   HomeIcon,
   MenuIcon,
   UsersIcon,
   XIcon,
-} from "@heroicons/react/outline";
-import Card from "./Card";
+} from '@heroicons/react/outline'
+import axios from 'axios'
+import Card from './Card'
+
+const baseURL = 'http://localhost:8000/posts/';
 
 const navigation = [
   { name: 'Dashboard', href: '/feed', icon: HomeIcon, current: true },
@@ -20,8 +28,20 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
+export interface IPosts {
+  id: Number;
+  title: string;
+  description?: string;
+}
+
 export default function Feed() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [posts, setPosts] = useState<Array<IPosts>>([])
+
+  useEffect(() => {
+    axios.get(`${baseURL}`)
+    .then(r => setPosts([...r.data]))
+  }, [])
 
   return (
     <>
@@ -211,18 +231,9 @@ export default function Feed() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
                 <div className="py-4">
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
-                  <Card></Card>
+                  {posts.map((post: IPosts) => (
+                    <Card key={post.id.toString()} {...post}/>
+                  ))}
                 </div>
                 {/* /End replace */}
               </div>

@@ -3,7 +3,7 @@ import { PlusIcon } from '@heroicons/react/solid'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react'
-const baseURL = 'http://localhost:8000/users/';
+const baseURL = 'http://localhost:8000';
 
 export default function Projects() {
 
@@ -11,7 +11,7 @@ export default function Projects() {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    axios.get('/user/:email').then(function (response) {
+    axios.get('/files/upload').then(function (response) {
       // handle success
       console.log(response);
     })

@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   UseInterceptors,
+  ClassSerializerInterceptor,
   Req,
   UploadedFile,
 } from '@nestjs/common';
@@ -23,6 +24,7 @@ import { first } from 'rxjs';
 
 @ApiTags('users')
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

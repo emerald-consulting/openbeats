@@ -10,6 +10,7 @@ export default function Projects() {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
+<<<<<<< HEAD
     axios
       .get("/user/:email")
       .then(function (response) {
@@ -22,6 +23,18 @@ export default function Projects() {
       })
       .then((r) => router.push("/feed"));
   };
+=======
+    axios.get('/files/upload').then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(r => router.push('/feed'));
+  }
+>>>>>>> 8bd13c6... Changed URL route of upload button
 
   return (
     <div className="text-center">

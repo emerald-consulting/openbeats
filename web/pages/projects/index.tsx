@@ -1,6 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -10,24 +10,24 @@ import {
   MenuIcon,
   UsersIcon,
   XIcon,
-} from '@heroicons/react/outline'
-import Projects from './projects'
+} from "@heroicons/react/outline";
+import Projects from "./projects";
 
 const navigation = [
-  { name: 'Feed', href: '/feed', icon: HomeIcon, current: false },
-  { name: 'Groups', href: '/groups', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '/projects', icon: FolderIcon, current: true },
+  { name: "Feed", href: "/feed", icon: HomeIcon, current: false },
+  { name: "Groups", href: "/groups", icon: UsersIcon, current: false },
+  { name: "Projects", href: "/projects", icon: FolderIcon, current: true },
   // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   // { name: 'Documents', href: '#', icon: InboxIcon, current: false },
   // { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-]
+];
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
@@ -41,7 +41,11 @@ export default function Example() {
       */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 flex z-40 md:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -79,7 +83,10 @@ export default function Example() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                      <XIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </Transition.Child>
@@ -98,12 +105,15 @@ export default function Example() {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? 'bg-green-900 text-white'
-                            : 'text-white hover:bg-green-600 hover:bg-opacity-75',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            ? "bg-green-900 text-white"
+                            : "text-white hover:bg-green-600 hover:bg-opacity-75",
+                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
                       >
-                        <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-green-300" aria-hidden="true" />
+                        <item.icon
+                          className="mr-4 flex-shrink-0 h-6 w-6 text-green-300"
+                          aria-hidden="true"
+                        />
                         {item.name}
                       </a>
                     ))}
@@ -120,8 +130,12 @@ export default function Example() {
                         />
                       </div>
                       <div className="ml-3">
-                        <p className="text-base font-medium text-white">Tom Cook</p>
-                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">View profile</p>
+                        <p className="text-base font-medium text-white">
+                          Tom Cook
+                        </p>
+                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">
+                          View profile
+                        </p>
                       </div>
                     </div>
                   </a>
@@ -140,7 +154,7 @@ export default function Example() {
           <div className="flex-1 flex flex-col min-h-0 bg-green-900">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
-                <a href = '../'>
+                <a href="../">
                   <img
                     className="h-8 w-auto"
                     src="/openbeats-teal.png"
@@ -154,11 +168,16 @@ export default function Example() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-green-800 text-white' : 'text-white hover:bg-green-400 hover:bg-opacity-75',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      item.current
+                        ? "bg-green-800 text-white"
+                        : "text-white hover:bg-green-400 hover:bg-opacity-75",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
-                    <item.icon className="mr-3 flex-shrink-0 h-6 w-6 text-green-300" aria-hidden="true" />
+                    <item.icon
+                      className="mr-3 flex-shrink-0 h-6 w-6 text-green-300"
+                      aria-hidden="true"
+                    />
                     {item.name}
                   </a>
                 ))}
@@ -176,7 +195,9 @@ export default function Example() {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <p className="text-xs font-medium text-green-200 group-hover:text-white">View profile</p>
+                    <p className="text-xs font-medium text-green-200 group-hover:text-white">
+                      View profile
+                    </p>
                   </div>
                 </div>
               </a>
@@ -197,12 +218,14 @@ export default function Example() {
           <main className="flex-1">
             <div className="py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
+                <h1 className="text-2xl font-semibold text-gray-900">
+                  Projects
+                </h1>
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
                 <div className="py-4">
-                    <Projects></Projects>
+                  <Projects></Projects>
                 </div>
                 {/* /End replace */}
               </div>
@@ -211,5 +234,5 @@ export default function Example() {
         </div>
       </div>
     </>
-  )
+  );
 }

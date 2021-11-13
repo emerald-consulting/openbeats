@@ -1,6 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -10,24 +10,24 @@ import {
   MenuIcon,
   UsersIcon,
   XIcon,
-} from '@heroicons/react/outline'
-import Card from './Card'
+} from "@heroicons/react/outline";
+import Card from "./Card";
 
 const navigation = [
-  { name: 'Dashboard', href: '/feed', icon: HomeIcon, current: true },
-  { name: 'Groups', href: '/groups', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '/projects', icon: FolderIcon, current: false },
+  { name: "Dashboard", href: "/feed", icon: HomeIcon, current: true },
+  { name: "Groups", href: "/groups", icon: UsersIcon, current: false },
+  { name: "Projects", href: "/projects", icon: FolderIcon, current: false },
   // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   // { name: 'Documents', href: '#', icon: InboxIcon, current: false },
   // { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-]
+];
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Feed() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
@@ -41,7 +41,11 @@ export default function Feed() {
       */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 flex z-40 md:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -79,19 +83,22 @@ export default function Feed() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                      <XIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </Transition.Child>
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                   <div className="flex-shrink-0 flex items-center px-4">
-                  <a href="../">
+                    <a href="../">
                       <img
                         className="h-8 w-auto"
                         src="/openbeats-teal.png"
                         alt="Open Beats"
                       />
-                  </a>
+                    </a>
                   </div>
                   <nav className="mt-5 px-2 space-y-1">
                     {navigation.map((item) => (
@@ -100,12 +107,15 @@ export default function Feed() {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? 'bg-green-900 text-white'
-                            : 'text-white hover:bg-green-600 hover:bg-opacity-75',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            ? "bg-green-900 text-white"
+                            : "text-white hover:bg-green-600 hover:bg-opacity-75",
+                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
                       >
-                        <item.icon className="mr-4 flex-shrink-0 h-6 w-6 text-green-300" aria-hidden="true" />
+                        <item.icon
+                          className="mr-4 flex-shrink-0 h-6 w-6 text-green-300"
+                          aria-hidden="true"
+                        />
                         {item.name}
                       </a>
                     ))}
@@ -122,8 +132,12 @@ export default function Feed() {
                         />
                       </div>
                       <div className="ml-3">
-                        <p className="text-base font-medium text-white">Tom Cook</p>
-                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">View profile</p>
+                        <p className="text-base font-medium text-white">
+                          Tom Cook
+                        </p>
+                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">
+                          View profile
+                        </p>
                       </div>
                     </div>
                   </a>
@@ -142,12 +156,12 @@ export default function Feed() {
           <div className="flex-1 flex flex-col min-h-0 bg-green-900">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
-              <a href="../">
-                <img
-                  className="h-8 w-auto"
-                  src="/openbeats-teal.png"
-                  alt="Open Beats"
-                />
+                <a href="../">
+                  <img
+                    className="h-8 w-auto"
+                    src="/openbeats-teal.png"
+                    alt="Open Beats"
+                  />
                 </a>
               </div>
               <nav className="mt-5 flex-1 px-2 space-y-1">
@@ -156,11 +170,16 @@ export default function Feed() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-green-800 text-white' : 'text-white hover:bg-green-400 hover:bg-opacity-75',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      item.current
+                        ? "bg-green-800 text-white"
+                        : "text-white hover:bg-green-400 hover:bg-opacity-75",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
                   >
-                    <item.icon className="mr-3 flex-shrink-0 h-6 w-6 text-green-300" aria-hidden="true" />
+                    <item.icon
+                      className="mr-3 flex-shrink-0 h-6 w-6 text-green-300"
+                      aria-hidden="true"
+                    />
                     {item.name}
                   </a>
                 ))}
@@ -178,7 +197,9 @@ export default function Feed() {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <p className="text-xs font-medium text-green-200 group-hover:text-white">View profile</p>
+                    <p className="text-xs font-medium text-green-200 group-hover:text-white">
+                      View profile
+                    </p>
                   </div>
                 </div>
               </a>
@@ -224,5 +245,5 @@ export default function Feed() {
         </div>
       </div>
     </>
-  )
+  );
 }

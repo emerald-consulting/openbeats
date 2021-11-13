@@ -1,31 +1,37 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { AdjustmentsIcon, GlobeAltIcon, LightningBoltIcon, MailIcon, ScaleIcon } from '@heroicons/react/outline'
+import {
+  AdjustmentsIcon,
+  GlobeAltIcon,
+  LightningBoltIcon,
+  MailIcon,
+  ScaleIcon,
+} from "@heroicons/react/outline";
 
 const features = [
   {
-    name: 'Collaborate',
-    description: 'Connect and collaborate on music with anyone in the world.',
+    name: "Collaborate",
+    description: "Connect and collaborate on music with anyone in the world.",
     icon: GlobeAltIcon,
   },
   {
-    name: 'Edit',
+    name: "Edit",
     description:
-      'Mix and master your tracks to create a studio like quality throughout your audio tracks.',
+      "Mix and master your tracks to create a studio like quality throughout your audio tracks.",
     icon: AdjustmentsIcon,
   },
   {
-    name: 'Sync',
+    name: "Sync",
     description:
-      'Experience seamless collaboration of musical projects with others, while experienceing no lag.',
+      "Experience seamless collaboration of musical projects with others, while experienceing no lag.",
     icon: LightningBoltIcon,
   },
   {
-    name: 'Share',
+    name: "Share",
     description:
-      'Post your songs on the Open Beats social media application to share your sounds with the world.',
+      "Post your songs on the Open Beats social media application to share your sounds with the world.",
     icon: MailIcon,
   },
-]
+];
 
 export default function Features() {
   return (
@@ -48,10 +54,21 @@ export default function Features() {
               height={20}
               patternUnits="userSpaceOnUse"
             >
-              <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              <rect
+                x={0}
+                y={0}
+                width={4}
+                height={4}
+                className="text-gray-200"
+                fill="currentColor"
+              />
             </pattern>
           </defs>
-          <rect width={404} height={784} fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
+          <rect
+            width={404}
+            height={784}
+            fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)"
+          />
         </svg>
 
         <div className="relative lg:grid lg:grid-cols-3 lg:gap-x-8">
@@ -67,14 +84,18 @@ export default function Features() {
                   <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-400 text-white">
                     <feature.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
-                  <p className="mt-5 text-lg leading-6 font-medium text-gray-900">{feature.name}</p>
+                  <p className="mt-5 text-lg leading-6 font-medium text-gray-900">
+                    {feature.name}
+                  </p>
                 </dt>
-                <dd className="mt-2 text-base text-gray-500">{feature.description}</dd>
+                <dd className="mt-2 text-base text-gray-500">
+                  {feature.description}
+                </dd>
               </div>
             ))}
           </dl>
         </div>
       </div>
     </div>
-  )
+  );
 }

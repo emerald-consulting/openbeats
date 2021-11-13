@@ -37,6 +37,10 @@ import {
   ViewGridAddIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import axios from 'axios';
+import { useRouter } from 'next/router';
+
+// const baseURL = "http://localhost:8000/users/";
 
 const user = {
   name: 'Debbie Lewis',
@@ -74,6 +78,24 @@ export default function Example() {
   const [privateAccount, setPrivateAccount] = useState(false)
   const [allowCommenting, setAllowCommenting] = useState(true)
   const [allowMentions, setAllowMentions] = useState(true)
+  const [bio, setBio] = useState('');
+  const onBioChange = (event: any) => {
+    setBio(event.target.value);
+  };
+  const router = useRouter()
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    axios.patch('http://localhost:8000/users/bio').then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(r => router.push('/feed'));
+  }
 
   return (
     <div>
@@ -221,7 +243,7 @@ export default function Example() {
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
                           <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
-                            workcation.com/
+                            openbeats716.com/
                           </span>
                           <input
                             type="text"
@@ -240,6 +262,7 @@ export default function Example() {
                         </label>
                         <div className="mt-1">
                           <textarea
+                            onChange={onBioChange}
                             id="about"
                             name="about"
                             rows={3}
@@ -482,6 +505,7 @@ export default function Example() {
                       Cancel
                     </button>
                     <button
+                      onClick={onSubmit}
                       type="submit"
                       className="ml-5 bg-sky-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                     >

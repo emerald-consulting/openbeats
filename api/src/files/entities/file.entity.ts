@@ -19,9 +19,6 @@ export class PublicFile extends BaseEntity {
 
   @Column()
   public key: string;
-
-  @OneToOne(() => Post, (post: Post) => post.pubfile)
-  public post?: Post;
 }
 
 export default PublicFile;

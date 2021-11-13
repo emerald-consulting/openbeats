@@ -1,13 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  BaseEntity,
-  OneToOne,
-  ManyToOne,
-} from 'typeorm';
-import { Post } from 'src/posts/entities/post.entity';
+import { Column, Entity, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
 @Entity()
 export class PublicFile extends BaseEntity {

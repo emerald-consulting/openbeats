@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   UseInterceptors,
+  ClassSerializerInterceptor,
   Req,
   UploadedFile,
 } from '@nestjs/common';
@@ -22,6 +23,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('users')
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

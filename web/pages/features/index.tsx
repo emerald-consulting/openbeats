@@ -10,6 +10,7 @@ import {
     ShieldCheckIcon,
   } from '@heroicons/react/outline'
   import Footer from '../footer/footer'
+import Header from '../header'
 
   const features = [
     { name: 'Push To Cloud', icon: CloudUploadIcon, msg: "Don't worry about data storage, put your songs in the cloud!" },
@@ -24,6 +25,7 @@ import {
   export default function Example() {
     return (
       <div className="bg-emerald-900">
+        <Header></Header>
         <div className="relative bg-emerald-900 py-16 sm:py-24 lg:py-32">
           <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
           <h2 className="text-base font-semibold tracking-wider text-green-400 uppercase ">Deploy faster</h2>

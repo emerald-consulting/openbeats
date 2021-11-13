@@ -52,7 +52,7 @@ export class UsersController {
   }
 
   @Get(':email')
-  getUserById(@Param('email') email: string) {
+  getUserByEmail(@Param('email') email: string) {
     return this.usersService.getByEmail(email);
   }
 

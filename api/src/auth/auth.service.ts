@@ -101,27 +101,20 @@ export class AuthService {
     return `Authentication=; HttpOnly; Path=/; Max-Age=0`;
   }
 
-  public async getAuthenticatedUser(email: string, plainTextPassword: string) {
+  public async getAuthenticatedUser(email: string, hashedPassword: string) {
     try {
       const user = await this.usersService.getByEmail(email);
-      await this.verifyPassword(plainTextPassword, user.password);
+      const isPasswordMatching = await bcrypt.compare(
+        hashedPassword,
+        user.password
+      );
+      if (!isPasswordMatching) {
+        throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+      }
+      user.password = undefined;
       return user;
     } catch (error) {
-      console.log(error);
-      throw new HttpException(
-        'Wrong password provided for given user. Please try again',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-  }
-
-  private async verifyPassword(password: string, hashedPassword: string) {
-    const passwordIsMatching = await bcrypt.compare(password, hashedPassword);
-    if (!passwordIsMatching) {
-      throw new HttpException(
-        'Wrong credentials provided, hashed password differs from provided password.',
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
     }
   }
 }

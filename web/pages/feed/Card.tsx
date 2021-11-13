@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+import { IPosts } from "./index"
 
 const people = [
     {
@@ -13,12 +14,12 @@ const people = [
     // More items...
   ]
   
-  export default function Card() {
+  export default function Card(post: IPosts) {
     return (
       <div className="border-t-2 border-gray-300 rounded-b-lg pt-10 pb-8 px-6 bg-green-50 sm:px-10 sm:py-10">
         <ul role="list" className="divide-y divide-gray-200">
           {activityItems.map((activityItem) => (
-            <li key={activityItem.id} className="py-4">
+            <li key={post.id.toString()} className="py-4">
               <div className="flex space-x-3 border-gray-900">
                 <img className="h-6 w-6 rounded-full" src={activityItem.person.imageUrl} alt="" />
                 <div className="flex-1 space-y-1">
@@ -26,6 +27,8 @@ const people = [
                     <h3 className="text-sm font-medium">{activityItem.person.name}</h3>
                     <p className="text-sm text-gray-500">{activityItem.time}</p>
                   </div>
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
                   <p className="text-sm text-gray-500">
                     Uploaded "{activityItem.song}" by {activityItem.artist} 
                   </p>

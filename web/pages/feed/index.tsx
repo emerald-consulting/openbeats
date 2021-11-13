@@ -2,11 +2,8 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
-  CalendarIcon,
-  ChartBarIcon,
   FolderIcon,
   HomeIcon,
-  InboxIcon,
   MenuIcon,
   UsersIcon,
   XIcon,
@@ -20,9 +17,6 @@ const navigation = [
   { name: 'Dashboard', href: '/feed', icon: HomeIcon, current: true },
   { name: 'Groups', href: '/groups', icon: UsersIcon, current: false },
   { name: 'Projects', href: '/projects', icon: FolderIcon, current: false },
-  // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  // { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  // { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
 ]
 
 function classNames(...classes: any) {
@@ -46,14 +40,6 @@ export default function Feed() {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>

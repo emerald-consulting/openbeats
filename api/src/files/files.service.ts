@@ -5,7 +5,6 @@ import { PublicFile } from './entities/file.entity';
 import { S3 } from 'aws-sdk';
 import { ConfigService } from '@nestjs/config';
 import { v4 as uuid } from 'uuid';
-import { Connection } from 'typeorm';
 
 @Injectable()
 export class FilesService {

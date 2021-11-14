@@ -4,7 +4,6 @@ import {
   Request,
   Post,
   UseGuards,
-  Logger,
   HttpStatus,
 } from '@nestjs/common';
 import JwtAuthGuard from './auth/jwt-auth.guard';
@@ -14,9 +13,7 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller()
 export class AppController {
-  constructor(
-    private authService: AuthService, //private logger: Logger
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')

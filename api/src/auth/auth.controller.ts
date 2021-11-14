@@ -9,7 +9,6 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor,
   SerializeOptions,
-  Logger,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import RequestWithUser from './requestWithUser.interface';

@@ -14,9 +14,9 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import JwtAuthenticationGuard from 'src/authentication/jwt-authentication.guard';
+import RequestWithUser from 'src/authentication/requestWithUser.interface';
 import { FilesService } from 'src/files/files.service';
-import JwtAuthGuard from '../auth/jwt-auth.guard';
-import RequestWithUser from '../auth/requestWithUser.interface';
 import { FindOneParams } from '../utils/exceptionsLogger.filter';
 import CreatePostDto from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -43,7 +43,7 @@ export class PostsController {
 
   // Auth guard
   @Post('create')
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthenticationGuard)
   async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {
     return this.postsService.createPost(post, req.user);
   }

@@ -1,16 +1,14 @@
 import { Module } from '@nestjs/common';
+
 import { PostsModule } from './posts/posts.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database/database.module';
 import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
-import { FacebookStrategy } from './facebook.strategy';
-import { AppService } from './app.service';
 import { AppController } from './app.controller';
-import { ChatModule } from './chat/chat.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
   imports: [
@@ -34,15 +32,15 @@ import { ChatModule } from './chat/chat.module';
         FACEBOOK_APP_SECRET: Joi.string().required(),
       }),
     }),
-    AuthModule,
+    AuthenticationModule,
     CategoriesModule,
     DatabaseModule,
     PostsModule,
     FilesModule,
     UsersModule,
-    ChatModule,
+    AuthenticationModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}

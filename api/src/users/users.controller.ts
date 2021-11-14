@@ -14,11 +14,11 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import JwtAuthGuard from '../auth/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import RequestWithUser from '../auth/requestWithUser.interface';
 import { Express } from 'express';
 import { ApiTags } from '@nestjs/swagger';
+import JwtAuthenticationGuard from 'src/authentication/jwt-authentication.guard';
+import RequestWithUser from 'src/authentication/requestWithUser.interface';
 
 @ApiTags('users')
 @Controller('users')
@@ -26,7 +26,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('avatar')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthenticationGuard)
   @UseInterceptors(FileInterceptor('file'))
   async addAvatar(
     @Req() request: RequestWithUser,
@@ -36,7 +36,7 @@ export class UsersController {
   }
 
   @Delete('avatar')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthenticationGuard)
   async deleteAvatar(@Req() request: RequestWithUser) {
     return this.usersService.deleteAvatar(request.user.id);
   }

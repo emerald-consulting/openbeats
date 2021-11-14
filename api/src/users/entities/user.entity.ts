@@ -15,6 +15,7 @@ import { Address } from './address.entity';
 export class User {
   @PrimaryGeneratedColumn()
   public id?: number;
+
   @Column({ unique: true })
   @Expose()
   public email: string;

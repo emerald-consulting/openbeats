@@ -24,7 +24,7 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
 import {
@@ -41,13 +41,18 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 // const baseURL = "http://localhost:8000/users/";
-
 const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
+  name: '',
+  handle: '',
+  email: '',
   imageUrl:
-    'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
+    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fiupac.org%2Fwe-are-updating-our-privacy-policy%2Fdefault-avatar%2F&psig=AOvVaw0P9qlxNFEcvkiESjDuRw0M&ust=1637010647379000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKjD0IPimPQCFQAAAAAdAAAAABAD',
+  genre: '',
+  age: '',
+  firstName: '',
+  lastName: '',
+  bio: '',
+  Company: '',
 }
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -84,7 +89,8 @@ export default function Example() {
   const [age,setAge] = useState('');
   const [firstName,setFirstName] = useState('');
   const [lastName,setLastName] = useState('');
-  const [avatar,setAvatar] = useState('')
+  const [data,setData] = useState('');
+  const [avatar,setAvatar] = useState('');
   const onBioChange = (event: any) => {
     setBio(event.target.value);
   };
@@ -93,6 +99,17 @@ export default function Example() {
     setAge(event.target.value);
 
   };
+  useEffect(() => {
+    axios.get("http://localhost:8000/users/").then(function(response) {
+    user.bio = response.data.bio;
+    user.Company =response.data.company;
+    user.firstName = response.data.FirstName;
+    user.lastName = response.data.lastName;
+    user.age = response.data.age;
+    user.genre = response.data.genre;
+    user.handle = response.data.username;
+    });
+  }, [])
 
   const onFirstNameChange = (event: any) => {
     console.log("Changing fname");
@@ -122,20 +139,20 @@ export default function Example() {
   const onSubmit = (e: any) => {
     e.preventDefault();
     if (lastName){
-      axios.post('http://localhost:8000/users/lastName/'+lastName).then(function(response) {
+      axios.patch('http://localhost:8000/users/lastName/'+lastName).then(function(response) {
         console.log(response);
       });
     }
     if (firstName){
-      axios.post('http://localhost:8000/users/firstName/'+firstName).then(function(response) {
+      axios.patch('http://localhost:8000/users/firstName/'+firstName).then(function(response) {
         console.log(response);
       });
     }
-    if( avatar){
+    if(avatar){
       axios.post('http://localhost:8000/users/avatar/'+avatar).then(function(response) {
       console.log(response);
     });
-    }if (genre ){
+    }if (genre){
       axios.patch('http://localhost:8000/users/genre/'+genre).then(function(response) {
       console.log(response);
     })
@@ -339,7 +356,7 @@ export default function Example() {
                             name="about"
                             rows={3}
                             className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            defaultValue={''}
+                            defaultValue={user.bio}
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
@@ -408,6 +425,7 @@ export default function Example() {
                       </label>
                       <input
                         onChange={onFirstNameChange}
+                        defaultValue ={user.firstName}
                         type="text"
                         name="first-name"
                         id="first-name"
@@ -422,6 +440,7 @@ export default function Example() {
                       </label>
                       <input
                         onChange={onLastNameChange}
+                        defaultValue ={user.lastName}
                         type="text"
                         name="last-name"
                         id="last-name"
@@ -435,6 +454,7 @@ export default function Example() {
                         Age
                       </label>
                       <input
+                        defaultValue ={user.age}
                         onChange={onAgeChange}
                         type="number"
                         name="age"
@@ -449,6 +469,7 @@ export default function Example() {
                       </label>
                       <input
                         onChange={onGenreChange}
+                        defaultValue ={user.genre}
                         type="text"
                         name="genre"
                         id="genre"
@@ -462,6 +483,7 @@ export default function Example() {
                       </label>
                       <input
                         onChange={onCompanyChange}
+                        defaultValue ={user.Company}
                         type="text"
                         name="company"
                         id="company"

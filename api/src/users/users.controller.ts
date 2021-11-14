@@ -81,7 +81,7 @@ export class UsersController {
     @Req() request: RequestWithUser,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.usersService.addAvatar(request.user.id, file);
+    return this.usersService.addAvatar(request.user.email, file);
   }
 
   @Delete('avatar')

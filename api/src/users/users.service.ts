@@ -70,8 +70,8 @@ export class UsersService {
     return newUser;
   }
 
-  async addAvatar(userId: number, img: Express.Multer.File) {
-    const user = await this.getById(userId);
+  async addAvatar(userId: string, img: Express.Multer.File) {
+    const user = await this.getByEmail(userId);
     if (user.avatar) {
       await this.usersRepository.update(userId, {
         ...user,

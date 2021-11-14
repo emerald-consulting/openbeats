@@ -149,7 +149,7 @@ export default function Example() {
       });
     }
     if(avatar){
-      axios.post('http://localhost:8000/users/avatar/'+avatar).then(function(response) {
+      axios.post('http://localhost:8000/users/avatar/').then(function(response) {
       console.log(response);
     });
     }if (genre){

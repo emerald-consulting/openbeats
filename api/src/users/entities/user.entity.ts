@@ -23,6 +23,14 @@ export class User {
   @Exclude()
   public password: string;
 
+  @Column({ default: null })
+  @Expose()
+  public firstName: string;
+
+  @Column({ default: null })
+  @Expose()
+  public lastName: string;
+
   @Column({ default: true })
   @Expose()
   public isAuthenticated?: boolean;

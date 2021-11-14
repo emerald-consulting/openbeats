@@ -19,13 +19,14 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import RequestWithUser from '../auth/requestWithUser.interface';
 import { Express } from 'express';
 import { ApiTags } from '@nestjs/swagger';
+import { first } from 'rxjs';
 
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Patch('genre')
+  @Patch('genre/:genre')
   @UseGuards(JwtAuthGuard)
   async addGenre(
     @Req() request: RequestWithUser,
@@ -34,13 +35,13 @@ export class UsersController {
     return this.usersService.UpdateGenre(request.user.id, genre);
   }
 
-  @Patch('bio')
+  @Patch('bio/:bio')
   @UseGuards(JwtAuthGuard)
   async addBio(@Req() request: RequestWithUser, @Param('bio') bio: string) {
     return this.usersService.UpdateBio(request.user.id, bio);
   }
 
-  @Patch('company')
+  @Patch('company/:company')
   @UseGuards(JwtAuthGuard)
   async addCompany(
     @Req() request: RequestWithUser,
@@ -49,13 +50,25 @@ export class UsersController {
     return this.usersService.UpdateCompany(request.user.id, company);
   }
 
-  @Patch('url')
+  @Patch('firstName/:firstName')
   @UseGuards(JwtAuthGuard)
-  async addURL(@Req() request: RequestWithUser, @Param('url') url: string) {
-    return this.usersService.UpdateURL(request.user.id, url);
+  async addFName(
+    @Req() request: RequestWithUser,
+    @Param('firstName') firstName: string,
+  ) {
+    return this.usersService.Updatefname(request.user.id, firstName);
   }
 
-  @Patch('age')
+  @Patch('lastName/:lastName')
+  @UseGuards(JwtAuthGuard)
+  async addlName(
+    @Req() request: RequestWithUser,
+    @Param('lastName') lastName: string,
+  ) {
+    return this.usersService.Updatelname(request.user.id, lastName);
+  }
+
+  @Patch('age/:age')
   @UseGuards(JwtAuthGuard)
   async addAge(@Req() request: RequestWithUser, @Param('age') age: number) {
     return this.usersService.UpdateAge(request.user.id, age);

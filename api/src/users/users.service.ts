@@ -86,7 +86,10 @@ export class UsersService {
     });
     return avatar;
   }
-
+  async GetDetailsFName(userid: number) {
+    const user = await this.getById(userid);
+    return user.firstName;
+  }
   async UpdateBio(userid: number, UserData: string) {
     const user = await this.getById(userid);
     user.bio = UserData;
@@ -133,6 +136,26 @@ export class UsersService {
     await this.usersRepository.update(userid, {
       ...user,
       company,
+    });
+  }
+
+  async Updatefname(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.firstName = UserData;
+    const firstName = user.firstName;
+    await this.usersRepository.update(userid, {
+      ...user,
+      firstName,
+    });
+  }
+
+  async Updatelname(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.lastName = UserData;
+    const lastName = user.lastName;
+    await this.usersRepository.update(userid, {
+      ...user,
+      lastName,
     });
   }
 

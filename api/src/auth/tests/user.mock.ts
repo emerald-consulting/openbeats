@@ -2,6 +2,8 @@ import { User } from '../../users/entities/user.entity';
 
 const mockedUser: User = {
   id: 1,
+  firstName: 'Ryan',
+  lastName: 'Dils',
   email: 'ryandils@buffalo.edu',
   password: 'hash',
   isAuthenticated: true,

@@ -1,9 +1,9 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import CTA from './cta/cta'
-import Hero from './hero/hero'
-import Features from './features/features'
-import Footer from './footer/footer'
+import type { NextPage } from "next";
+import Head from "next/head";
+import CTA from "./cta/cta";
+import Hero from "./hero/hero";
+import Features from "./features/features";
+import Footer from "./footer/footer";
 
 const Home: NextPage = () => {
   return (
@@ -14,14 +14,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
       <Hero></Hero>
       <Features></Features>
       <CTA></CTA>
       <Footer></Footer>
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

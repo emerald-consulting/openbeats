@@ -41,6 +41,17 @@ export class UsersService {
     );
   }
 
+  async getByAge(age: number) {
+    const ageList: unknown = await this.usersRepository.find({ age });
+    if (ageList) {
+      return ageList;
+    }
+    throw new HttpException(
+      'Users with this genre does not exist',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
   async getById(id: number) {
     const user = await this.usersRepository.findOne({ id });
     if (user) {
@@ -58,8 +69,8 @@ export class UsersService {
     return newUser;
   }
 
-  async addAvatar(userId: number, img: Express.Multer.File) {
-    const user = await this.getById(userId);
+  async addAvatar(userId: string, img: Express.Multer.File) {
+    const user = await this.getByEmail(userId);
     if (user.avatar) {
       await this.usersRepository.update(userId, {
         ...user,
@@ -73,6 +84,78 @@ export class UsersService {
       avatar,
     });
     return avatar;
+  }
+  async GetDetailsFName(userid: number) {
+    const user = await this.getById(userid);
+    return user.firstName;
+  }
+  async UpdateBio(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.bio = UserData;
+    const bio = user.bio;
+    await this.usersRepository.update(userid, {
+      ...user,
+      bio,
+    });
+  }
+  async UpdateAge(userid: number, UserData: number) {
+    const user = await this.getById(userid);
+    user.age = UserData;
+    const age = user.age;
+    await this.usersRepository.update(userid, {
+      ...user,
+      age,
+    });
+  }
+
+  async UpdateURL(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.url = UserData;
+    const url = user.url;
+    await this.usersRepository.update(userid, {
+      ...user,
+      url,
+    });
+  }
+
+  async UpdateGenre(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.genre = UserData;
+    const genre = user.genre;
+    await this.usersRepository.update(userid, {
+      ...user,
+      genre,
+    });
+  }
+
+  async UpdateCompany(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.company = UserData;
+    const company = user.url;
+    await this.usersRepository.update(userid, {
+      ...user,
+      company,
+    });
+  }
+
+  async Updatefname(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.firstName = UserData;
+    const firstName = user.firstName;
+    await this.usersRepository.update(userid, {
+      ...user,
+      firstName,
+    });
+  }
+
+  async Updatelname(userid: number, UserData: string) {
+    const user = await this.getById(userid);
+    user.lastName = UserData;
+    const lastName = user.lastName;
+    await this.usersRepository.update(userid, {
+      ...user,
+      lastName,
+    });
   }
 
   async deleteAvatar(userId: number) {

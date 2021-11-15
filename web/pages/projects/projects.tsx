@@ -1,26 +1,27 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { PlusIcon } from '@heroicons/react/solid'
-import axios from 'axios'
-import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react'
-const baseURL = 'http://localhost:8000/users/';
+import { PlusIcon } from "@heroicons/react/solid";
+import axios from "axios";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
+const baseURL = "http://localhost:8000/users/";
 
 export default function Projects() {
-
   const router = useRouter();
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    axios.get('/user/:email').then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(r => router.push('/feed'));
-  }
+    axios
+      .get("/user/:email")
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then((r) => router.push("/feed"));
+  };
 
   return (
     <div className="text-center">
@@ -40,7 +41,9 @@ export default function Projects() {
         />
       </svg>
       <h3 className="mt-2 text-sm font-medium text-gray-900">No projects</h3>
-      <p className="mt-1 text-sm text-gray-500">Get started by creating a new project.</p>
+      <p className="mt-1 text-sm text-gray-500">
+        Get started by creating a new project.
+      </p>
       <div className="mt-6">
         <button
           onClick={onSubmit}
@@ -52,5 +55,5 @@ export default function Projects() {
         </button>
       </div>
     </div>
-  )
+  );
 }

@@ -24,7 +24,7 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
 import {
@@ -37,13 +37,22 @@ import {
   ViewGridAddIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
+// const baseURL = "http://localhost:8000/users/";
 const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
+  name: '',
+  handle: '',
+  email: '',
   imageUrl:
-    'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
+    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fiupac.org%2Fwe-are-updating-our-privacy-policy%2Fdefault-avatar%2F&psig=AOvVaw0P9qlxNFEcvkiESjDuRw0M&ust=1637010647379000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKjD0IPimPQCFQAAAAAdAAAAABAD',
+  genre: '',
+  age: '',
+  firstName: '',
+  lastName: '',
+  bio: '',
+  Company: '',
 }
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -74,6 +83,108 @@ export default function Example() {
   const [privateAccount, setPrivateAccount] = useState(false)
   const [allowCommenting, setAllowCommenting] = useState(true)
   const [allowMentions, setAllowMentions] = useState(true)
+  const [bio, setBio] = useState('');
+  const [company, setCompany] = useState('');
+  const [genre, setGenre] = useState('');
+  const [age,setAge] = useState('');
+  const [firstName,setFirstName] = useState('');
+  const [lastName,setLastName] = useState('');
+  const [data,setData] = useState('');
+  const [avatar,setAvatar] = useState('');
+  const onBioChange = (event: any) => {
+    setBio(event.target.value);
+  };
+  const onAgeChange = (event: any) => {
+    console.log("Changing Age");
+    setAge(event.target.value);
+
+  };
+  useEffect(() => {
+    axios.get("http://localhost:8000/users/").then(function(response) {
+    user.bio = response.data.bio;
+    user.Company =response.data.company;
+    user.firstName = response.data.FirstName;
+    user.lastName = response.data.lastName;
+    user.age = response.data.age;
+    user.genre = response.data.genre;
+    user.handle = response.data.username;
+    });
+  }, [])
+
+  const onFirstNameChange = (event: any) => {
+    console.log("Changing fname");
+    setFirstName(event.target.value);
+  };
+
+  const onLastNameChange = (event: any) => {
+    console.log("Changing lname");
+    setLastName(event.target.value);
+  };
+  const onCompanyChange = (event: any) => {
+    console.log("Changing Company");
+    setCompany(event.target.value);
+  };
+  const onGenreChange = (event: any) => {
+   // console.log(event.target.value);
+    setGenre(event.target.value);
+  };
+
+  const onAvatarChange = (event: any) => {
+    console.log("chaning avatar");
+     setAvatar(event.target.value);
+   };
+
+  const router = useRouter()
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    if (lastName){
+      axios.patch('http://localhost:8000/users/lastName/'+lastName).then(function(response) {
+        console.log(response);
+      });
+    }
+    if (firstName){
+      axios.patch('http://localhost:8000/users/firstName/'+firstName).then(function(response) {
+        console.log(response);
+      });
+    }
+    if(avatar){
+      axios.post('http://localhost:8000/users/avatar/').then(function(response) {
+      console.log(response);
+    });
+    }if (genre){
+      axios.patch('http://localhost:8000/users/genre/'+genre).then(function(response) {
+      console.log(response);
+    })
+    }
+    if (company){
+      axios.patch('http://localhost:8000/users/company/'+company).then(function(response) {
+      console.log(response);
+    })
+    }
+    if (age){
+      axios.patch('http://localhost:8000/users/age/'+age).then(function(response){
+      console.log(response);
+    })
+    }
+    if (bio){
+      axios.patch('http://localhost:8000/users/bio/'+bio).then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    }
+    router.push('/feed')
+
+    // axios.patch('http://localhost:8000/users/bio/'+bio).then(function (response) {
+    //   // handle success
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   // handle error
+    //   console.log(error);
+    // })
+    // .then(r => router.push('/feed'));
+  }
 
   return (
     <div>
@@ -221,7 +332,7 @@ export default function Example() {
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
                           <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
-                            workcation.com/
+                            openbeats716.com/
                           </span>
                           <input
                             type="text"
@@ -240,11 +351,12 @@ export default function Example() {
                         </label>
                         <div className="mt-1">
                           <textarea
+                            onChange={onBioChange}
                             id="about"
                             name="about"
                             rows={3}
                             className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            defaultValue={''}
+                            defaultValue={user.bio}
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
@@ -268,15 +380,16 @@ export default function Example() {
                           <div className="ml-5 rounded-md shadow-sm">
                             <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
                               <label
-                                htmlFor="mobile-user-photo"
+                                htmlFor="avatar"
                                 className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
                               >
                                 <span>Change</span>
                                 <span className="sr-only"> user photo</span>
                               </label>
                               <input
-                                id="mobile-user-photo"
-                                name="user-photo"
+                                onChange={onAvatarChange}
+                                id="avatar"
+                                name="avatar"
                                 type="file"
                                 className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                               />
@@ -288,15 +401,16 @@ export default function Example() {
                       <div className="hidden relative rounded-full overflow-hidden lg:block">
                         <img className="relative rounded-full w-40 h-40" src={user.imageUrl} alt="" />
                         <label
-                          htmlFor="desktop-user-photo"
+                          htmlFor="avatar"
                           className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
                         >
                           <span>Change</span>
                           <span className="sr-only"> user photo</span>
                           <input
+                            onChange={onAvatarChange}
                             type="file"
-                            id="desktop-user-photo"
-                            name="user-photo"
+                            id="avatar"
+                            name="avatar"
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
                           />
                         </label>
@@ -305,11 +419,13 @@ export default function Example() {
                   </div>
 
                   <div className="mt-6 grid grid-cols-12 gap-6">
-                    <div className="col-span-12 sm:col-span-6">
+                    <div className="col-span-12 sm:col-span-4">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                         First name
                       </label>
                       <input
+                        onChange={onFirstNameChange}
+                        defaultValue ={user.firstName}
                         type="text"
                         name="first-name"
                         id="first-name"
@@ -318,11 +434,13 @@ export default function Example() {
                       />
                     </div>
 
-                    <div className="col-span-12 sm:col-span-6">
+                    <div className="col-span-12 sm:col-span-4">
                       <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
                         Last name
                       </label>
                       <input
+                        onChange={onLastNameChange}
+                        defaultValue ={user.lastName}
                         type="text"
                         name="last-name"
                         id="last-name"
@@ -331,14 +449,30 @@ export default function Example() {
                       />
                     </div>
 
-                    <div className="col-span-12">
-                      <label htmlFor="url" className="block text-sm font-medium text-gray-700">
-                        URL
+                    <div className="col-span-12 sm:col-span-4">
+                      <label htmlFor="age" className="block text-sm font-medium text-gray-700">
+                        Age
                       </label>
                       <input
+                        defaultValue ={user.age}
+                        onChange={onAgeChange}
+                        type="number"
+                        name="age"
+                        id="age"
+                        autoComplete="age"
+                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                      />
+                    </div>
+                    <div className="col-span-12">
+                      <label htmlFor="genre" className="block text-sm font-medium text-gray-700">
+                        Genre
+                      </label>
+                      <input
+                        onChange={onGenreChange}
+                        defaultValue ={user.genre}
                         type="text"
-                        name="url"
-                        id="url"
+                        name="genre"
+                        id="genre"
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                       />
                     </div>
@@ -348,6 +482,8 @@ export default function Example() {
                         Company
                       </label>
                       <input
+                        onChange={onCompanyChange}
+                        defaultValue ={user.Company}
                         type="text"
                         name="company"
                         id="company"
@@ -482,6 +618,7 @@ export default function Example() {
                       Cancel
                     </button>
                     <button
+                      onClick={onSubmit}
                       type="submit"
                       className="ml-5 bg-sky-700 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                     >

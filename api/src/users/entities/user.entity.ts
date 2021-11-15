@@ -23,6 +23,14 @@ export class User {
   @Exclude()
   public password: string;
 
+  @Column({ default: null })
+  @Expose()
+  public firstName: string;
+
+  @Column({ default: null })
+  @Expose()
+  public lastName: string;
+
   @Column({ default: true })
   @Expose()
   public isAuthenticated?: boolean;
@@ -50,6 +58,14 @@ export class User {
   @Column({ nullable: true })
   @Expose()
   public genre?: string;
+
+  @Column({ nullable: true })
+  @Expose()
+  public company?: string;
+
+  @Column({ nullable: true })
+  @Expose()
+  public url?: string;
 
   @OneToOne(() => Address, {
     eager: true,

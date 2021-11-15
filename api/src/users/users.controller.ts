@@ -20,12 +20,61 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import RequestWithUser from '../auth/requestWithUser.interface';
 import { Express } from 'express';
 import { ApiTags } from '@nestjs/swagger';
+import { first } from 'rxjs';
 
 @ApiTags('users')
 @Controller('users')
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Patch('genre/:genre')
+  @UseGuards(JwtAuthGuard)
+  async addGenre(
+    @Req() request: RequestWithUser,
+    @Param('genre') genre: string,
+  ) {
+    return this.usersService.UpdateGenre(request.user.id, genre);
+  }
+
+  @Patch('bio/:bio')
+  @UseGuards(JwtAuthGuard)
+  async addBio(@Req() request: RequestWithUser, @Param('bio') bio: string) {
+    return this.usersService.UpdateBio(request.user.id, bio);
+  }
+
+  @Patch('company/:company')
+  @UseGuards(JwtAuthGuard)
+  async addCompany(
+    @Req() request: RequestWithUser,
+    @Param('company') company: string,
+  ) {
+    return this.usersService.UpdateCompany(request.user.id, company);
+  }
+
+  @Patch('firstName/:firstName')
+  @UseGuards(JwtAuthGuard)
+  async addFName(
+    @Req() request: RequestWithUser,
+    @Param('firstName') firstName: string,
+  ) {
+    return this.usersService.Updatefname(request.user.id, firstName);
+  }
+
+  @Patch('lastName/:lastName')
+  @UseGuards(JwtAuthGuard)
+  async addlName(
+    @Req() request: RequestWithUser,
+    @Param('lastName') lastName: string,
+  ) {
+    return this.usersService.Updatelname(request.user.id, lastName);
+  }
+
+  @Patch('age/:age')
+  @UseGuards(JwtAuthGuard)
+  async addAge(@Req() request: RequestWithUser, @Param('age') age: number) {
+    return this.usersService.UpdateAge(request.user.id, age);
+  }
 
   @Post('avatar')
   @UseGuards(JwtAuthGuard)
@@ -34,7 +83,7 @@ export class UsersController {
     @Req() request: RequestWithUser,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.usersService.addAvatar(request.user.id, file);
+    return this.usersService.addAvatar(request.user.email, file);
   }
 
   @Delete('avatar')

@@ -13,10 +13,8 @@ export class CreatePostDto {
   @IsString()
   description?: string;
 
-  /* Uploading a file is optional */
-  file?: Express.Multer.File;
-
-  pubfile?: PublicFile;
+  /* File ID previously retrieved from uploading a file */
+  fileid?: number;
 }
 
 export default CreatePostDto;

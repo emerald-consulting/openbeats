@@ -1,16 +1,13 @@
 import {
   Column,
   Entity,
-  Index,
   JoinTable,
   ManyToMany,
-  OneToOne,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import Category from '../../categories/category.entity';
 import { User } from '../../users/entities/user.entity';
-import { PublicFile } from '../../files/entities/file.entity';
 
 @Entity()
 export class Post {
@@ -26,9 +23,8 @@ export class Post {
   @Column({ nullable: true })
   public description?: string;
 
-  @OneToOne(() => PublicFile, (pubfile: PublicFile) => pubfile.post)
-  @JoinTable()
-  public pubfile?: PublicFile;
+  @Column({ nullable: true })
+  public fileid?: number;
 
   @Column({ nullable: true })
   public category?: string;

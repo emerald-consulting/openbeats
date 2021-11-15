@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   UseInterceptors,
+  ClassSerializerInterceptor,
   Req,
   UploadedFile,
 } from '@nestjs/common';
@@ -22,6 +23,7 @@ import RequestWithUser from 'src/authentication/requestWithUser.interface';
 
 @ApiTags('users')
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -41,7 +43,7 @@ export class UsersController {
     return this.usersService.deleteAvatar(request.user.id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }

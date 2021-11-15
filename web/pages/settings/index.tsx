@@ -1,30 +1,4 @@
-	/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          sky: colors.sky,
-          teal: colors.teal,
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { SearchIcon } from '@heroicons/react/solid'
 import {
@@ -32,10 +6,8 @@ import {
   CogIcon,
   CreditCardIcon,
   KeyIcon,
-  MenuIcon,
   UserCircleIcon,
   ViewGridAddIcon,
-  XIcon,
 } from '@heroicons/react/outline'
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -46,13 +18,7 @@ const user = {
   handle: '',
   email: '',
   imageUrl:
-    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fiupac.org%2Fwe-are-updating-our-privacy-policy%2Fdefault-avatar%2F&psig=AOvVaw0P9qlxNFEcvkiESjDuRw0M&ust=1637010647379000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKjD0IPimPQCFQAAAAAdAAAAABAD',
-  genre: '',
-  age: '',
-  firstName: '',
-  lastName: '',
-  bio: '',
-  Company: '',
+    'beer.jpeg',
 }
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },

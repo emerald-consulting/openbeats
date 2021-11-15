@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import {
   AcademicCapIcon,
+<<<<<<< HEAD
   AdjustmentsIcon,
   CloudUploadIcon,
   CogIcon,
@@ -52,6 +53,36 @@ export default function Example() {
           <h2 className="text-base font-semibold tracking-wider text-green-400 uppercase ">
             Deploy faster
           </h2>
+=======
+    AdjustmentsIcon,
+    CloudUploadIcon,
+    CogIcon,
+    LockClosedIcon,
+    RefreshIcon,
+    ServerIcon,
+    ShieldCheckIcon,
+  } from '@heroicons/react/outline'
+  import Footer from '../footer/footer'
+import Header from '../header'
+
+  const features = [
+    { name: 'Push To Cloud', icon: CloudUploadIcon, msg: "Don't worry about data storage, put your songs in the cloud!" },
+    { name: 'Collaborate', icon: LockClosedIcon, msg: 'Collaborate with others using Open Beats from anywhere'},
+    { name: 'Mixing and Mastering', icon: AdjustmentsIcon, msg: 'Unparalleled ability to mix and master your product. Create studio-like quality projects all from the browser.'},
+    { name: 'Student Discounts', icon: AcademicCapIcon, msg: 'Receive a 20% student discount when you sign up with a valid .edu email.' },
+    { name: 'Powerful API', icon: CogIcon, msg: 'Open API endpoints that you can integrate into you application.' },
+    { name: 'Database Backups', icon: ServerIcon, msg: 'Never worry about losing your songs again.' },
+  ]
+  
+  
+  export default function Example() {
+    return (
+      <div className="bg-emerald-900">
+        <Header></Header>
+        <div className="relative bg-emerald-900 py-16 sm:py-24 lg:py-32">
+          <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+          <h2 className="text-base font-semibold tracking-wider text-green-400 uppercase ">Deploy faster</h2>
+>>>>>>> ry
           <p className="mt-2 text-3xl font-extrabold text-green-400 tracking-tight sm:text-4xl">
             Everything you need to create your song
           </p>

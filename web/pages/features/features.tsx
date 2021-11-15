@@ -1,4 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
+<<<<<<< HEAD
 import {
   AdjustmentsIcon,
   GlobeAltIcon,
@@ -6,6 +7,10 @@ import {
   MailIcon,
   ScaleIcon,
 } from "@heroicons/react/outline";
+=======
+import { AdjustmentsIcon, GlobeAltIcon, LightningBoltIcon, MailIcon, ScaleIcon } from '@heroicons/react/outline'
+import Header from '../header'
+>>>>>>> ry
 
 const features = [
   {

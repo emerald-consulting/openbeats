@@ -11,7 +11,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import JwtAuthGuard from '../auth/jwt-auth.guard';
+import JwtAuthenticationGuard from 'src/authentication/jwt-authentication.guard';
 import { FindOneParams } from '../utils/exceptionsLogger.filter';
 import CategoriesService from './categories.service';
 import CreateCategoryDto from './dto/createCategory.dto';
@@ -34,7 +34,7 @@ export default class CategoriesController {
   }
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthenticationGuard)
   async createCategoGy(@Body() category: CreateCategoryDto) {
     return this.categoriesService.createCategory(category);
   }

@@ -15,12 +15,11 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import JwtAuthGuard from '../auth/jwt-auth.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import RequestWithUser from '../auth/requestWithUser.interface';
 import { Express } from 'express';
 import { ApiTags } from '@nestjs/swagger';
-import { first } from 'rxjs';
+import JwtAuthGuard from 'src/authentication/jwt-authentication.guard';
+import RequestWithUser from 'src/authentication/requestWithUser.interface';
 
 @ApiTags('users')
 @Controller('users')
@@ -103,7 +102,7 @@ export class UsersController {
   }
 
   @Get(':email')
-  getUserById(@Param('email') email: string) {
+  getUserByEmail(@Param('email') email: string) {
     return this.usersService.getByEmail(email);
   }
 

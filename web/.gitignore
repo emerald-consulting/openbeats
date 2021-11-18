@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+# Cypress
+test-results
+cypress/screenshots
+cypress/videos
+cypress.env.json
+
 # next.js
 /.next/
 /out/
@@ -32,6 +38,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# typescript
-*.tsbuildinfo

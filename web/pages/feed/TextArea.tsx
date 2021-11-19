@@ -31,6 +31,7 @@ export default function TextArea() {
   const [assigned, setAssigned] = useState(assignees[0])
   const [labelled, setLabelled] = useState(labels[0])
   const [dated, setDated] = useState(dueDates[0])
+  const [file, setFile] = useState(null)
 
   return (
     <form action="#" className="relative">

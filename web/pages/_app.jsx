@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import initFontAwesome from '../utils/initFontAwesome';
 import '../styles/globals.css';
 
+
 initFontAwesome();
 
 export default function App({ Component, pageProps }) {

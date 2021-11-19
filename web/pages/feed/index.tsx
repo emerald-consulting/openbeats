@@ -11,6 +11,7 @@ import {
 import axios from 'axios'
 import Card from './Card'
 import NewPostButton from './NewPostButton'
+import TextArea from "./TextArea";
 
 const baseURL = 'http://localhost:8000/posts/';
 
@@ -33,6 +34,14 @@ export interface IPosts {
 export default function Feed() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [posts, setPosts] = useState<Array<IPosts>>([])
+  const [isTextAreaShown, setTextAreaShown] = useState(false);
+
+  const handleTextArea=(e: any)=>{
+    e.preventDefault();
+
+    setTextAreaShown(true); // Here we change state
+  }
+
 
   useEffect(() => {
     axios.get(`${baseURL}`)
@@ -204,7 +213,9 @@ export default function Feed() {
                 <h1 className="text-2xl font-semibold text-gray-900">Feed</h1>
                 <br/>
                 <br/>
-                <NewPostButton/>
+                props.render&&
+                <button type="submit" onClick={handleTextArea}>Preview</button>
+                {isTextAreaShown && <TextArea/>}
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}

@@ -21,7 +21,8 @@ import { ChevronRightIcon } from '@heroicons/react/solid'
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-const baseURL = 'http://localhost:8000/users/';
+
+const baseURL = 'http://localhost:8000/auth/register';
 
 
 const navigation = [
@@ -44,8 +45,16 @@ export default function Example() {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    axios.post(`${baseURL}`, { email: email, password: password })
-    .then(r => router.push('/feed'));
+    axios.post(baseURL, { email: email, password: password })
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      router.push('/feed');
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
   }
 
   return (

@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { route } from 'next/dist/server/router';
 import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
 
-const baseURL = 'http://localhost:8000/users/';
+const baseURL = 'http://localhost:8000/auth/log-in';
 
 export default function Example() {
 
@@ -19,15 +20,16 @@ export default function Example() {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    axios.get('/user/:email').then(function (response) {
+    axios.post(baseURL, {email: email, password: password}).then(function (response) {
       // handle success
       console.log(response);
+      router.push('/feed');
     })
     .catch(function (error) {
       // handle error
       console.log(error);
+      router.push('/');
     })
-    .then(r => router.push('/feed'));
   }
 
   return (

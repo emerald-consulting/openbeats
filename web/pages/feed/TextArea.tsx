@@ -249,6 +249,7 @@ export default function TextArea() {
             >
               <PaperClipIcon className="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500" aria-hidden="true" />
               <span className="text-sm text-gray-500 group-hover:text-gray-600 italic">Attach a file</span>
+              <input type='file'/>
             </button>
           </div>
           <div className="flex-shrink-0">

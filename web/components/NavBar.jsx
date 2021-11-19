@@ -26,7 +26,6 @@ const NavBar = () => {
     <div className="nav-container" data-testid="navbar">
       <Navbar color="white" light expand="md">
         <Container>
-          <NavbarBrand className="logo" />
           <NavbarToggler onClick={toggle} data-testid="navbar-toggle" />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar data-testid="navbar-items">

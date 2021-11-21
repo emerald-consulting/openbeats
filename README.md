@@ -22,7 +22,6 @@ The project is currently beginning development for [Jesse Hartloff's CSE 442 cla
 - [Docker Compose](https://docs.docker.com/compose/install/)
   - [Docker Tutorial - Udemy - Very good](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/)
   - [Dockerizing React App](https://mherman.org/blog/dockerizing-a-react-app/)
-  - [Dockerizing Django and Postgres](https://docs.docker.com/samples/django/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 

@@ -194,7 +194,7 @@ export default function Example() {
                     <span className="text-green-400 md:block">synchronously & remotely</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                      Open Beats is a Digital Audio Workstation (DAW) that hopes to hit a high note with mpusic artists everywhere by allowing them to collaborate on projects at the same time, no matter where they are geographically.
+                      Open Beats is a Digital Audio Workstation (DAW) that hopes to hit a high note with music artists everywhere by allowing them to collaborate on projects at the same time, no matter where they are geographically.
                   </p>
                 </div>
               </div>

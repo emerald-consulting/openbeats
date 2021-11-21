@@ -249,14 +249,13 @@ export default function TextArea() {
               className="-ml-2 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group"
             >
               <PaperClipIcon className="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500" aria-hidden="true" />
-              <span className="text-sm text-gray-500 group-hover:text-gray-600 italic">Attach a file</span>
-              <input type='file' name='file' onChange="this.form.submit()"/>
+              {/*<input type='file' name='file' onChange="this.form.submit()"/>*/}
             </button>
           </div>
           <div className="flex-shrink-0">
             <button
               type="submit"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Create
             </button>

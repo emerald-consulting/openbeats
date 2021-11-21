@@ -38,6 +38,14 @@ services:
     volumes:
       - ./web:/app # live updates
 
+  chat:
+    container_name: openbeats_442_chat
+    build:
+      dockerfile: Dockerfile
+      context: ./chat
+    ports:
+      - "5000:5000"
+
   pgadmin:
     container_name: openbeats_442_pgadmin
     image: dpage/pgadmin4:latest

@@ -1,5 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   FolderIcon,
@@ -179,7 +180,11 @@ export default function Feed() {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <p className="text-xs font-medium text-green-200 group-hover:text-white">View profile</p>
+                    <Link href="/settings" passHref>
+                      <a className="text-xs font-medium text-green-200 group-hover:text-white">
+                        View profile
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </a>

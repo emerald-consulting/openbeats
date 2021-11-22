@@ -39,6 +39,14 @@ const people = [
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
   },
   {
+    id: 1,
+    name: "Openbeats Developers",
+    title: "Software Developer",
+    role: "Admin",
+    imageUrl: "android-chrome-192x192.png",
+  },
+  {
+<<<<<<< HEAD
     name: "Jane Cooper",
     title: "Paradigm Representative",
     role: "Admin",
@@ -46,6 +54,13 @@ const people = [
     telephone: "+1-202-555-0170",
     imageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+=======
+    id: 2,
+    name: "Fake Music Group",
+    title: "Rapper",
+    role: "Admin",
+    imageUrl: "https://www.maxpixel.net/static/photo/1x/Mic-Graphic-Sing-Microphone-Singer-Audio-899933.png",
+>>>>>>> 8a21df2... Refactored code and added default groups in the groups page #111
   },
   // More people...
 ];

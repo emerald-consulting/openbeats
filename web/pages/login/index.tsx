@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 
-const baseURL = "http://localhost:8000/users/";
+const baseURL = "http://localhost:8000/";
 
 export default function Example() {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ export default function Example() {
   const onSubmit = (e: any) => {
     e.preventDefault();
     axios
-      .get("/user/:email")
+      .post(baseURL+ "auth/log-in")
       .then(function (response) {
         // handle success
         console.log(response);

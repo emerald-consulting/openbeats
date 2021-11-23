@@ -29,9 +29,6 @@ const people = [
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <p className="text-sm text-gray-500">
-                    Uploaded "{activityItem.song}" by {activityItem.artist} 
-                  </p>
                 </div>
               </div>
             </li>

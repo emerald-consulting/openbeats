@@ -28,10 +28,10 @@ export class FilesService {
 
       const newFile = this.publicFilesRepository.create({
         key: uploadResult.Key,
-        url: uploadResult.Location,
+        fileId: uploadResult.Location,
       });
       await this.publicFilesRepository.save(newFile);
-      return newFile
+      return newFile;
     } catch (error) {
       return error;
     }

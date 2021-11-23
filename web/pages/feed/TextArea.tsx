@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { CalendarIcon, PaperClipIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
 import axios from 'axios'
 import { useRouter } from "next/router";
+import { Link } from "react-router-dom";
 
 const baseURL = 'http://localhost:8000/posts/create';
 
@@ -52,7 +53,9 @@ export default function TextArea() {
     .catch(function (error) {
       // handle error
       console.log(error);
-    })
+    }).then(() => {
+      router.push('/feed')
+    });
   }
 
   return (

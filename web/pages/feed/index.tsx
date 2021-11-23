@@ -28,7 +28,7 @@ export interface IPosts {
   id: Number;
   title: string;
   description?: string;
-  pubfile: unknown
+  fileId?: Number;
 }
 
 export default function Feed() {

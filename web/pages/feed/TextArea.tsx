@@ -8,16 +8,6 @@ import { useRouter } from "next/router";
 const baseURL = 'http://localhost:8000/posts/create';
 
 
-const assignees = [
-  { name: 'Unassigned', value: null },
-  {
-    name: 'Wade Cooper',
-    value: 'wade-cooper',
-    avatar:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-]
-
 export default function TextArea() {
   const[title, setTitle] = useState('')
   const[description, setDescription] = useState('')

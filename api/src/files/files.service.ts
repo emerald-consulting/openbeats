@@ -31,7 +31,7 @@ export class FilesService {
         url: uploadResult.Location,
       });
       await this.publicFilesRepository.save(newFile);
-      return newFile.url;
+      return newFile
     } catch (error) {
       return error;
     }

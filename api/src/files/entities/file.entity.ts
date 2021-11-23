@@ -14,7 +14,7 @@ export class PublicFile extends BaseEntity {
   public id: number;
 
   @Column()
-  public url: string;
+  public fileId: number;
 
   @Column()
   public key: string;

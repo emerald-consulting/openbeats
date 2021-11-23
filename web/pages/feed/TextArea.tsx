@@ -37,7 +37,11 @@ export default function TextArea() {
   const onSetFile = (e: any) => {
     const fileUploadForm = new FormData();
     fileUploadForm.append('file', e.target.value);
-    axios.post("http://localhost:8000/files/upload", fileUploadForm)
+    axios.post("http://localhost:8000/files/upload", fileUploadForm, {
+      headers: {
+        contentType: 'multipart/form-data'
+      }
+    })
     .then(function (response) {
       setFile(response.data);
     })

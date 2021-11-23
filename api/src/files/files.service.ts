@@ -15,22 +15,26 @@ export class FilesService {
     private readonly configService: ConfigService,
   ) {}
 
-  public async uploadPublicFile(@Optional() file: Express.Multer.File) {
+  public async uploadPublicFile(buffer: Buffer, filename: string) {
     const s3 = new S3();
-    const uploadResult = await s3
-      .upload({
-        Bucket: this.configService.get('AWS_PUBLIC_BUCKET_NAME'),
-        Body: file.buffer,
-        Key: `${uuid()}-${file.filename}`,
-      })
-      .promise();
+    try {
+      const uploadResult = await s3
+        .upload({
+          Bucket: this.configService.get('AWS_PUBLIC_BUCKET_NAME'),
+          Body: buffer,
+          Key: `${uuid()}-${filename}`,
+        })
+        .promise();
 
-    const newFile = this.publicFilesRepository.create({
-      key: uploadResult.Key,
-      url: uploadResult.Location,
-    });
-    await this.publicFilesRepository.save(newFile);
-    return newFile;
+      const newFile = this.publicFilesRepository.create({
+        key: uploadResult.Key,
+        url: uploadResult.Location,
+      });
+      await this.publicFilesRepository.save(newFile);
+      return newFile;
+    } catch (error) {
+      return error.json();
+    }
   }
 
   public async downloadPublicFile(id: number) {

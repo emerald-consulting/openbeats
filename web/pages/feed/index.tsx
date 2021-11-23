@@ -10,7 +10,6 @@ import {
 } from '@heroicons/react/outline'
 import axios from 'axios'
 import Card from './Card'
-import NewPostButton from './NewPostButton'
 import TextArea from "./TextArea";
 
 const baseURL = 'http://localhost:8000/posts/';
@@ -219,6 +218,7 @@ export default function Feed() {
                 >
                   New Post
                 </button>
+                <br/>
                 {isTextAreaShown && <TextArea/>}
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">

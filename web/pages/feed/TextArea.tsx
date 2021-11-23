@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CalendarIcon, PaperClipIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
+import axios from 'axios'
 
 const assignees = [
   { name: 'Unassigned', value: null },
@@ -32,6 +33,18 @@ export default function TextArea() {
   const [labelled, setLabelled] = useState(labels[0])
   const [dated, setDated] = useState(dueDates[0])
   const [file, setFile] = useState(null)
+
+  const onSetFile = (e: any) => {
+    const fileUploadForm = new FormData();
+    fileUploadForm.append('file', e.target.value);
+    axios.post("http://localhost:8000/files/upload", fileUploadForm)
+    .then(function (response) {
+      setFile(response.data);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
 
   return (
     <form action="#" className="relative">
@@ -249,7 +262,7 @@ export default function TextArea() {
               className="-ml-2 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group"
             >
               <PaperClipIcon className="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500" aria-hidden="true" />
-              {/*<input type='file' name='file' onChange="this.form.submit()"/>*/}
+              <input type='file' name='file' onChange={onSetFile} />
             </button>
           </div>
           <div className="flex-shrink-0">

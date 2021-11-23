@@ -6,7 +6,7 @@ interface Group {
   imageUrl: string;
 }
 
-export const groupCard = (group: Group) => (
+export const GroupCard = (group: Group) => (
   <li
     key={group.id}
     className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"

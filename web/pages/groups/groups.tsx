@@ -1,4 +1,4 @@
-import { groupCard } from "./groupCard";
+import { GroupCard } from "./groupCard";
 
 /* This example requires Tailwind CSS v2.0+ */
 
@@ -25,7 +25,7 @@ export default function Groups() {
       role="list"
       className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
-      {groups.map((group) => groupCard(group))}
+      {groups.map((group) => GroupCard(group))}
     </ul>
   );
 }

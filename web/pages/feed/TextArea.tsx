@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
+import { useForm } from 'react-hook-form'
 import { CalendarIcon, PaperClipIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
 import axios from 'axios'
 import { useRouter } from "next/router";
@@ -20,7 +21,7 @@ const assignees = [
 export default function TextArea() {
   const[title, setTitle] = useState('')
   const[description, setDescription] = useState('')
-  const [file, setFile] = useState(null)
+  const [fileUrl, setFileUrl] = useState('')
 
   const router = useRouter();
 
@@ -32,42 +33,40 @@ export default function TextArea() {
     setDescription(event.target.value);
   };
 
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    axios.post(baseURL, { title: title, description: description })
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        router.push('/feed');
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-  }
-
-  // const onFileChange = (event: any) => {
-  //   setFile(event.target.value);
-  // };
-
-  const onSetFile = (e: any) => {
+  const onSetFileUrl = async (e: any) => {
     const fileUploadForm = new FormData();
-    fileUploadForm.append('file', e.target.value);
+    fileUploadForm.append('file', e.target.files[0]);
     axios.post("http://localhost:8000/files/upload", fileUploadForm, {
-      headers: {
-        contentType: 'multipart/form-data'
-      }
     })
     .then(function (response) {
-      setFile(response.data);
+      setFileUrl(response.data);
     })
     .catch(function (err) {
       console.log(err);
     });
   }
 
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    const postForm = {
+      title: title,
+      description: description,
+      fileUrl: fileUrl,
+    };
+    await axios.post(baseURL, postForm)
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      router.push('/feed');
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+  }
+
   return (
-    <form action="#" className="relative">
+    <form onSubmit={onSubmit} className="relative">
       <br/>
       <div className="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500">
         <label htmlFor="title" className="sr-only">
@@ -116,13 +115,12 @@ export default function TextArea() {
               className="-ml-2 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group"
             >
               <PaperClipIcon className="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500" aria-hidden="true" />
-              <input type='file' name='file' onChange={onSetFile} />
+              <input type='file' name='file' onChange={onSetFileUrl} />
             </button>
           </div>
           <div className="flex-shrink-0">
             <button
               type="submit"
-              onClick={onSubmit}
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
             >
               Create

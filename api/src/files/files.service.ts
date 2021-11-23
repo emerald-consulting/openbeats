@@ -31,9 +31,9 @@ export class FilesService {
         url: uploadResult.Location,
       });
       await this.publicFilesRepository.save(newFile);
-      return newFile;
+      return newFile.url;
     } catch (error) {
-      return error.json();
+      return error;
     }
   }
 
@@ -51,6 +51,10 @@ export class FilesService {
     } else {
       throw new NotFoundException();
     }
+  }
+
+  public async getPublicFileById(id: number) {
+    return await this.publicFilesRepository.findOne({ id: id });
   }
 
   async deletePublicFile(fileId: number) {

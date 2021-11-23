@@ -26,9 +26,12 @@ export class Post {
   @Column({ nullable: true })
   public description?: string;
 
-  @OneToOne(() => PublicFile, (pubfile: PublicFile) => pubfile.post)
-  @JoinTable()
-  public pubfile?: PublicFile;
+  @Column({ nullable: true })
+  public fileUrl?: string;
+
+  // @OneToOne(() => PublicFile, (pubfile: PublicFile) => pubfile.post)
+  // @JoinTable()
+  // public pubfile?: PublicFile;
 
   @Column({ nullable: true })
   public category?: string;

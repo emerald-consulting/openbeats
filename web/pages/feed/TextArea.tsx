@@ -1,26 +1,15 @@
-import { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CalendarIcon, PaperClipIcon, TagIcon, UserCircleIcon } from '@heroicons/react/solid'
+import { useState } from 'react'
+import { PaperClipIcon } from '@heroicons/react/solid'
 import axios from 'axios'
 import { useRouter } from "next/router";
 
 const baseURL = 'http://localhost:8000/posts/create';
 
 
-const assignees = [
-  { name: 'Unassigned', value: null },
-  {
-    name: 'Wade Cooper',
-    value: 'wade-cooper',
-    avatar:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-]
-
 export default function TextArea() {
   const[title, setTitle] = useState('')
   const[description, setDescription] = useState('')
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState('')
 
   const router = useRouter();
 
@@ -32,9 +21,13 @@ export default function TextArea() {
     setDescription(event.target.value);
   };
 
+  const onFileChange = (event: any) => {
+    setFile(event.target.value);
+  };
+
   const onSubmit = (e: any) => {
     e.preventDefault();
-    axios.post(baseURL, { title: title, description: description })
+    axios.post(baseURL, { title: title, description: description, pubfile: file})
       .then(function (response) {
         // handle success
         console.log(response);
@@ -46,25 +39,21 @@ export default function TextArea() {
       })
   }
 
-  // const onFileChange = (event: any) => {
-  //   setFile(event.target.value);
-  // };
-
-  const onSetFile = (e: any) => {
-    const fileUploadForm = new FormData();
-    fileUploadForm.append('file', e.target.value);
-    axios.post("http://localhost:8000/files/upload", fileUploadForm, {
-      headers: {
-        contentType: 'multipart/form-data'
-      }
-    })
-    .then(function (response) {
-      setFile(response.data);
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-  }
+  // const onSetFile = (e: any) => {
+  //   const fileUploadForm = new FormData();
+  //   fileUploadForm.append('file', e.target.value);
+  //   axios.post("http://localhost:8000/files/upload", fileUploadForm, {
+  //     headers: {
+  //       contentType: 'multipart/form-data'
+  //     }
+  //   })
+  //   .then(function (response) {
+  //     console.log('success')
+  //   })
+  //   .catch(function (err) {
+  //     console.log(err);
+  //   });
+  // }
 
   return (
     <form action="#" className="relative">
@@ -116,7 +105,7 @@ export default function TextArea() {
               className="-ml-2 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group"
             >
               <PaperClipIcon className="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500" aria-hidden="true" />
-              <input type='file' name='file' onChange={onSetFile} />
+              <input type='file' name='file' onChange={onFileChange} />
             </button>
           </div>
           <div className="flex-shrink-0">

@@ -10,10 +10,10 @@ const people = [
     // More people...
   ]
   const activityItems = [
-    { id: 1, person: people[0], song: 'Title of Song', artist: 'Name of Artist', time: '1h' },
+    { id: 1, person: people[0], song: 'Title of Song', artist: 'Name of Artist', time: Date.now() },
     // More items...
   ]
-  
+
   export default function Card(post: IPosts) {
     return (
       <div className="border-t-2 border-gray-300 rounded-b-lg pt-10 pb-8 px-6 bg-green-50 sm:px-10 sm:py-10">

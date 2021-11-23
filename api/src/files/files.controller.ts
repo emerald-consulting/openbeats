@@ -5,7 +5,7 @@ import {
   Res,
   Param,
   UploadedFile,
-  UseInterceptors,
+  UseInterceptors
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { FilesService } from 'src/files/files.service';
@@ -14,7 +14,6 @@ import { Response } from 'express';
 
 @ApiTags('files')
 @Controller('files')
-//@UseInterceptors(ClassSerializerInterceptor)
 export class FilesController {
   constructor(private filesService: FilesService) {}
 

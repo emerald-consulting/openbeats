@@ -16,6 +16,10 @@ VERSION:=latest
 # Local Development Commands
 # ============================================================================
 
+.PHONE: fresh
+fresh:
+	rm -rf .next && yarn build && docker-compose up --build
+
 .PHONY: build
 build:
 	docker build $(CACHE_FROM) -t $(DOCKER_IMAGE):$(VERSION) .

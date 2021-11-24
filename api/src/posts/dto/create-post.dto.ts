@@ -13,10 +13,11 @@ export class CreatePostDto {
   @IsString()
   description?: string;
 
-  /* Uploading a file is optional */
-  file?: Express.Multer.File;
+  // /* Uploading a file is optional */
+  // file?: Express.Multer.File;
+  fileUrl?: string;
 
-  pubfile?: PublicFile;
+  // pubfile?: PublicFile;
 }
 
 export default CreatePostDto;

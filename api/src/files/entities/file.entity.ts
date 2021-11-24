@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
 import {
   Column,
   Entity,
@@ -15,12 +14,12 @@ export class PublicFile extends BaseEntity {
   public id: number;
 
   @Column()
-  public url: string;
+  public fileId: string;
 
   @Column()
   public key: string;
 
-  @OneToOne(() => Post, (post: Post) => post.pubfile)
+  @OneToOne(() => Post, (post: Post) => post.fileUrl)
   public post?: Post;
 }
 

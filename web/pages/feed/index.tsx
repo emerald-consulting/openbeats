@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/outline'
 import axios from 'axios'
 import Card from './Card'
+import TextArea from "./TextArea";
 
 const baseURL = 'http://localhost:8000/posts/';
 
@@ -28,11 +29,20 @@ export interface IPosts {
   id: Number;
   title: string;
   description?: string;
+  fileId?: Number;
 }
 
 export default function Feed() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [posts, setPosts] = useState<Array<IPosts>>([])
+  const [isTextAreaShown, setTextAreaShown] = useState(false);
+
+  const handleTextArea=(e: any)=>{
+    e.preventDefault();
+
+    setTextAreaShown(true); // Here we change state
+  }
+
 
   useEffect(() => {
     axios.get(`${baseURL}`)
@@ -64,7 +74,7 @@ export default function Feed() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <div className="relative flex-1 flex flex-col max-w-xs w-full bg-indigo-700">
+              <div className="relative flex-1 flex flex-col max-w-xs w-full bg-emerald-700">
                 <Transition.Child
                   as={Fragment}
                   enter="ease-in-out duration-300"
@@ -113,7 +123,7 @@ export default function Feed() {
                     ))}
                   </nav>
                 </div>
-                <div className="flex-shrink-0 flex border-t border-indigo-800 p-4">
+                <div className="flex-shrink-0 flex border-t border-emerald-800 p-4">
                   <a href="#" className="flex-shrink-0 group block">
                     <div className="flex items-center">
                       <div>
@@ -125,7 +135,7 @@ export default function Feed() {
                       </div>
                       <div className="ml-3">
                         <p className="text-base font-medium text-white">Tom Cook</p>
-                        <p className="text-sm font-medium text-indigo-200 group-hover:text-white">View profile</p>
+                        <p className="text-sm font-medium text-emerald-200 group-hover:text-white">View profile</p>
                       </div>
                     </div>
                   </a>
@@ -195,7 +205,7 @@ export default function Feed() {
           <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
@@ -206,6 +216,16 @@ export default function Feed() {
             <div className="py-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl font-semibold text-gray-900">Feed</h1>
+                <br/>
+                <button
+                  type="button"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                  onClick={handleTextArea}
+                >
+                  New Post
+                </button>
+                <br/>
+                {isTextAreaShown && <TextArea/>}
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}

@@ -1,5 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { IPosts } from "./index"
+import { DownloadIcon } from "@heroicons/react/solid";
+import axios from "axios";
+import { router } from "next/client";
+import stream from "node:stream";
 
 const people = [
     {
@@ -10,12 +14,30 @@ const people = [
     // More people...
   ]
   const activityItems = [
-    { id: 1, person: people[0], song: 'Title of Song', artist: 'Name of Artist', time: '1h' },
+    { id: 1, person: people[0], song: 'Title of Song', artist: 'Name of Artist', time: Date.now() },
     // More items...
   ]
-  
+
   export default function Card(post: IPosts) {
-    return (
+
+    const downloadFile = () => {
+      if (post.id) {
+        axios({
+          url: `http://localhost:8000/files/download/${post.id}`,
+          method: 'GET',
+          responseType: 'blob', // important
+        }).then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${post.title}.wav`); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      }
+    }
+
+      return (
       <div className="border-t-2 border-gray-300 rounded-b-lg pt-10 pb-8 px-6 bg-green-50 sm:px-10 sm:py-10">
         <ul role="list" className="divide-y divide-gray-200">
           {activityItems.map((activityItem) => (
@@ -29,9 +51,15 @@ const people = [
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <p className="text-sm text-gray-500">
-                    Uploaded "{activityItem.song}" by {activityItem.artist} 
-                  </p>
+                  <br/>
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
+                    onClick={downloadFile}
+                  >
+                    Download
+                    <DownloadIcon className="ml-2 -mr-0.5 h-4 w-4" aria-hidden="true" />
+                  </button>
                 </div>
               </div>
             </li>

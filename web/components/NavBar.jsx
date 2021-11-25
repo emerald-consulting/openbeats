@@ -32,6 +32,9 @@ const NavBar = () => {
                 <PageLink href="/" className="nav-link" testId="navbar-home">
                   Home
                 </PageLink>
+                <PageLink href="/team" className="nav-link" testId="navbar-home">
+                  Team
+                </PageLink>
               </NavItem>
               {user && (
                 <>
@@ -42,16 +45,6 @@ const NavBar = () => {
                       testId="navbar-csr"
                     >
                       Feed
-                    </PageLink>
-                  </NavItem>
-
-                  <NavItem>
-                    <PageLink
-                      href="/collaborators"
-                      className="nav-link"
-                      testId="navbar-csr"
-                    >
-                      Collaborators
                     </PageLink>
                   </NavItem>
 

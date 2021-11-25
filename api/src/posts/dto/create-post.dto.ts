@@ -17,6 +17,10 @@ export class CreatePostDto {
   // file?: Express.Multer.File;
   fileUrl?: string;
 
+  @IsString()
+  @IsNotEmpty()
+  genre: string;
+
   // pubfile?: PublicFile;
 }
 

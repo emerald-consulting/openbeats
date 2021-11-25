@@ -37,6 +37,7 @@ export class PostsService {
       title: post.title,
       author: user,
       description: post.description,
+      genre: post.genre,
       fileUrl: post.fileUrl,
     });
     await this.postsRepository.save(newPost);

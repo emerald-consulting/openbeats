@@ -15,7 +15,8 @@ const groups = [
     name: "Fake Music Group",
     title: "Rapper",
     role: "Admin",
-    imageUrl: "https://www.maxpixel.net/static/photo/1x/Mic-Graphic-Sing-Microphone-Singer-Audio-899933.png",
+    imageUrl:
+      "https://www.maxpixel.net/static/photo/1x/Mic-Graphic-Sing-Microphone-Singer-Audio-899933.png",
   },
 ];
 

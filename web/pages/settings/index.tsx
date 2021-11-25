@@ -1,4 +1,4 @@
-	/*
+/*
   This example requires Tailwind CSS v2.0+ 
   
   This example requires some changes to your config:
@@ -24,9 +24,10 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { SearchIcon } from '@heroicons/react/solid'
+import { Fragment, useState } from "react";
+import { Disclosure, Menu, Switch, Transition } from "@headlessui/react";
+import Footer from "../footer/footer";
+import { SearchIcon } from "@heroicons/react/solid";
 import {
   BellIcon,
   CogIcon,
@@ -36,57 +37,59 @@ import {
   UserCircleIcon,
   ViewGridAddIcon,
   XIcon,
-} from '@heroicons/react/outline'
+} from "@heroicons/react/outline";
 
 const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
+  name: "Debbie Lewis",
+  handle: "deblewis",
+  email: "debbielewis@example.com",
   imageUrl:
-    'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
-}
+    "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80",
+};
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
-  { name: 'Applicants', href: '#', current: false },
-  { name: 'Company', href: '#', current: false },
-]
+  { name: "Dashboard", href: "#", current: true },
+  { name: "Jobs", href: "#", current: false },
+  { name: "Applicants", href: "#", current: false },
+  { name: "Company", href: "#", current: false },
+];
 const subNavigation = [
-  { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
-  { name: 'Account', href: '#', icon: CogIcon, current: false },
-  { name: 'Password', href: '#', icon: KeyIcon, current: false },
-  { name: 'Notifications', href: '#', icon: BellIcon, current: false },
-  { name: 'Billing', href: '#', icon: CreditCardIcon, current: false },
-  { name: 'Integrations', href: '#', icon: ViewGridAddIcon, current: false },
-]
+  { name: "Profile", href: "#", icon: UserCircleIcon, current: true },
+  { name: "Account", href: "#", icon: CogIcon, current: false },
+  { name: "Password", href: "#", icon: KeyIcon, current: false },
+  { name: "Notifications", href: "#", icon: BellIcon, current: false },
+  { name: "Billing", href: "#", icon: CreditCardIcon, current: false },
+  { name: "Integrations", href: "#", icon: ViewGridAddIcon, current: false },
+];
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+  { name: "Your Profile", href: "#" },
+  { name: "Settings", href: "#" },
+  { name: "Sign out", href: "#" },
+];
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [availableToHire, setAvailableToHire] = useState(true)
-  const [privateAccount, setPrivateAccount] = useState(false)
-  const [allowCommenting, setAllowCommenting] = useState(true)
-  const [allowMentions, setAllowMentions] = useState(true)
+  const [availableToHire, setAvailableToHire] = useState(true);
+  const [privateAccount, setPrivateAccount] = useState(false);
+  const [allowCommenting, setAllowCommenting] = useState(true);
+  const [allowMentions, setAllowMentions] = useState(true);
 
   return (
     <div>
-      <Disclosure as="div" className="relative bg-sky-700 pb-32 overflow-hidden">
+      <Disclosure
+        as="div"
+        className="relative bg-sky-700 pb-32 overflow-hidden"
+      >
         {({ open }) => (
           <>
             <nav
               className={classNames(
-                open ? 'bg-sky-900' : 'bg-transparent',
-                'relative z-10 border-b border-teal-500 border-opacity-25 lg:bg-transparent lg:border-none'
+                open ? "bg-sky-900" : "bg-transparent",
+                "relative z-10 border-b border-teal-500 border-opacity-25 lg:bg-transparent lg:border-none"
               )}
             >
-
               <Disclosure.Panel className="bg-emerald-800 lg:hidden">
                 <div className="pt-2 pb-3 px-2 space-y-1">
                   {navigation.map((item) => (
@@ -95,8 +98,10 @@ export default function Example() {
                       as="a"
                       href={item.href}
                       className={classNames(
-                        item.current ? 'bg-black bg-opacity-25' : 'hover:bg-sky-800',
-                        'block rounded-md py-2 px-3 text-base font-medium text-white'
+                        item.current
+                          ? "bg-black bg-opacity-25"
+                          : "hover:bg-sky-800",
+                        "block rounded-md py-2 px-3 text-base font-medium text-white"
                       )}
                     >
                       {item.name}
@@ -106,11 +111,19 @@ export default function Example() {
                 <div className="pt-4 pb-3 border-t border-sky-800">
                   <div className="flex items-center px-4">
                     <div className="flex-shrink-0">
-                      <img className="rounded-full h-10 w-10" src={user.imageUrl} alt="" />
+                      <img
+                        className="rounded-full h-10 w-10"
+                        src={user.imageUrl}
+                        alt=""
+                      />
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium text-white">{user.name}</div>
-                      <div className="text-sm font-medium text-sky-200">{user.email}</div>
+                      <div className="text-base font-medium text-white">
+                        {user.name}
+                      </div>
+                      <div className="text-sm font-medium text-sky-200">
+                        {user.email}
+                      </div>
                     </div>
                     <button
                       type="button"
@@ -138,13 +151,19 @@ export default function Example() {
             <div
               aria-hidden="true"
               className={classNames(
-                open ? 'bottom-0' : 'inset-y-0',
-                'absolute inset-x-0 left-1/2 transform -translate-x-1/2 w-full overflow-hidden lg:inset-y-0'
+                open ? "bottom-0" : "inset-y-0",
+                "absolute inset-x-0 left-1/2 transform -translate-x-1/2 w-full overflow-hidden lg:inset-y-0"
               )}
             >
               <div className="absolute inset-0 flex">
-                <div className="h-full w-1/2" style={{ backgroundColor: '#0a527b' }} />
-                <div className="h-full w-1/2" style={{ backgroundColor: '#065d8c' }} />
+                <div
+                  className="h-full w-1/2"
+                  style={{ backgroundColor: "#0a527b" }}
+                />
+                <div
+                  className="h-full w-1/2"
+                  style={{ backgroundColor: "#065d8c" }}
+                />
               </div>
               <div className="relative flex justify-center bg-emerald-800">
                 <svg
@@ -182,41 +201,53 @@ export default function Example() {
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? 'bg-teal-50 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700'
-                          : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-green-400',
-                        'group border-l-4 px-3 py-2 flex items-center text-sm font-medium'
+                          ? "bg-teal-50 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700"
+                          : "border-transparent text-gray-900 hover:bg-gray-50 hover:text-green-400",
+                        "group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
                       )}
-                      aria-current={item.current ? 'page' : undefined}
+                      aria-current={item.current ? "page" : undefined}
                     >
                       <item.icon
                         className={classNames(
                           item.current
-                            ? 'text-teal-500 group-hover:text-teal-500'
-                            : 'text-gray-400 group-hover:text-gray-500',
-                          'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
+                            ? "text-teal-500 group-hover:text-teal-500"
+                            : "text-gray-400 group-hover:text-gray-500",
+                          "flex-shrink-0 -ml-1 mr-3 h-6 w-6"
                         )}
                         aria-hidden="true"
                       />
-                      <span className="truncate hover:text-green-400 hover:bg-gray-50">{item.name}</span>
+                      <span className="truncate hover:text-green-400 hover:bg-gray-50">
+                        {item.name}
+                      </span>
                     </a>
                   ))}
                 </nav>
               </aside>
 
-              <form className="divide-y divide-gray-200 lg:col-span-9" action="#" method="POST">
+              <form
+                className="divide-y divide-gray-200 lg:col-span-9"
+                action="#"
+                method="POST"
+              >
                 {/* Profile section */}
                 <div className="py-6 px-4 sm:p-6 lg:pb-8">
                   <div>
-                    <h2 className="text-lg leading-6 font-medium text-gray-900">Profile</h2>
+                    <h2 className="text-lg leading-6 font-medium text-gray-900">
+                      Profile
+                    </h2>
                     <p className="mt-1 text-sm text-gray-500">
-                      This information will be displayed publicly so be careful what you share.
+                      This information will be displayed publicly so be careful
+                      what you share.
                     </p>
                   </div>
 
                   <div className="mt-6 flex flex-col lg:flex-row">
                     <div className="flex-grow space-y-6">
                       <div>
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="username"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Username
                         </label>
                         <div className="mt-1 rounded-md shadow-sm flex">
@@ -235,7 +266,10 @@ export default function Example() {
                       </div>
 
                       <div>
-                        <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="about"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           About
                         </label>
                         <div className="mt-1">
@@ -244,17 +278,21 @@ export default function Example() {
                             name="about"
                             rows={3}
                             className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            defaultValue={''}
+                            defaultValue={""}
                           />
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                          Brief description for your profile. URLs are hyperlinked.
+                          Brief description for your profile. URLs are
+                          hyperlinked.
                         </p>
                       </div>
                     </div>
 
                     <div className="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">
-                      <p className="text-sm font-medium text-gray-700" aria-hidden="true">
+                      <p
+                        className="text-sm font-medium text-gray-700"
+                        aria-hidden="true"
+                      >
                         Photo
                       </p>
                       <div className="mt-1 lg:hidden">
@@ -263,7 +301,11 @@ export default function Example() {
                             className="flex-shrink-0 inline-block rounded-full overflow-hidden h-12 w-12"
                             aria-hidden="true"
                           >
-                            <img className="rounded-full h-full w-full" src={user.imageUrl} alt="" />
+                            <img
+                              className="rounded-full h-full w-full"
+                              src={user.imageUrl}
+                              alt=""
+                            />
                           </div>
                           <div className="ml-5 rounded-md shadow-sm">
                             <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
@@ -286,7 +328,11 @@ export default function Example() {
                       </div>
 
                       <div className="hidden relative rounded-full overflow-hidden lg:block">
-                        <img className="relative rounded-full w-40 h-40" src={user.imageUrl} alt="" />
+                        <img
+                          className="relative rounded-full w-40 h-40"
+                          src={user.imageUrl}
+                          alt=""
+                        />
                         <label
                           htmlFor="desktop-user-photo"
                           className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
@@ -306,7 +352,10 @@ export default function Example() {
 
                   <div className="mt-6 grid grid-cols-12 gap-6">
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         First name
                       </label>
                       <input
@@ -319,7 +368,10 @@ export default function Example() {
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="last-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Last name
                       </label>
                       <input
@@ -332,7 +384,10 @@ export default function Example() {
                     </div>
 
                     <div className="col-span-12">
-                      <label htmlFor="url" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="url"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         URL
                       </label>
                       <input
@@ -344,7 +399,10 @@ export default function Example() {
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Company
                       </label>
                       <input
@@ -362,112 +420,153 @@ export default function Example() {
                 <div className="pt-6 divide-y divide-gray-200">
                   <div className="px-4 sm:px-6">
                     <div>
-                      <h2 className="text-lg leading-6 font-medium text-gray-900">Privacy</h2>
+                      <h2 className="text-lg leading-6 font-medium text-gray-900">
+                        Privacy
+                      </h2>
                       <p className="mt-1 text-sm text-gray-500">
-                        Ornare eu a volutpat eget vulputate. Fringilla commodo amet.
+                        Ornare eu a volutpat eget vulputate. Fringilla commodo
+                        amet.
                       </p>
                     </div>
                     <ul role="list" className="mt-2 divide-y divide-gray-200">
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Available to hire
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Nulla amet tempus sit accumsan. Aliquet turpis sed sit lacinia.
+                            Nulla amet tempus sit accumsan. Aliquet turpis sed
+                            sit lacinia.
                           </Switch.Description>
                         </div>
                         <Switch
                           checked={availableToHire}
                           onChange={setAvailableToHire}
                           className={classNames(
-                            availableToHire ? 'bg-teal-500' : 'bg-gray-200',
-                            'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'
+                            availableToHire ? "bg-teal-500" : "bg-gray-200",
+                            "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                           )}
                         >
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              availableToHire ? 'translate-x-5' : 'translate-x-0',
-                              'inline-block h-5 w-5 rounded-full bg-green-400 shadow transform ring-0 transition ease-in-out duration-200'
+                              availableToHire
+                                ? "translate-x-5"
+                                : "translate-x-0",
+                              "inline-block h-5 w-5 rounded-full bg-green-400 shadow transform ring-0 transition ease-in-out duration-200"
                             )}
                           />
                         </Switch>
                       </Switch.Group>
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Make account private
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Pharetra morbi dui mi mattis tellus sollicitudin cursus pharetra.
+                            Pharetra morbi dui mi mattis tellus sollicitudin
+                            cursus pharetra.
                           </Switch.Description>
                         </div>
                         <Switch
                           checked={privateAccount}
                           onChange={setPrivateAccount}
                           className={classNames(
-                            privateAccount ? 'bg-teal-500' : 'bg-gray-200',
-                            'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'
+                            privateAccount ? "bg-teal-500" : "bg-gray-200",
+                            "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                           )}
                         >
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              privateAccount ? 'translate-x-5' : 'translate-x-0',
-                              'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                              privateAccount
+                                ? "translate-x-5"
+                                : "translate-x-0",
+                              "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                             )}
                           />
                         </Switch>
                       </Switch.Group>
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Allow commenting
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Integer amet, nunc hendrerit adipiscing nam. Elementum ame
+                            Integer amet, nunc hendrerit adipiscing nam.
+                            Elementum ame
                           </Switch.Description>
                         </div>
                         <Switch
                           checked={allowCommenting}
                           onChange={setAllowCommenting}
                           className={classNames(
-                            allowCommenting ? 'bg-teal-500' : 'bg-gray-200',
-                            'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'
+                            allowCommenting ? "bg-teal-500" : "bg-gray-200",
+                            "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                           )}
                         >
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              allowCommenting ? 'translate-x-5' : 'translate-x-0',
-                              'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                              allowCommenting
+                                ? "translate-x-5"
+                                : "translate-x-0",
+                              "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                             )}
                           />
                         </Switch>
                       </Switch.Group>
-                      <Switch.Group as="li" className="py-4 flex items-center justify-between">
+                      <Switch.Group
+                        as="li"
+                        className="py-4 flex items-center justify-between"
+                      >
                         <div className="flex flex-col">
-                          <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                          <Switch.Label
+                            as="p"
+                            className="text-sm font-medium text-gray-900"
+                            passive
+                          >
                             Allow mentions
                           </Switch.Label>
                           <Switch.Description className="text-sm text-gray-500">
-                            Adipiscing est venenatis enim molestie commodo eu gravid
+                            Adipiscing est venenatis enim molestie commodo eu
+                            gravid
                           </Switch.Description>
                         </div>
                         <Switch
                           checked={allowMentions}
                           onChange={setAllowMentions}
                           className={classNames(
-                            allowMentions ? 'bg-teal-500' : 'bg-gray-200',
-                            'ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500'
+                            allowMentions ? "bg-teal-500" : "bg-gray-200",
+                            "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                           )}
                         >
                           <span
                             aria-hidden="true"
                             className={classNames(
-                              allowMentions ? 'translate-x-5' : 'translate-x-0',
-                              'inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                              allowMentions ? "translate-x-5" : "translate-x-0",
+                              "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
                             )}
                           />
                         </Switch>
@@ -494,6 +593,7 @@ export default function Example() {
           </div>
         </div>
       </main>
+      <Footer></Footer>
     </div>
-  )
+  );
 }

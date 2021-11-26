@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 import { PublicFile } from '../../files/entities/file.entity';
 import { Post } from '../../posts/entities/post.entity';
-import { Address } from './address.entity';
 
 @Entity()
 export class User {
@@ -51,13 +50,6 @@ export class User {
   @Expose()
   public genre?: string;
 
-  @OneToOne(() => Address, {
-    eager: true,
-    cascade: true,
-  })
-  @JoinColumn()
-  public address?: Address;
-
   @OneToMany(() => Post, (post: Post) => post.author)
   public posts?: Post[];
 
@@ -65,10 +57,10 @@ export class User {
   @Exclude()
   public currentHashedRefreshToken?: string;
 
-  @JoinColumn()
   @OneToOne(() => PublicFile, {
     eager: true,
     nullable: true,
   })
+  @JoinColumn()
   public avatar?: PublicFile;
 }

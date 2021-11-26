@@ -10,12 +10,6 @@ const mockedUser: User = {
   isActive: true,
   age: 22,
   bio: 'test bio',
-  address: {
-    addressId: 1,
-    street: 'streetName',
-    city: 'cityName',
-    country: 'countryName',
-  },
 };
 
 export default mockedUser;

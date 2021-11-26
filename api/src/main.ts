@@ -6,6 +6,7 @@ import { ExcludeNullInterceptor } from './utils/excludeNull.interceptor';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'aws-sdk';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -34,5 +35,9 @@ async function bootstrap() {
   */
 
   await app.listen(8000);
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 bootstrap();

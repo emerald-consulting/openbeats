@@ -1,36 +1,22 @@
-FROM node:lts-alpine as build
+# Use node alpine as it's a small node image
+FROM node:alpine
 
-RUN mkdir /app
-
+# Set /app as the working directory
 WORKDIR /app
 
-COPY . .
+# Copy package.json and package-lock.json
+# to the /app working directory
+COPY package.json .
+COPY yarn.lock .
 
-RUN yarn install
-RUN yarn build
-
-COPY .next ./.next
-COPY public ./.public
-COPY . .
-
-# ---------------
-
-FROM node:lts-alpine
-
-ENV NODE_ENV production
-ENV API_PORT 3001
-
-WORKDIR /app
-
-COPY --from=build /app/package.json .
-COPY --from=build /app/next.config.js .
-COPY --from=build /app/.env.local .
-COPY --from=build /app/.next ./.next
-COPY --from=build /app/public ./public
-
+# Install dependencies in /app
 RUN yarn install
 
+# Copy the rest of our Next.js folder into /app
+COPY . .
+
+# Ensure port 3000 is accessible to our system
 EXPOSE 3000
-EXPOSE 3001
 
-CMD yarn start
+# Run yarn dev, as we would via the command line 
+CMD ["yarn", "dev"]

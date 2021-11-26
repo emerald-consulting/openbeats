@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
-  waveColor: "#eee",
+  waveColor: "#000000",
   progressColor: "#34D399",
   cursorColor: "Pink",
   barWidth: 2,
@@ -40,7 +40,7 @@ export default function Wav(props) {
         wavesurfer.current.destroy();
       }
     };
-  }, [useEffect]);
+  }, []);
 
   const handlePlayPause = () => {
     setPlaying(!playing);

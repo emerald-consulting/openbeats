@@ -26,18 +26,20 @@ services:
       POSTGRES_DB: db
 
   web:
+    container_name: openbeats_442_web
     build:
-       context: web
-       dockerfile: Dockerfile
-    container_name: web
-    restart: always
+      context: ./web
+      dockerfile: Dockerfile
     volumes:
-      - ./:/app
-      - /app/node_modules
-      - /app/.next
+      - './web:/usr/src/app'
+      - '/usr/src/app/node_modules'
     ports:
       - 3000:3000
-
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
          
   pgadmin:
     container_name: openbeats_442_pgadmin

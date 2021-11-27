@@ -44,40 +44,11 @@
     "wavesurfer.js": "^5.2.0"
   },
   "devDependencies": {
-    "@testing-library/dom": "^8.0.0",
-    "@testing-library/jest-dom": "^5.11.8",
-    "@testing-library/react": "^12.0.0",
-    "babel-jest": "^27.0.6",
-    "cypress": "^7.6.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.2.1",
-    "start-server-and-test": "^1.11.7"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "rootDir": "./",
-    "moduleNameMapper": {
-      ".(css)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "setupFiles": [
-      "./tests/environment.js"
-    ],
-    "setupFilesAfterEnv": [
-      "./tests/setup.js"
-    ],
-    "collectCoverageFrom": [
-      "components/**/*.*",
-      "pages/**/*.*"
-    ],
-    "coverageReporters": [
-      "lcov",
-      "text",
-      "text-summary"
-    ]
+    "@types/node": "^16.11.9",
+    "@types/react": "^17.0.36",
+    "@types/wavesurfer.js": "^5.2.2",
+    "eslint": "7",
+    "eslint-config-next": "12.0.3",
+    "typescript": "^4.5.2"
   }
 }

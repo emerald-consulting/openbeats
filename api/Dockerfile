@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:latest 
 WORKDIR /node
 COPY ./package.json .
 RUN yarn install --network-timeout 1000000

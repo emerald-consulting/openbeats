@@ -10,7 +10,6 @@ import { FilesModule } from './files/files.module';
 import { FacebookStrategy } from './facebook.strategy';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
-import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -40,7 +39,6 @@ import { ChatModule } from './chat/chat.module';
     PostsModule,
     FilesModule,
     UsersModule,
-    ChatModule,
   ],
   controllers: [AppController],
   providers: [],

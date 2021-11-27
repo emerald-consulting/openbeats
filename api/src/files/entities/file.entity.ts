@@ -5,6 +5,7 @@ import {
   BaseEntity,
   OneToOne,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Post } from 'src/posts/entities/post.entity';
 
@@ -20,6 +21,7 @@ export class PublicFile extends BaseEntity {
   public key: string;
 
   @OneToOne(() => Post, (post: Post) => post.fileUrl)
+  @JoinColumn()
   public post?: Post;
 }
 

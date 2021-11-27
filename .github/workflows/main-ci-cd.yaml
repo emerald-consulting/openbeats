@@ -11,7 +11,7 @@ jobs:
     name: Build & Push Web Static Assets to S3
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./web
     steps:
       - uses: actions/checkout@v1
       - name: Configure AWS credentials
@@ -33,7 +33,7 @@ jobs:
     name: Build, Push and Deploy Helm Chart
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: ./api
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

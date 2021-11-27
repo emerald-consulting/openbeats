@@ -37,7 +37,9 @@ export default function Feed() {
   }
 
   useEffect(() => {
-    axios.get(`${baseURL}`).then((r) => setPosts([...r.data]));
+    axios.get(`${baseURL}`)
+    .then((r) => setPosts([...r.data]))
+    .catch(e => console.log(e));
   }, [setPosts]);
 
   return (

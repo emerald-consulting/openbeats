@@ -1,5 +1,6 @@
 import { DownloadIcon } from "@heroicons/react/solid";
 import axios from "axios";
+import Wav from "./Wav";
 
 // const people = [
 //   {
@@ -57,18 +58,23 @@ export default function Card(post) {
                 <h3>{post.title}</h3>
                 <p>{post.genre}</p>
                 <p>{post.description}</p>
-                <br/>
-                <button
-                  type="button"
-                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
-                  onClick={downloadFile}
-                >
-                  Download
-                  <DownloadIcon
-                    className="ml-2 -mr-0.5 h-4 w-4"
-                    aria-hidden="true"
-                  />
-                </button>
+                {post.fileUrl && (
+                  <div>
+                    <Wav props={{...post}}/>
+                    <br />
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
+                      onClick={downloadFile}
+                    >
+                      Download
+                      <DownloadIcon
+                        className="ml-2 -mr-0.5 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </li>

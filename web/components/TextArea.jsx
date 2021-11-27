@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 const baseURL = "http://localhost:8000/posts/create";
 
-export default function TextArea() {
+export default function TextArea(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
@@ -63,15 +63,12 @@ export default function TextArea() {
       .then(function (response) {
         // handle success
         console.log(response);
-        router.push("/feed");
+        props.afterSubmit(e, response.data)
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       })
-      .then(() => {
-        router.push("/feed");
-      });      
   };
 
   const RenderCreate = () => {

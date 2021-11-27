@@ -16,7 +16,6 @@ export class CreatePostDto {
   fileUrl?: string;
 
   @IsString()
-  @IsNotEmpty()
   genre: string;
 
   // pubfile?: PublicFile;

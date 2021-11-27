@@ -15,6 +15,11 @@ export default function Feed() {
     setTextAreaShown(true);
   };
 
+  const afterSubmit = (e, post) => {
+    setPosts([...posts, post])
+    setTextAreaShown(false);
+  };
+
   const RenderPosts = () => {
     if (filteredPosts.length === 0)
       return posts.slice().reverse().map((post) =>
@@ -38,7 +43,7 @@ export default function Feed() {
     axios.get(`${baseURL}`)
     .then((r) => setPosts([...r.data]))
     .catch(e => console.log(e));
-  }, [setPosts]);
+  }, []);
 
   return (
     <>
@@ -57,7 +62,7 @@ export default function Feed() {
                   New Post
                 </button>
                 <br />
-                {isTextAreaShown && <TextArea />}
+                {isTextAreaShown && <TextArea afterSubmit={afterSubmit}/>}
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}

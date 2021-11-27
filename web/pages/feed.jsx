@@ -25,8 +25,6 @@ export default function Feed() {
   }
 
   const onFilterGenreChange = (e) => {
-    console.log(posts)
-    console.log(filteredPosts)
     if (e.target.value === '')
       setFilteredPosts([])
     else

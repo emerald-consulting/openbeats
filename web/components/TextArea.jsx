@@ -33,7 +33,7 @@ export default function TextArea() {
     axios
       .post("http://localhost:8000/files/upload", fileUploadForm, {})
       .then(function (response) {
-        setFileUrl(response.data);
+        setFileUrl(response.data.fileId.toString());
       })
       .catch(function (err) {
         console.log(err);

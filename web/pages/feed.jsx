@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
-import {
-  FolderIcon,
-  HomeIcon,
-  MenuIcon,
-  UsersIcon,
-} from "@heroicons/react/outline";
 import axios from "axios";
 import TextArea from "../components/TextArea";
 import Card from "../components/Card";
-import Wav from "../components/Wav";
 
 const baseURL = "http://localhost:8000/posts/";
 

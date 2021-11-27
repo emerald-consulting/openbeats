@@ -1,6 +1,5 @@
 import { DownloadIcon } from "@heroicons/react/solid";
 import axios from "axios";
-import Wav from "./Wav";
 
 // const people = [
 //   {
@@ -49,30 +48,26 @@ export default function Card(post) {
                 alt=""
               /> */}
               <div className="flex-1 space-y-1">
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium">
-                    {/* put name of user here */}
+                    {post.authorId}
                   </h3>
                   <p className="text-sm text-gray-500">{activityItem.time}</p>
-                </div>
+                </div> */}
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
-                {post.fileUrl && (
-                  <div>
-                    <Wav props={post} />
-                    <button
-                      type="button"
-                      className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
-                      onClick={downloadFile}
-                    >
-                      Download
-                      <DownloadIcon
-                        className="ml-2 -mr-0.5 h-4 w-4"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                )}
+                <br/>
+                <button
+                  type="button"
+                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
+                  onClick={downloadFile}
+                >
+                  Download
+                  <DownloadIcon
+                    className="ml-2 -mr-0.5 h-4 w-4"
+                    aria-hidden="true"
+                  />
+                </button>
               </div>
             </div>
           </li>

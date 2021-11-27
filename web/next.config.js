@@ -1,5 +1,4 @@
 module.exports = {
-<<<<<<< HEAD
   poweredByHeader: false,
 
   webpackDevMiddleware: config => {
@@ -9,7 +8,4 @@ module.exports = {
     }
     return config
   },
-=======
-  reactStrictMode: true,
->>>>>>> 92e221aa47661ebaeeb27f8809ad5b6dcacc51c5
 };

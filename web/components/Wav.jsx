@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import WaveSurfer from 'wavesurfer.js';
 
 class Wav extends Component {
   constructor(props) {
@@ -10,22 +9,15 @@ class Wav extends Component {
   componentDidMount() {
     var url = this.props.props.fileUrl;
     var container = '#waveform' + this.props.props.id
-    
-    this.waveform = WaveSurfer.create({
+    import('wavesurfer.js')
+    .then(obj => {
+      this.waveform = obj.default.create({
       container: container,
-      waveColor: "#eee",
-      progressColor: "#34D399",
-      cursorColor: "Pink",
-      barWidth: 2,
-      barRadius: 2,
-      responsive: true,
-      height: 100,
-      normalize: true,
-      partialRender: true
-    });
-
+      fillParent: false,
+    })
     this.waveform.load(url);
-  };
+  });
+};
   
   handlePlayPause = () => {
     this.setState({playing: !this.state.playing})

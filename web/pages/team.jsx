@@ -13,8 +13,7 @@ const devs = [
     name: "Priya Sanjay Sonawane",
     title: "Software Developer",
     email: "priyason@buffalo.edu",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+    imageUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftechcrunch.com%2F2017%2F10%2F01%2Fthoughts-on-white-people-using-dark-skinned-emoji%2F&psig=AOvVaw1kWih_PNtumMjad9Gcm07o&ust=1637968389640000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOD-gfTRtPQCFQAAAAAdAAAAABAJ"
   },
   {
     id: 3,
@@ -30,7 +29,7 @@ const devs = [
     title: "Software Developer",
     email: "bailey8@buffalo.edu",
     imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
   },
   {
     id: 5,
@@ -38,7 +37,7 @@ const devs = [
     title: "Software Developer",
     email: "ryandils@buffalo.edu",
     imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
   },
 ];
 
@@ -60,6 +59,7 @@ export default function Team() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

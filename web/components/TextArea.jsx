@@ -15,9 +15,14 @@ const baseURL = "http://localhost:8000/posts/create";
 export default function TextArea() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [genre, setGenre] = useState("");
   const [fileUrl, setFileUrl] = useState("");
 
   const router = useRouter();
+
+  const onGenreChange = (event) => {
+    setGenre(event.target.value);
+  };
 
   const onTitleChange = (event) => {
     setTitle(event.target.value);
@@ -45,6 +50,7 @@ export default function TextArea() {
     const postForm = {
       title: title,
       description: description,
+      genre: genre,
       fileUrl: fileUrl,
     };
     await axios
@@ -96,6 +102,20 @@ export default function TextArea() {
           <div className="py-2">
             <div className="h-9" />
           </div>
+          <div className="h-px" />
+
+          <label htmlFor="genre" className="sr-only">
+            Genre
+          </label>
+          <input
+            type="text"
+            name="genre"
+            id="genre"
+            className="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0"
+            placeholder="Genre"
+            onChange={onGenreChange}
+          />
+
           <div className="h-px" />
           <div className="py-2">
             <div className="py-px">

@@ -14,6 +14,12 @@ export class CreatePostDto {
   description?: string;
 
   fileUrl?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  genre: string;
+
+  // pubfile?: PublicFile;
 }
 
 export default CreatePostDto;

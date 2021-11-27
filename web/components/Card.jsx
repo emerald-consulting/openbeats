@@ -55,6 +55,7 @@ export default function Card(post) {
                   <p className="text-sm text-gray-500">{activityItem.time}</p>
                 </div> */}
                 <h3>{post.title}</h3>
+                <p>{post.genre}</p>
                 <p>{post.description}</p>
                 <br/>
                 <button

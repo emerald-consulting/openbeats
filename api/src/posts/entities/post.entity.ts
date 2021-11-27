@@ -36,6 +36,9 @@ export class Post {
   @Column({ nullable: true })
   public category?: string;
 
+  @Column({ nullable: true })
+  public genre?: string;
+
   @ManyToMany(() => Category, (category: Category) => category.posts)
   @JoinTable()
   public categories: Category[];

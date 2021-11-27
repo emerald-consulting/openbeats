@@ -27,7 +27,7 @@ export class Post {
   public description?: string;
 
   @Column({ nullable: true })
-  public fileUrl?: string;
+  public fileId?: number;
 
   @OneToOne(() => PublicFile, (pubfile: PublicFile) => pubfile.post)
   @JoinTable()

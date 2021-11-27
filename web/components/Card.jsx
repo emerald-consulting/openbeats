@@ -1,14 +1,9 @@
 import { DownloadIcon } from "@heroicons/react/solid";
 import axios from "axios";
+import Wav from "./Wav";
 
-// const people = [
-//   {
-//     name: "Ryan Dils",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80",
-//   },
-//   // More people...
-// ];
+const baseUrl = `http://localhost:8000/files/download` || `https://openbeats.vercel.app/files/download`
+
 const activityItems = [
   {
     id: 1,
@@ -57,18 +52,23 @@ export default function Card(post) {
                 <h3>{post.title}</h3>
                 <p>{post.genre}</p>
                 <p>{post.description}</p>
-                <br/>
-                <button
-                  type="button"
-                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
-                  onClick={downloadFile}
-                >
-                  Download
-                  <DownloadIcon
-                    className="ml-2 -mr-0.5 h-4 w-4"
-                    aria-hidden="true"
-                  />
-                </button>
+                {post.fileId && (
+                  <div>
+                    <Wav props={{...post}}/>
+                    <br />
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500"
+                      onClick={downloadFile}
+                    >
+                      Download
+                      <DownloadIcon
+                        className="ml-2 -mr-0.5 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </li>

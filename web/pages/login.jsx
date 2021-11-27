@@ -3,7 +3,7 @@ import { route } from "next/dist/server/router";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 
-const baseURL = "http://localhost:8000/auth/log-in";
+const baseURL = "http://localhost:8000/auth/log-in" || "https://openbeats.vercel.app/auth/log-in";
 
 export default function Example() {
   const [email, setEmail] = useState("");

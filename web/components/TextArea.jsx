@@ -10,15 +10,14 @@ import {
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const baseURL = "http://localhost:8000/posts/create";
+const baseURL = "http://localhost:8000/posts/create" || "https://openbeats.vecel.app/posts/create";
 
-export default function TextArea() {
+export default function TextArea(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
-  const [fileUrl, setFileUrl] = useState("");
-
-  const router = useRouter();
+  const [fileId, setFileId] = useState(-1);
+  const [uploading, setUploading] = useState(false);
 
   const onGenreChange = (event) => {
     setGenre(event.target.value);
@@ -35,14 +34,17 @@ export default function TextArea() {
   const onSetFileUrl = async (e) => {
     const fileUploadForm = new FormData();
     fileUploadForm.append("file", e.target.files[0]);
+    setUploading(true);
+
     axios
-      .post("http://localhost:8000/files/upload", fileUploadForm, {})
+      .post("http://localhost:8000/files/upload" || "https://openbeats.vercel.app", fileUploadForm, {})
       .then(function (response) {
-        setFileUrl(response.data.fileId.toString());
+        console.log(response.data)
+        setFileId(response.data.id);
       })
       .catch(function (err) {
         console.log(err);
-      });
+      }).finally(() => setUploading(false));;
   };
 
   const onSubmit = async (e) => {
@@ -51,23 +53,40 @@ export default function TextArea() {
       title: title,
       description: description,
       genre: genre,
-      fileUrl: fileUrl,
+      fileId: fileId,
     };
     await axios
       .post(baseURL, postForm)
       .then(function (response) {
         // handle success
         console.log(response);
-        router.push("/feed");
+        props.afterSubmit(e, response.data)
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       })
-      .then(() => {
-        router.push("/feed");
-      });
   };
+
+  const RenderCreate = () => {
+    if (!uploading)
+      return (
+        <button
+          type="submit"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+        >
+          Create
+        </button>)
+    else
+        return (
+          <button
+          disabled={true}
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-400"
+        >
+          Create
+        </button>
+        )
+  }
 
   return (
     <form onSubmit={onSubmit} className="relative">
@@ -140,12 +159,7 @@ export default function TextArea() {
             </button>
           </div>
           <div className="flex-shrink-0">
-            <button
-              type="submit"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-            >
-              Create
-            </button>
+            <RenderCreate />
           </div>
         </div>
       </div>

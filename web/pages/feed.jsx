@@ -3,7 +3,7 @@ import axios from "axios";
 import TextArea from "../components/TextArea";
 import Card from "../components/Card";
 
-const baseURL = "http://localhost:8000/posts/";
+const baseURL = "http://localhost:8000/posts/" || "https://openbeats.vercel.app/posts/";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -13,6 +13,11 @@ export default function Feed() {
   const handleTextArea = (e) => {
     e.preventDefault();
     setTextAreaShown(true);
+  };
+
+  const afterSubmit = (e, post) => {
+    setPosts([...posts, post])
+    setTextAreaShown(false);
   };
 
   const RenderPosts = () => {
@@ -25,8 +30,6 @@ export default function Feed() {
   }
 
   const onFilterGenreChange = (e) => {
-    console.log(posts)
-    console.log(filteredPosts)
     if (e.target.value === '')
       setFilteredPosts([])
     else
@@ -37,8 +40,10 @@ export default function Feed() {
   }
 
   useEffect(() => {
-    axios.get(`${baseURL}`).then((r) => setPosts([...r.data]));
-  }, [setPosts]);
+    axios.get(`${baseURL}`)
+    .then((r) => setPosts([...r.data]))
+    .catch(e => console.log(e));
+  }, []);
 
   return (
     <>
@@ -57,7 +62,7 @@ export default function Feed() {
                   New Post
                 </button>
                 <br />
-                {isTextAreaShown && <TextArea />}
+                {isTextAreaShown && <TextArea afterSubmit={afterSubmit}/>}
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}

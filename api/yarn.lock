@@ -735,12 +735,12 @@
     multer "1.4.3"
     tslib "2.3.1"
 
-"@nestjs/platform-socket.io@^8.1.2":
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-socket.io/-/platform-socket.io-8.1.2.tgz#e08a0bcba2b82c47de32cf2a54d668280cc36b71"
-  integrity sha512-eh5YcRDSrMwYTnXwaXsqO9SsLlQX4c9LZ6xyQuW1zpc00X1CaOaQfqMjgCfTbSIbSPDgIDyXVqp5Ca6UuCUvvQ==
+"@nestjs/platform-socket.io@^8.2.3":
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-socket.io/-/platform-socket.io-8.2.3.tgz#826e65e5fb49be7c36b0f2b9aa89ad67436d1d3d"
+  integrity sha512-Mq4BLN5mquMfB0CwsSd20rlVre9xxKEnUotpjqPSpNaBwT3pJv55dJeyMbBgzv6Xf9/wuZ6llBCIMZMU2L451A==
   dependencies:
-    socket.io "4.3.1"
+    socket.io "4.3.2"
     tslib "2.3.1"
 
 "@nestjs/schematics@^8.0.0", "@nestjs/schematics@^8.0.3":
@@ -778,10 +778,10 @@
   dependencies:
     uuid "8.3.2"
 
-"@nestjs/websockets@^8.1.2":
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-8.1.2.tgz#2c7d9cbc9adb7ad7e2ff26cb158989115823582c"
-  integrity sha512-pt/VmM2VJ3UMfo6Fr3ghZFjDF3UlngsYKsjYThFMLmq6kltqLkp5JrvxrZceHMtbywWTcybTKRRL2WCBjgFbmg==
+"@nestjs/websockets@^8.2.3":
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-8.2.3.tgz#da535c6d461a33e16f45a6ea6845f361e4aff30f"
+  integrity sha512-31/lXr7gWSc53q8nN9ScmV6jBl4uwnubdv9nZ0BOYapJiQlJphK041KD0Zblp3K1KWIxb8nlkmQeVeZd81ms+Q==
   dependencies:
     iterare "1.2.1"
     object-hash "2.2.0"
@@ -5357,10 +5357,22 @@ socket.io-parser@~4.0.4:
     component-emitter "~1.3.0"
     debug "~4.3.1"
 
-socket.io@*, socket.io@4.3.1:
+socket.io@*:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-4.3.1.tgz#c0aa14f3f916a8ab713e83a5bd20c16600245763"
   integrity sha512-HC5w5Olv2XZ0XJ4gOLGzzHEuOCfj3G0SmoW3jLHYYh34EVsIr3EkW9h6kgfW+K3TFEcmYy8JcPWe//KUkBp5jA==
+  dependencies:
+    accepts "~1.3.4"
+    base64id "~2.0.0"
+    debug "~4.3.2"
+    engine.io "~6.0.0"
+    socket.io-adapter "~2.3.2"
+    socket.io-parser "~4.0.4"
+
+socket.io@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-4.3.2.tgz#85ae0cf5cf18acbce648ac9f48aba66df8cea6bf"
+  integrity sha512-6S5tV4jcY6dbZ/lLzD6EkvNWI3s81JO6ABP/EpvOlK1NPOcIj3AS4khi6xXw6JlZCASq82HQV4SapfmVMMl2dg==
   dependencies:
     accepts "~1.3.4"
     base64id "~2.0.0"

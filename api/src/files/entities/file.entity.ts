@@ -20,7 +20,7 @@ export class PublicFile extends BaseEntity {
   @Column()
   public key: string;
 
-  @OneToOne(() => Post, (post: Post) => post.fileUrl)
+  @OneToOne(() => Post, (post: Post) => post.fileId)
   @JoinColumn()
   public post?: Post;
 }

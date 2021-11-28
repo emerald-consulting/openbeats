@@ -10,6 +10,7 @@ import { FilesModule } from './files/files.module';
 import { FacebookStrategy } from './facebook.strategy';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
+import { AppGateway } from './AppGateway';
 
 @Module({
   imports: [
@@ -41,6 +42,6 @@ import { AppController } from './app.controller';
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [AppGateway],
 })
 export class AppModule {}

@@ -17,6 +17,8 @@ class Wav extends Component {
       this.waveform = obj.default.create({
       container: container,
       fillParent: true,
+      progressColor: "#064E3B",
+      cursorColor: "#FF69B4"
     })
     this.waveform.load(url);
   });

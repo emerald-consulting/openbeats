@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 
 class Wav extends Component {
@@ -6,8 +7,10 @@ class Wav extends Component {
     this.state = {playing: false};
   }
 
-  componentDidMount() {
-    var url = this.props.props.fileUrl;
+  async componentDidMount() {
+    const baseUrl = "http://localhost:8000/files/"
+    var fileId = this.props.props.fileId;
+    var url = await (await axios.get(baseUrl + fileId)).data.fileId;
     var container = '#waveform' + this.props.props.id
     import('wavesurfer.js')
     .then(obj => {

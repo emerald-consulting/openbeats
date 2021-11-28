@@ -34,4 +34,9 @@ export class FilesController {
     const file = await this.filesService.downloadPublicFile(id);
     file.pipe(res);
   }
+
+  @Get(':id')
+  getPostById(@Param('id') id: number) {
+    return this.filesService.getPublicFileById(id);
+  }
 }

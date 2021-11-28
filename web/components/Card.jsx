@@ -58,7 +58,7 @@ export default function Card(post) {
                 <h3>{post.title}</h3>
                 <p>{post.genre}</p>
                 <p>{post.description}</p>
-                {post.fileUrl && (
+                {post.fileId && (
                   <div>
                     <Wav props={{...post}}/>
                     <br />

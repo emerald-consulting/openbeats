@@ -16,12 +16,8 @@ export default function TextArea(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
-  const [fileUrl, setFileUrl] = useState("");
+  const [fileId, setFileId] = useState(-1);
   const [uploading, setUploading] = useState(false);
-
-  console.log(!fileUrl ? true : false);
-
-  const router = useRouter();
 
   const onGenreChange = (event) => {
     setGenre(event.target.value);
@@ -43,7 +39,8 @@ export default function TextArea(props) {
     axios
       .post("http://localhost:8000/files/upload", fileUploadForm, {})
       .then(function (response) {
-        setFileUrl(response.data.fileId.toString());
+        console.log(response.data)
+        setFileId(response.data.id);
       })
       .catch(function (err) {
         console.log(err);
@@ -56,7 +53,7 @@ export default function TextArea(props) {
       title: title,
       description: description,
       genre: genre,
-      fileUrl: fileUrl,
+      fileId: fileId,
     };
     await axios
       .post(baseURL, postForm)

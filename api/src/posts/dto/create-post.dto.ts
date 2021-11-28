@@ -1,6 +1,5 @@
 import { IsString, IsNotEmpty } from 'class-validator';
 import { User } from '../../users/entities/user.entity';
-import { PublicFile } from 'src/files/entities/file.entity';
 
 export class CreatePostDto {
   /* Title is required */
@@ -13,7 +12,7 @@ export class CreatePostDto {
   @IsString()
   description?: string;
 
-  fileUrl?: string;
+  fileId?: number;
 
   @IsString()
   genre: string;

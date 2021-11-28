@@ -7,6 +7,10 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": ">=12.22.0"
+  },
+
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.6.1",
     "@dschoon/react-waves": "^4.0.3",

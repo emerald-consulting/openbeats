@@ -16,7 +16,7 @@ class Wav extends Component {
     .then(obj => {
       this.waveform = obj.default.create({
       container: container,
-      fillParent: false,
+      fillParent: true,
     })
     this.waveform.load(url);
   });

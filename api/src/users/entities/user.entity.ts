@@ -15,19 +15,6 @@ import { Address } from './address.entity';
 export class User {
   @PrimaryGeneratedColumn()
   public id?: number;
-
-  @Column()
-  @Expose()
-  public firstName: string;
-
-  @Column()
-  @Expose()
-  public lastName: string;
-
-  @Column({ unique: true })
-  @Expose()
-  public username: string;
-
   @Column({ unique: true })
   @Expose()
   public email: string;
@@ -59,6 +46,10 @@ export class User {
   @Column({ nullable: true })
   @Expose()
   public bio?: string;
+
+  @Column({ nullable: true })
+  @Expose()
+  public genre?: string;
 
   @OneToOne(() => Address, {
     eager: true,

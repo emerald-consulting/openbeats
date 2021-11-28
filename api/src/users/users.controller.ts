@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   UseInterceptors,
+  ClassSerializerInterceptor,
   Req,
   UploadedFile,
 } from '@nestjs/common';
@@ -22,6 +23,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('users')
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -41,7 +43,7 @@ export class UsersController {
     return this.usersService.deleteAvatar(request.user.id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
@@ -51,9 +53,14 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  getUserById(@Param('id') id: string) {
-    return this.usersService.getById(+id);
+  @Get(':email')
+  getUserById(@Param('email') email: string) {
+    return this.usersService.getByEmail(email);
+  }
+
+  @Get(':genre')
+  getUserByGenre(@Param('genre') genre: string) {
+    return this.usersService.getByGenre(genre);
   }
 
   @Patch(':id')

@@ -6,10 +6,7 @@ import Message from './message.entity';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [
-    AuthModule,
-    TypeOrmModule.forFeature([Message]),
-  ],
+  imports: [AuthModule, TypeOrmModule.forFeature([Message])],
   controllers: [],
   providers: [],
 })

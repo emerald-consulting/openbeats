@@ -1,25 +1,20 @@
-const colors = require('tailwindcss/colors')
-
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ['./pages//*.{js,ts,jsx,tsx}', './components//*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  purge: false,
+  darkMode: "class", 
 
   theme: {
     extend: {
       colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
+        transparent: "transparent",
+        current: "currentColor",
         emerald: colors.emerald,
-
       },
-
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require("@tailwindcss/forms")],
+};

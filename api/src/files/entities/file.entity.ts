@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
 import {
   Column,
   Entity,
@@ -6,6 +5,7 @@ import {
   BaseEntity,
   OneToOne,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Post } from 'src/posts/entities/post.entity';
 
@@ -15,12 +15,13 @@ export class PublicFile extends BaseEntity {
   public id: number;
 
   @Column()
-  public url: string;
+  public fileId: string;
 
   @Column()
   public key: string;
 
-  @OneToOne(() => Post, (post: Post) => post.pubfile)
+  @OneToOne(() => Post, (post: Post) => post.fileId)
+  @JoinColumn()
   public post?: Post;
 }
 

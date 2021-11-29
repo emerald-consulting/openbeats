@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PublicFile } from '../files/entities/file.entity';
 import { User } from '../users/entities/user.entity';
-import { Address } from '../users/entities/address.entity';
 import { Post } from '../posts/entities/post.entity';
 import Category from 'src/categories/category.entity';
 
@@ -22,7 +21,7 @@ import Category from 'src/categories/category.entity';
         database: configService.get('POSTGRES_DB'),
         autoLoadEntities: true,
         synchronize: true,
-        entities: [PublicFile, User, Address, Post, Category],
+        entities: [PublicFile, User, Post, Category],
       }),
     }),
   ],

@@ -41,7 +41,6 @@ export class PostsController {
     return this.postsService.getPostById(Number(id));
   }
 
-  // Auth guard
   @Post('create')
   //@UseGuards(JwtAuthGuard)
   async createPost(@Body() post: CreatePostDto, @Req() req: RequestWithUser) {

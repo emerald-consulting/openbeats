@@ -8,6 +8,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
 import { PostNotFoundException } from './exceptions/postNotFound.exception';
 import { Connection } from 'typeorm';
+import { PublicFile } from 'src/files/entities/file.entity';
 
 @Injectable()
 export class PostsService {
@@ -36,7 +37,8 @@ export class PostsService {
       title: post.title,
       author: user,
       description: post.description,
-      pubfile: post.pubfile,
+      genre: post.genre,
+      fileId: post.fileId,
     });
     await this.postsRepository.save(newPost);
     return newPost;

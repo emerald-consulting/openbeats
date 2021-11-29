@@ -6,6 +6,7 @@ import { ExcludeNullInterceptor } from './utils/excludeNull.interceptor';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'aws-sdk';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -24,13 +25,19 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
+  /*
   const configService = app.get(ConfigService);
   config.update({
     accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
     secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
     region: configService.get('AWS_REGION'),
   });
+  */
 
   await app.listen(8000);
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 bootstrap();

@@ -26,12 +26,18 @@ export class Post {
   @Column({ nullable: true })
   public description?: string;
 
+  @Column({ nullable: true })
+  public fileId?: number;
+
   @OneToOne(() => PublicFile, (pubfile: PublicFile) => pubfile.post)
   @JoinTable()
   public pubfile?: PublicFile;
 
   @Column({ nullable: true })
   public category?: string;
+
+  @Column({ nullable: true })
+  public genre?: string;
 
   @ManyToMany(() => Category, (category: Category) => category.posts)
   @JoinTable()

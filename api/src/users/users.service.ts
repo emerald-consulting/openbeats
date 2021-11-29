@@ -68,7 +68,10 @@ export class UsersService {
       });
       await this.filesService.deletePublicFile(user.avatar.id);
     }
-    const avatar = await this.filesService.uploadPublicFile(img);
+    const avatar = await this.filesService.uploadPublicFile(
+      img.buffer,
+      img.originalname,
+    );
     await this.usersRepository.update(userId, {
       ...user,
       avatar,

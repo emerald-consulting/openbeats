@@ -1,4 +1,4 @@
-# bflobox Makefile
+# Open Beats Makefile
 
 # ============================================================================
 # Globals
@@ -15,6 +15,10 @@ VERSION:=latest
 # ============================================================================
 # Local Development Commands
 # ============================================================================
+
+.PHONE: fresh
+fresh:
+	rm -rf .next && yarn build && docker-compose up --build
 
 .PHONY: build
 build:

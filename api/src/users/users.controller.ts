@@ -37,6 +37,21 @@ export class UsersController {
     return this.usersService.addAvatar(request.user.id, file);
   }
 
+  @Patch(':id/:genre')
+  async addGenre(@Param('id') id: string, @Param('genre') genre: string) {
+    return this.usersService.UpdateGenre(id, 'genre', genre);
+  }
+
+  @Patch(':id/:bio')
+  async addBio(@Param('id') id: string, @Param('bio') bio: string) {
+    return this.usersService.UpdateGenre(id, 'bio', bio);
+  }
+
+  @Patch(':id/:age')
+  async addAge(@Param('id') id: string, @Param('age') age: string) {
+    return this.usersService.UpdateGenre(id, 'age', age);
+  }
+
   @Delete('avatar')
   @UseGuards(JwtAuthGuard)
   async deleteAvatar(@Req() request: RequestWithUser) {

@@ -18,8 +18,8 @@ function Profile() {
             className="align-items-center profile-header mb-5 text-center text-md-left"
             data-testid="profile"
           />
-          <Settings/>
-          </>
+          <Settings />
+        </>
       )}
     </>
   );

@@ -39,12 +39,13 @@ export default function TextArea(props) {
     axios
       .post("http://localhost:8000/files/upload", fileUploadForm, {})
       .then(function (response) {
-        console.log(response.data)
+        console.log(response.data);
         setFileId(response.data.id);
       })
       .catch(function (err) {
         console.log(err);
-      }).finally(() => setUploading(false));;
+      })
+      .finally(() => setUploading(false));
   };
 
   const onSubmit = async (e) => {
@@ -60,12 +61,12 @@ export default function TextArea(props) {
       .then(function (response) {
         // handle success
         console.log(response);
-        props.afterSubmit(e, response.data)
+        props.afterSubmit(e, response.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
+      });
   };
 
   const RenderCreate = () => {
@@ -76,17 +77,18 @@ export default function TextArea(props) {
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
         >
           Create
-        </button>)
+        </button>
+      );
     else
-        return (
-          <button
+      return (
+        <button
           disabled={true}
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-400"
         >
           Create
         </button>
-        )
-  }
+      );
+  };
 
   return (
     <form onSubmit={onSubmit} className="relative">

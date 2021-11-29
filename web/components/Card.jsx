@@ -60,7 +60,7 @@ export default function Card(post) {
                 <p>{post.description}</p>
                 {post.fileId && (
                   <div>
-                    <Wav props={{...post}}/>
+                    <Wav props={{ ...post }} />
                     <br />
                     <button
                       type="button"

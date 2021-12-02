@@ -4,7 +4,7 @@ import Message from "../components/Message";
 import MessageInput from "../components/MessageInput";
 
 export default function Messages () {
-    const baseUrl = "http://localhost:8000"
+    const baseUrl = "http://localhost:8000" || "https://openbeats.vercel.app"
     const socket = useRef(null);
     const [messages, setMessages] = useState([]);
     const [audio] = useState(typeof Audio !== "undefined" && new Audio('notification.mp3'));

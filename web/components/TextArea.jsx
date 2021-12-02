@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const baseURL = "http://localhost:8000/posts/create";
+const baseURL = "http://localhost:8000/posts/create" || "https://openbeats.vecel.app/posts/create";
 
 export default function TextArea(props) {
   const [title, setTitle] = useState("");
@@ -37,7 +37,7 @@ export default function TextArea(props) {
     setUploading(true);
 
     axios
-      .post("http://localhost:8000/files/upload", fileUploadForm, {})
+      .post("http://localhost:8000/files/upload" || "https://openbeats.vercel.app", fileUploadForm, {})
       .then(function (response) {
         console.log(response.data)
         setFileId(response.data.id);

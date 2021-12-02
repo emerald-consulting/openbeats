@@ -8,7 +8,7 @@ class Wav extends Component {
   }
 
   async componentDidMount() {
-    const baseUrl = "http://localhost:8000/files/"
+    const baseUrl = "http://localhost:8000/files/" || "https://openbeats.vercel.app/files/"
     var fileId = this.props.props.fileId;
     var url = await (await axios.get(baseUrl + fileId)).data.fileId;
     var container = '#waveform' + this.props.props.id

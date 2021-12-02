@@ -6,7 +6,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-const baseURL = "http://localhost:8000/auth/register";
+const baseURL = "http://localhost:8000/auth/register" || "https://openbeats.vercel.app/auth/register";
 
 const navigation = [
   { name: "Pricing", href: "/pricing" },

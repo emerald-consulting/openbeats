@@ -3,7 +3,7 @@ import { PlusIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
-const baseURL = "http://localhost:8000";
+import { BASE_URL } from '../env'
 
 export default function Projects() {
   const router = useRouter();

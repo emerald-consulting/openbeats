@@ -8,6 +8,8 @@ import Settings from "../components/Settings";
 
 function Profile() {
   const { user, isLoading } = useUser();
+  const userid = user.id;
+  
 
   return (
     <>

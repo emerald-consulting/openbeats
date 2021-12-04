@@ -68,7 +68,7 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
+const baseURL = process.env.NODE_ENV == 'development' ? 'http://localhost:8000': [production_backend_url]
 export default function Settings(props) {
   const [availableToHire, setAvailableToHire] = useState(true);
   const [privateAccount, setPrivateAccount] = useState(false);
@@ -77,9 +77,29 @@ export default function Settings(props) {
   const [genre, setgenre] = useState("");
   const [bio, setbio] = useState("");
   const [age, setage] = useState("");
-  const [picture, setpicture] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  // const [picture, setpicture] = useState("");
   const id = "acbd";
 
+  useEffect(() => {
+    axios.get(`${BASE_URL}/users/${id}`).then(function(response) {
+      if(response.data.user_metadata.age){
+        setage(response.data.age);
+      }
+      if(response.data.user_metadata.genre){
+        setgenre(response.data.user_metadata.genre);
+      }
+      if(responce.data.user_metadata.bio){
+        setbio(responce.data.user_metadata.bio);
+      }
+      if(response.data.user_metadata.age){
+        setgenre(response.data.user_metadata.age);
+      }
+      setFirstName(response.data.given_name);
+      setLastName(response.data.family_name);
+    })
+  }, [])
   const onBioChange = (event) => {
     setBio(event.target.value);
   };
@@ -97,10 +117,10 @@ export default function Settings(props) {
     setLastName(event.target.value);
   };
 
-  const onAvatarChange = (event) => {
-    console.log("chaning avatar");
-    setAvatar(event.target.value);
-  };
+  // const onAvatarChange = (event) => {
+  //   console.log("chaning avatar");
+  //   setAvatar(event.target.value);
+  // };
 
   const onGenreChange = (event) => {
     // console.log(event.target.value);
@@ -113,25 +133,25 @@ export default function Settings(props) {
     e.preventDefault();
     if (lastName) {
       axios
-        .post("http://localhost:8000/users/lastName/" + lastName)
+        .post(`${BASE_URL}/users/lastName/${lastName}`)
         .then(function (response) {
           console.log(response);
         });
     }
     if (firstName) {
       axios
-        .post("http://localhost:8000/users/firstName/" + firstName)
+        .post(`${BASE_URL}/users/lastName/${firstName}`)
         .then(function (response) {
           console.log(response);
         });
     }
-    if (picture) {
-      axios
-        .post("http://localhost:8000/users/avatar/" + picture)
-        .then(function (response) {
-          console.log(response);
-        });
-    }
+    // if (picture) {
+    //   axios
+    //     .post("http://localhost:8000/users/avatar/" + picture)
+    //     .then(function (response) {
+    //       console.log(response);
+    //     });
+    // }
     if (genre) {
       axios
         .patch("http://localhost:8000/users/" + id + "/genre/" + genre)
@@ -236,7 +256,7 @@ export default function Settings(props) {
                             htmlFor="bio"
                             className="block text-sm font-medium text-gray-700"
                           >
-                            About
+                            Bio
                           </label>
                           <div className="mt-1">
                             <textarea
@@ -245,7 +265,7 @@ export default function Settings(props) {
                               name="bio"
                               rows={3}
                               className="shadow-sm focus:ring-sky-500 focus:border-sky-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                              defaultValue={""}
+                              value={bio}
                             />
                           </div>
                           <p className="mt-2 text-sm text-gray-500">
@@ -255,7 +275,7 @@ export default function Settings(props) {
                         </div>
                       </div>
 
-                      <div className="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">
+                      {/* <div className="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">
                         <p
                           className="text-sm font-medium text-gray-700"
                           aria-hidden="true"
@@ -315,7 +335,7 @@ export default function Settings(props) {
                             />
                           </label>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="mt-6 grid grid-cols-12 gap-6">
@@ -331,6 +351,7 @@ export default function Settings(props) {
                           type="text"
                           name="first-name"
                           id="first-name"
+                          value={setFirstName}
                           autoComplete="given-name"
                           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                         />
@@ -348,6 +369,7 @@ export default function Settings(props) {
                           type="text"
                           name="last-name"
                           id="last-name"
+                          value={setLastName}
                           autoComplete="family-name"
                           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                         />
@@ -362,6 +384,7 @@ export default function Settings(props) {
                         </label>
                         <input
                           onChange={onGenreChange}
+                          value={setGenre}
                           type="text"
                           name="url"
                           id="url"
@@ -389,7 +412,7 @@ export default function Settings(props) {
 
                   {/* Privacy section */}
                   <div className="pt-6 divide-y divide-gray-200">
-                    <div className="px-4 sm:px-6">
+                    {/* <div className="px-4 sm:px-6">
                       <div>
                         <h2 className="text-lg leading-6 font-medium text-gray-900">
                           Privacy
@@ -545,7 +568,7 @@ export default function Settings(props) {
                           </Switch>
                         </Switch.Group>
                       </ul>
-                    </div>
+                    </div> */}
                     <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
                       <button
                         type="button"

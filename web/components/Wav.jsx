@@ -36,9 +36,9 @@ class Wav extends Component {
       <div>
         <div id={"waveform" + id} />
         <div className="controls">
-          <div onClick={this.handlePlayPause}>
+          <button className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring--500" onClick={this.handlePlayPause}>
             {this.state.playing ? "Pause" : "Play"}
-          </div>
+          </button>
         </div>
       </div>
     );

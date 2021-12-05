@@ -16,7 +16,7 @@ export default function TextArea(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
-  const [fileId, setFileId] = useState(-1);
+  const [fileId, setFileId] = useState(null);
   const [uploading, setUploading] = useState(false);
 
   const onGenreChange = (event) => {

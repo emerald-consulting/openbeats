@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { handleAuth } from "@auth0/nextjs-auth0";
 
 export default function Settings(props) {
   const BASE_URL = "localhost:8000/api";
@@ -9,7 +10,6 @@ export default function Settings(props) {
   const [genre, setGenre] = useState("");
   const [age, setAge] = useState("");
   const id = "abcd";
-
   const onBioChange = (e) => setBio(e.target.value);
   const onFirstNameChange = (e) => setFirstName(e.target.value);
   const onLastNameChange = (e) => setLastName(e.target.value);
@@ -23,13 +23,22 @@ export default function Settings(props) {
 
   useEffect(() => {
     axios
-      .get(baseURL + "/users/id/" + id)
+      .get(baseURL + "/users/" + id)
       .then(function (response) {
         if (response.data.user_metadata.age) {
-          setage(response.data.age);
+          setAge(response.data.user_metadata.age);
+        }
+        if (response.data.user_metadata.bio) {
+          setBio(response.data.user_metadata.bio);
         }
         if (response.data.user_metadata.genre) {
-          setgenre(response.data.user_metadata.genre);
+          setGenre(response.data.user_metadata.genre);
+        }
+        if (response.data.given_name) {
+          setFirstName(response.data.given_name);
+        }
+        if (response.data.family_name) {
+          setLastName(response.data.family_name);
         }
       })
       .catch(function (error) {
@@ -59,17 +68,38 @@ export default function Settings(props) {
     e.preventDefault();
     if (lastName) {
       axios
-        .post(`${BASE_URL}/users/lastName/${lastName}`)
+        .patch(`${BASE_URL}/users/${id}/lastName/${lastName}`)
         .then(function (response) {
           console.log(response);
         });
     }
     if (firstName) {
       axios
-        .post(`${BASE_URL}/users/lastName/${firstName}`)
+        .patch(`${BASE_URL}/users/${id}/firstName/${firstName}`)
         .then(function (response) {
           console.log(response);
         });
+    if(genre){
+      axios
+        .patch(`${BASE_URL}/users/${id}/genre/${genre}`)
+        .then(function (response) {
+          console.log(response);
+        });
+    }
+    if(age){
+      axios
+        .patch(`${BASE_URL}/users/${id}/age/${age}`)
+        .then(function (response) {
+          console.log(response);
+        });
+    }
+    if(age){
+      axios
+        .patch(`${BASE_URL}/users/${id}/bio/${bio}`)
+        .then(function (response) {
+          console.log(response);
+        });
+    }
     }
 
     if (genre) {

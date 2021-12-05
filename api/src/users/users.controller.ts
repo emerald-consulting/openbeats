@@ -55,7 +55,7 @@ export class UsersController {
     // eslint-disable-next-line prettier/prettier
     @Param('FirstName') FirstName: string,
   ) {
-    console.log('still in controller');
+    // console.log('still in controller');
     return this.usersService.UpdateName(id, 'given_name', FirstName);
   }
   @Patch(':id/LastName/:LastName')
@@ -66,7 +66,7 @@ export class UsersController {
   ) {
     return this.usersService.UpdateName(id, 'family_name', LastName);
   }
-  @Get('id/:id')
+  @Get(':id')
   async GetId(@Param('id') id: string) {
     console.log('id');
     return await this.usersService.getProfileDetails(id);

@@ -1,0 +1,29 @@
+{
+    "name": "Open Beats",
+    "description": "Open Beats is a collaborative DAW",
+    "website": "https://tooljet.io/",
+    "repository": "https://github.com/emerald-consulting/openbeats",
+    "logo": "https://app.tooljet.io/assets/images/logo.svg",
+    "success_url": "/",
+    "scripts":{
+      "predeploy": "yarn install && yarn build"
+    },
+    "env": {
+      "NODE_ENV": {
+        "description": "Environment [production/development]",
+        "value": "production"
+      }
+    },
+    "formation": {
+      "web": {
+        "quantity": 1
+      }
+    },
+    "image": "heroku/nodejs",
+    "addons": ["heroku-postgresql"],
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+      }
+    ]
+  }

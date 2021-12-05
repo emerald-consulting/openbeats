@@ -48,7 +48,7 @@ export default function Card(post) {
         >
           <div className="flex-1 space-y-1">
             <p className="h3">{post.title}</p>
-            <p className="h5">{post.genre}</p>
+            <p className="h5 mb-2">{post.genre}</p>
             <p><i>{post.description}</i></p>
             {post.fileId && (
               <div>

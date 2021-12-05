@@ -24,7 +24,7 @@
   }
   ```
 */
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Switch, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import {
@@ -68,7 +68,10 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const baseURL = process.env.NODE_ENV == 'development' ? 'http://localhost:8000': [production_backend_url]
+const baseURL =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:8000"
+    : [production_backend_url];
 export default function Settings(props) {
   const [availableToHire, setAvailableToHire] = useState(true);
   const [privateAccount, setPrivateAccount] = useState(false);
@@ -83,23 +86,23 @@ export default function Settings(props) {
   const id = "acbd";
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/users/${id}`).then(function(response) {
-      if(response.data.user_metadata.age){
+    axios.get(`${BASE_URL}/users/${id}`).then(function (response) {
+      if (response.data.user_metadata.age) {
         setage(response.data.age);
       }
-      if(response.data.user_metadata.genre){
+      if (response.data.user_metadata.genre) {
         setgenre(response.data.user_metadata.genre);
       }
-      if(responce.data.user_metadata.bio){
+      if (responce.data.user_metadata.bio) {
         setbio(responce.data.user_metadata.bio);
       }
-      if(response.data.user_metadata.age){
+      if (response.data.user_metadata.age) {
         setgenre(response.data.user_metadata.age);
       }
       setFirstName(response.data.given_name);
       setLastName(response.data.family_name);
-    })
-  }, [])
+    });
+  }, []);
   const onBioChange = (event) => {
     setBio(event.target.value);
   };
@@ -175,6 +178,8 @@ export default function Settings(props) {
         });
     }
     router.push("/feed");
+
+    render() {
     return (
       <div>
         <main className="relative -mt-32">
@@ -229,27 +234,7 @@ export default function Settings(props) {
 
                     <div className="mt-6 flex flex-col lg:flex-row">
                       <div className="flex-grow space-y-6">
-                        {/* <div>
-                        <label
-                          htmlFor="username"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Username
-                        </label>
-                        <div className="mt-1 rounded-md shadow-sm flex">
-                          <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
-                            workcation.com/
-                          </span>
-                          <input
-                            type="text"
-                            name="username"
-                            id="username"
-                            autoComplete="username"
-                            className="focus:ring-sky-500 focus:border-sky-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                            defaultValue={user.handle}
-                          />
-                        </div>
-                      </div> */}
+                        {}
 
                         <div>
                           <label
@@ -276,66 +261,66 @@ export default function Settings(props) {
                       </div>
 
                       {/* <div className="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-grow-0 lg:flex-shrink-0">
-                        <p
-                          className="text-sm font-medium text-gray-700"
-                          aria-hidden="true"
-                        >
-                          Photo
-                        </p>
-                        <div className="mt-1 lg:hidden">
-                          <div className="flex items-center">
-                            <div
-                              className="flex-shrink-0 inline-block rounded-full overflow-hidden h-12 w-12"
-                              aria-hidden="true"
-                            >
-                              <img
-                                className="rounded-full h-full w-full"
-                                src={user.imageUrl}
-                                alt=""
-                              />
-                            </div>
-                            <div className="ml-5 rounded-md shadow-sm">
-                              <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
-                                <label
-                                  htmlFor="mobile-user-photo"
-                                  className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
-                                >
-                                  <span>Change</span>
-                                  <span className="sr-only"> user photo</span>
-                                </label>
-                                <input
-                                  onchange={onAvatarChange}
-                                  id="avatar"
-                                  name="avatar"
-                                  type="file"
-                                  className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          <p
+                            className="text-sm font-medium text-gray-700"
+                            aria-hidden="true"
+                          >
+                            Photo
+                          </p>
+                          <div className="mt-1 lg:hidden">
+                            <div className="flex items-center">
+                              <div
+                                className="flex-shrink-0 inline-block rounded-full overflow-hidden h-12 w-12"
+                                aria-hidden="true"
+                              >
+                                <img
+                                  className="rounded-full h-full w-full"
+                                  src={user.imageUrl}
+                                  alt=""
                                 />
+                              </div>
+                              <div className="ml-5 rounded-md shadow-sm">
+                                <div className="group relative border border-gray-300 rounded-md py-2 px-3 flex items-center justify-center hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
+                                  <label
+                                    htmlFor="mobile-user-photo"
+                                    className="relative text-sm leading-4 font-medium text-gray-700 pointer-events-none"
+                                  >
+                                    <span>Change</span>
+                                    <span className="sr-only"> user photo</span>
+                                  </label>
+                                  <input
+                                    onchange={onAvatarChange}
+                                    id="avatar"
+                                    name="avatar"
+                                    type="file"
+                                    className="absolute w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="hidden relative rounded-full overflow-hidden lg:block">
-                          <img
-                            className="relative rounded-full w-40 h-40"
-                            src={user.imageUrl}
-                            alt=""
-                          />
-                          <label
-                            htmlFor="desktop-user-photo"
-                            className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
-                          >
-                            <span>Change</span>
-                            <span className="sr-only"> user photo</span>
-                            <input
-                              type="file"
-                              id="desktop-user-photo"
-                              name="user-photo"
-                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                          <div className="hidden relative rounded-full overflow-hidden lg:block">
+                            <img
+                              className="relative rounded-full w-40 h-40"
+                              src={user.imageUrl}
+                              alt=""
                             />
-                          </label>
-                        </div>
-                      </div> */}
+                            <label
+                              htmlFor="desktop-user-photo"
+                              className="absolute inset-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center text-sm font-medium text-white opacity-0 hover:opacity-100 focus-within:opacity-100"
+                            >
+                              <span>Change</span>
+                              <span className="sr-only"> user photo</span>
+                              <input
+                                type="file"
+                                id="desktop-user-photo"
+                                name="user-photo"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer border-gray-300 rounded-md"
+                              />
+                            </label>
+                          </div>
+                        </div> */}
                     </div>
 
                     <div className="mt-6 grid grid-cols-12 gap-6">
@@ -393,182 +378,182 @@ export default function Settings(props) {
                       </div>
 
                       {/* <div className="col-span-12 sm:col-span-6">
-                      <label
-                        htmlFor="company"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Company
-                      </label>
-                      <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        autoComplete="organization"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                      />
-                    </div> */}
+                        <label
+                          htmlFor="company"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Company
+                        </label>
+                        <input
+                          type="text"
+                          name="company"
+                          id="company"
+                          autoComplete="organization"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                        />
+                      </div> */}
                     </div>
                   </div>
 
                   {/* Privacy section */}
                   <div className="pt-6 divide-y divide-gray-200">
                     {/* <div className="px-4 sm:px-6">
-                      <div>
-                        <h2 className="text-lg leading-6 font-medium text-gray-900">
-                          Privacy
-                        </h2>
-                        <p className="mt-1 text-sm text-gray-500">
-                          Ornare eu a volutpat eget vulputate. Fringilla commodo
-                          amet.
-                        </p>
-                      </div>
-                      <ul role="list" className="mt-2 divide-y divide-gray-200">
-                        <Switch.Group
-                          as="li"
-                          className="py-4 flex items-center justify-between"
-                        >
-                          <div className="flex flex-col">
-                            <Switch.Label
-                              as="p"
-                              className="text-sm font-medium text-gray-900"
-                              passive
-                            >
-                              Available to hire
-                            </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
-                              Nulla amet tempus sit accumsan. Aliquet turpis sed
-                              sit lacinia.
-                            </Switch.Description>
-                          </div>
-                          <Switch
-                            checked={availableToHire}
-                            onChange={setAvailableToHire}
-                            className={classNames(
-                              availableToHire ? "bg-teal-500" : "bg-gray-200",
-                              "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            )}
+                        <div>
+                          <h2 className="text-lg leading-6 font-medium text-gray-900">
+                            Privacy
+                          </h2>
+                          <p className="mt-1 text-sm text-gray-500">
+                            Ornare eu a volutpat eget vulputate. Fringilla commodo
+                            amet.
+                          </p>
+                        </div>
+                        <ul role="list" className="mt-2 divide-y divide-gray-200">
+                          <Switch.Group
+                            as="li"
+                            className="py-4 flex items-center justify-between"
                           >
-                            <span
-                              aria-hidden="true"
+                            <div className="flex flex-col">
+                              <Switch.Label
+                                as="p"
+                                className="text-sm font-medium text-gray-900"
+                                passive
+                              >
+                                Available to hire
+                              </Switch.Label>
+                              <Switch.Description className="text-sm text-gray-500">
+                                Nulla amet tempus sit accumsan. Aliquet turpis sed
+                                sit lacinia.
+                              </Switch.Description>
+                            </div>
+                            <Switch
+                              checked={availableToHire}
+                              onChange={setAvailableToHire}
                               className={classNames(
-                                availableToHire
-                                  ? "translate-x-5"
-                                  : "translate-x-0",
-                                "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                availableToHire ? "bg-teal-500" : "bg-gray-200",
+                                "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                               )}
-                            />
-                          </Switch>
-                        </Switch.Group>
-                        <Switch.Group
-                          as="li"
-                          className="py-4 flex items-center justify-between"
-                        >
-                          <div className="flex flex-col">
-                            <Switch.Label
-                              as="p"
-                              className="text-sm font-medium text-gray-900"
-                              passive
                             >
-                              Make account private
-                            </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
-                              Pharetra morbi dui mi mattis tellus sollicitudin
-                              cursus pharetra.
-                            </Switch.Description>
-                          </div>
-                          <Switch
-                            checked={privateAccount}
-                            onChange={setPrivateAccount}
-                            className={classNames(
-                              privateAccount ? "bg-teal-500" : "bg-gray-200",
-                              "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            )}
+                              <span
+                                aria-hidden="true"
+                                className={classNames(
+                                  availableToHire
+                                    ? "translate-x-5"
+                                    : "translate-x-0",
+                                  "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                )}
+                              />
+                            </Switch>
+                          </Switch.Group>
+                          <Switch.Group
+                            as="li"
+                            className="py-4 flex items-center justify-between"
                           >
-                            <span
-                              aria-hidden="true"
+                            <div className="flex flex-col">
+                              <Switch.Label
+                                as="p"
+                                className="text-sm font-medium text-gray-900"
+                                passive
+                              >
+                                Make account private
+                              </Switch.Label>
+                              <Switch.Description className="text-sm text-gray-500">
+                                Pharetra morbi dui mi mattis tellus sollicitudin
+                                cursus pharetra.
+                              </Switch.Description>
+                            </div>
+                            <Switch
+                              checked={privateAccount}
+                              onChange={setPrivateAccount}
                               className={classNames(
-                                privateAccount
-                                  ? "translate-x-5"
-                                  : "translate-x-0",
-                                "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                privateAccount ? "bg-teal-500" : "bg-gray-200",
+                                "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                               )}
-                            />
-                          </Switch>
-                        </Switch.Group>
-                        <Switch.Group
-                          as="li"
-                          className="py-4 flex items-center justify-between"
-                        >
-                          <div className="flex flex-col">
-                            <Switch.Label
-                              as="p"
-                              className="text-sm font-medium text-gray-900"
-                              passive
                             >
-                              Allow commenting
-                            </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
-                              Integer amet, nunc hendrerit adipiscing nam.
-                              Elementum ame
-                            </Switch.Description>
-                          </div>
-                          <Switch
-                            checked={allowCommenting}
-                            onChange={setAllowCommenting}
-                            className={classNames(
-                              allowCommenting ? "bg-teal-500" : "bg-gray-200",
-                              "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            )}
+                              <span
+                                aria-hidden="true"
+                                className={classNames(
+                                  privateAccount
+                                    ? "translate-x-5"
+                                    : "translate-x-0",
+                                  "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                )}
+                              />
+                            </Switch>
+                          </Switch.Group>
+                          <Switch.Group
+                            as="li"
+                            className="py-4 flex items-center justify-between"
                           >
-                            <span
-                              aria-hidden="true"
+                            <div className="flex flex-col">
+                              <Switch.Label
+                                as="p"
+                                className="text-sm font-medium text-gray-900"
+                                passive
+                              >
+                                Allow commenting
+                              </Switch.Label>
+                              <Switch.Description className="text-sm text-gray-500">
+                                Integer amet, nunc hendrerit adipiscing nam.
+                                Elementum ame
+                              </Switch.Description>
+                            </div>
+                            <Switch
+                              checked={allowCommenting}
+                              onChange={setAllowCommenting}
                               className={classNames(
-                                allowCommenting
-                                  ? "translate-x-5"
-                                  : "translate-x-0",
-                                "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                allowCommenting ? "bg-teal-500" : "bg-gray-200",
+                                "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                               )}
-                            />
-                          </Switch>
-                        </Switch.Group>
-                        <Switch.Group
-                          as="li"
-                          className="py-4 flex items-center justify-between"
-                        >
-                          <div className="flex flex-col">
-                            <Switch.Label
-                              as="p"
-                              className="text-sm font-medium text-gray-900"
-                              passive
                             >
-                              Allow mentions
-                            </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
-                              Adipiscing est venenatis enim molestie commodo eu
-                              gravid
-                            </Switch.Description>
-                          </div>
-                          <Switch
-                            checked={allowMentions}
-                            onChange={setAllowMentions}
-                            className={classNames(
-                              allowMentions ? "bg-teal-500" : "bg-gray-200",
-                              "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                            )}
+                              <span
+                                aria-hidden="true"
+                                className={classNames(
+                                  allowCommenting
+                                    ? "translate-x-5"
+                                    : "translate-x-0",
+                                  "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                )}
+                              />
+                            </Switch>
+                          </Switch.Group>
+                          <Switch.Group
+                            as="li"
+                            className="py-4 flex items-center justify-between"
                           >
-                            <span
-                              aria-hidden="true"
+                            <div className="flex flex-col">
+                              <Switch.Label
+                                as="p"
+                                className="text-sm font-medium text-gray-900"
+                                passive
+                              >
+                                Allow mentions
+                              </Switch.Label>
+                              <Switch.Description className="text-sm text-gray-500">
+                                Adipiscing est venenatis enim molestie commodo eu
+                                gravid
+                              </Switch.Description>
+                            </div>
+                            <Switch
+                              checked={allowMentions}
+                              onChange={setAllowMentions}
                               className={classNames(
-                                allowMentions
-                                  ? "translate-x-5"
-                                  : "translate-x-0",
-                                "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                allowMentions ? "bg-teal-500" : "bg-gray-200",
+                                "ml-4 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                               )}
-                            />
-                          </Switch>
-                        </Switch.Group>
-                      </ul>
-                    </div> */}
+                            >
+                              <span
+                                aria-hidden="true"
+                                className={classNames(
+                                  allowMentions
+                                    ? "translate-x-5"
+                                    : "translate-x-0",
+                                  "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                )}
+                              />
+                            </Switch>
+                          </Switch.Group>
+                        </ul>
+                      </div> */}
                     <div className="mt-4 py-4 px-4 flex justify-end sm:px-6">
                       <button
                         type="button"
@@ -592,5 +577,7 @@ export default function Settings(props) {
         </main>
       </div>
     );
+    }
   };
+  return null;
 }

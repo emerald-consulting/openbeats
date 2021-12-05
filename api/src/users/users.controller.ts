@@ -66,9 +66,10 @@ export class UsersController {
   ) {
     return this.usersService.UpdateName(id, 'family_name', LastName);
   }
-  @Get(':id')
+  @Get('id/:id')
   async GetId(@Param('id') id: string) {
-    return this.usersService.getProfileDetails(id);
+    console.log('id');
+    return await this.usersService.getProfileDetails(id);
   }
   // @Delete('avatar')
   // async deleteAvatar(@Req() request: RequestWithUser) {
@@ -85,7 +86,7 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':email')
+  @Get('/email/:email')
   getUserById(@Param('email') email: string) {
     return this.usersService.getByEmail(email);
   }

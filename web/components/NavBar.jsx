@@ -34,7 +34,11 @@ const NavBar = () => {
                 </PageLink>
               </NavItem>
               <NavItem>
-                <PageLink href="/team" className="nav-link" testId="navbar-home">
+                <PageLink
+                  href="/team"
+                  className="nav-link"
+                  testId="navbar-home"
+                >
                   Team
                 </PageLink>
               </NavItem>
@@ -43,7 +47,7 @@ const NavBar = () => {
                   FAQ
                 </PageLink>
               </NavItem>
-              
+
               {user && (
                 <>
                   <NavItem>
@@ -85,7 +89,7 @@ const NavBar = () => {
                       Settings
                     </PageLink>
                   </NavItem>
-                  
+
                   <NavItem>
                     <PageLink
                       href="/groups"

@@ -16,28 +16,36 @@ export default function Feed() {
   };
 
   const afterSubmit = (e, post) => {
-    setPosts([...posts, post])
+    setPosts([...posts, post]);
     setTextAreaShown(false);
   };
 
   const RenderPosts = () => {
     if (filteredPosts.length === 0)
-      return posts.slice().reverse().map((post) =>
-        <Card key={post.id.toString()} {...post} />)
+      return posts
+        .slice()
+        .reverse()
+        .map((post) => <Card key={post.id.toString()} {...post} />);
     else
-      return filteredPosts.slice().reverse().map((post) =>
-        <Card key={post.id.toString()} {...post} />)
-  }
+      return filteredPosts
+        .slice()
+        .reverse()
+        .map((post) => <Card key={post.id.toString()} {...post} />);
+  };
 
   const onFilterGenreChange = (e) => {
-    if (e.target.value === '')
-      setFilteredPosts([])
+    if (e.target.value === "") setFilteredPosts([]);
     else
-      setFilteredPosts(posts.filter(post => {
-        if (post.genre && post.genre.toLowerCase() === e.target.value.toLowerCase())
-          return post
-      }))
-  }
+      setFilteredPosts(
+        posts.filter((post) => {
+          if (
+            post.genre &&
+            post.genre.toLowerCase() === e.target.value.toLowerCase()
+          )
+            return post;
+        })
+      );
+  };
 
   useEffect(() => {
     axios.get(BASE_URL + 'posts')
@@ -62,7 +70,7 @@ export default function Feed() {
                   New Post
                 </button>
                 <br />
-                {isTextAreaShown && <TextArea afterSubmit={afterSubmit}/>}
+                {isTextAreaShown && <TextArea afterSubmit={afterSubmit} />}
               </div>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}

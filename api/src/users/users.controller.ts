@@ -66,7 +66,7 @@ export class UsersController {
   ) {
     return this.usersService.UpdateName(id, 'family_name', LastName);
   }
-  @Get(':id/genre')
+  @Get(':id')
   async GetId(@Param('id') id: string) {
     return this.usersService.getProfileDetails(id);
   }

@@ -7,7 +7,6 @@ import { CategoriesModule } from './categories/categories.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
-import { FacebookStrategy } from './facebook.strategy';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { AppGateway } from './AppGateway';
@@ -30,8 +29,6 @@ import { AppGateway } from './AppGateway';
         AWS_SECRET_ACCESS_KEY: Joi.string().required(),
         AWS_PUBLIC_BUCKET_NAME: Joi.string().required(),
         PORT: Joi.number(),
-        FACEBOOK_APP_ID: Joi.number().required(),
-        FACEBOOK_APP_SECRET: Joi.string().required(),
       }),
     }),
     AuthModule,

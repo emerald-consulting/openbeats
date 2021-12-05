@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
 
+import { BASE_URL } from '../env'
+
 class Wav extends Component {
   constructor(props) {
     super(props);
@@ -8,11 +10,11 @@ class Wav extends Component {
   }
 
   async componentDidMount() {
-    const baseUrl = "http://localhost:8000/files/";
     var fileId = this.props.props.fileId;
-    var url = await (await axios.get(baseUrl + fileId)).data.fileId;
-    var container = "#waveform" + this.props.props.id;
-    import("wavesurfer.js").then((obj) => {
+    var url = await (await axios.get(BASE_URL + 'files/' + fileId)).data.fileId;
+    var container = '#waveform' + this.props.props.id
+    import('wavesurfer.js')
+    .then(obj => {
       this.waveform = obj.default.create({
         container: container,
         fillParent: true,

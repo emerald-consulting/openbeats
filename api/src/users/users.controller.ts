@@ -66,9 +66,12 @@ export class UsersController {
   ) {
     return this.usersService.UpdateName(id, 'family_name', LastName);
   }
+  @Patch(':id/picture/')
+  async ModifyPicture(@Param('id') id: string, @Body() url: any) {
+    return this.usersService.UpdatePicture(id, url.picture);
+  }
   @Get(':id')
   async GetId(@Param('id') id: string) {
-    console.log('id');
     return await this.usersService.getProfileDetails(id);
   }
   // @Delete('avatar')

@@ -4,6 +4,7 @@ export default class UserData {
     this.firstName = data.given_name ?? "";
     this.lastName = data.family_name ?? "";
     this.email = data.email ?? "";
+    this.picture = data.picture;
 
     if (data.user_metadata) {
       this.bio = data.user_metadata.bio ?? "";
@@ -20,6 +21,7 @@ export default class UserData {
       bio: this.bio,
       genre: this.genre,
       age: this.age,
+      picture: this.picture
     };
   }
 }

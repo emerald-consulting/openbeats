@@ -11,6 +11,24 @@ export default function Settings() {
       .patch(`${BASE_URL}users/${userData.userId}/${dataName}/${value}`)
       .catch((e) => console.log(e));
 
+      const patchPicture = (url) =>
+      axios
+        .patch(`${BASE_URL}users/${userData.userId}/picture`, {'picture': url})
+        .catch((e) => console.log(e));
+
+  const onSetFileUrl = async (e) => {
+    const fileUploadForm = new FormData();
+    fileUploadForm.append("file", e.target.files[0]);
+    axios
+      .post(BASE_URL + "files/upload", fileUploadForm, {})
+      .then(function (response) {
+        setUserData(prevState => ({...prevState, picture: response.data.fileId}))
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     axios
       .get(FRONTEND_URL + "api/auth/me")
@@ -30,12 +48,17 @@ export default function Settings() {
     if (userData.genre) patchUserData("genre", userData.genre);
     if (userData.age) patchUserData("age", userData.age);
     if (userData.bio) patchUserData("bio", userData.bio);
+    if (userData.picture) patchPicture(userData.picture);
   };
 
   return (
     <div>
       <form>
         <h2 className="text-lg leading-6 font-medium text-gray-900">Profile</h2>
+        <label className="block text-sm font-medium text-gray-700">
+          Profile Picture
+        </label>
+        <input type="file" name="file" onChange={onSetFileUrl} />
         <p className="mt-1 text-sm text-gray-500">
           This information will be displayed publicly so be careful what you
           share.

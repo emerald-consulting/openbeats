@@ -2,8 +2,16 @@ import { DownloadIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import Wav from "./Wav";
 
-const baseUrl = `http://localhost:8000/files/download` || `https://openbeats.vercel.app/files/download`
+import { BASE_URL } from '../env'
 
+// const people = [
+//   {
+//     name: "Ryan Dils",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80",
+//   },
+//   // More people...
+// ];
 const activityItems = [
   {
     id: 1,
@@ -16,8 +24,9 @@ const activityItems = [
 export default function Card(post) {
   const downloadFile = () => {
     if (post.id) {
+      console.log(post)
       axios({
-        url: `http://localhost:8000/files/download/${post.id}`,
+        url: BASE_URL + 'files/download/' + post.fileId,
         method: "GET",
         responseType: "blob", // important
       }).then((response) => {

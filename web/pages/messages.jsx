@@ -3,8 +3,9 @@ import { io } from 'socket.io-client'
 import Message from "../components/Message";
 import MessageInput from "../components/MessageInput";
 
+import { BASE_URL } from '../env'
+
 export default function Messages () {
-    const baseUrl = "http://localhost:8000" || "https://openbeats.vercel.app"
     const socket = useRef(null);
     const [messages, setMessages] = useState([]);
     const [audio] = useState(typeof Audio !== "undefined" && new Audio('notification.mp3'));
@@ -16,11 +17,10 @@ export default function Messages () {
 
     const onSubmit = (e, message) => {
         socket.current.emit('msgToServer', message)
-        console.log(message)
     }
 
     useEffect(() => {
-        socket.current = io(baseUrl);
+        socket.current = io(BASE_URL);
         socket.current.on("message", (m) => handleMessage(m))
     }, [])
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import TextArea from "../components/TextArea";
 import Card from "../components/Card";
 
-const baseURL = "http://localhost:8000/posts/" || "https://openbeats.vercel.app/posts/";
+import { BASE_URL } from '../env'
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -40,7 +40,7 @@ export default function Feed() {
   }
 
   useEffect(() => {
-    axios.get(`${baseURL}`)
+    axios.get(BASE_URL + 'posts')
     .then((r) => setPosts([...r.data]))
     .catch(e => console.log(e));
   }, []);

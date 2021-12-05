@@ -72,26 +72,6 @@ const NavBar = () => {
 
                   <NavItem>
                     <PageLink
-                      href="/favorites"
-                      className="nav-link"
-                      testId="navbar-csr"
-                    >
-                      Favorites
-                    </PageLink>
-                  </NavItem>
-
-                  <NavItem>
-                    <PageLink
-                      href="/settings"
-                      className="nav-link"
-                      testId="navbar-csr"
-                    >
-                      Settings
-                    </PageLink>
-                  </NavItem>
-
-                  <NavItem>
-                    <PageLink
                       href="/groups"
                       className="nav-link"
                       testId="navbar-csr"

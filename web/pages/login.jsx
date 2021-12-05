@@ -3,7 +3,7 @@ import { route } from "next/dist/server/router";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 
-const baseURL = "http://localhost:8000/auth/log-in";
+import { BASE_URL } from '../env'
 
 export default function Example() {
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ export default function Example() {
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(baseURL, { email: email, password: password })
+      .post(BASE_URL + 'auth/log-in', { email: email, password: password })
       .then(function (response) {
         // handle success
         console.log(response);

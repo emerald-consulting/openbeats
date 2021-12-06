@@ -2,4 +2,4 @@
 export const BASE_URL = "https://openbeats.herokuapp.com/";
 
 //export const FRONTEND_URL = "http://localhost:3000/"
-export const FRONTEND_URL = "http://openbeats.vercel.app/"
+export const FRONTEND_URL = "https://openbeats.vercel.app/"

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { FRONTEND_URL, BASE_URL } from "../env";
+import UserData from "./UserData";
 import {
   Collapse,
   Container,
@@ -11,7 +14,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser, UserProfile } from "@auth0/nextjs-auth0";
 
 import PageLink from "./PageLink";
 import AnchorLink from "./AnchorLink";
@@ -20,6 +23,20 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, isLoading } = useUser();
   const toggle = () => setIsOpen(!isOpen);
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(FRONTEND_URL + "api/auth/me")
+      .then((res) => res.data.sub.split("|")[1])
+      .then((id) =>
+        axios.get(BASE_URL + "users/" + id).then((res) => {
+          const user = new UserData(id, res.data);
+          console.log(user)
+          setUserData(user);
+        })
+      );
+  }, []);
 
   return (
     <div className="nav-container" data-testid="navbar">
@@ -34,7 +51,11 @@ const NavBar = () => {
                 </PageLink>
               </NavItem>
               <NavItem>
-                <PageLink href="/team" className="nav-link" testId="navbar-home">
+                <PageLink
+                  href="/team"
+                  className="nav-link"
+                  testId="navbar-home"
+                >
                   Team
                 </PageLink>
               </NavItem>
@@ -43,7 +64,7 @@ const NavBar = () => {
                   FAQ
                 </PageLink>
               </NavItem>
-              
+
               {user && (
                 <>
                   <NavItem>
@@ -66,26 +87,6 @@ const NavBar = () => {
                     </PageLink>
                   </NavItem>
 
-                  <NavItem>
-                    <PageLink
-                      href="/favorites"
-                      className="nav-link"
-                      testId="navbar-csr"
-                    >
-                      Favorites
-                    </PageLink>
-                  </NavItem>
-
-                  <NavItem>
-                    <PageLink
-                      href="/settings"
-                      className="nav-link"
-                      testId="navbar-csr"
-                    >
-                      Settings
-                    </PageLink>
-                  </NavItem>
-                  
                   <NavItem>
                     <PageLink
                       href="/groups"
@@ -129,7 +130,7 @@ const NavBar = () => {
                 >
                   <DropdownToggle nav caret id="profileDropDown">
                     <img
-                      src={user.picture}
+                      src={userData.picture}
                       alt="Profile"
                       className="nav-user-profile rounded-circle"
                       width="50"
@@ -186,7 +187,7 @@ const NavBar = () => {
                 <NavItem>
                   <span className="user-info">
                     <img
-                      src={user.picture}
+                      src={userData.picture}
                       alt="Profile"
                       className="nav-user-profile d-inline-block rounded-circle mr-3"
                       width="50"

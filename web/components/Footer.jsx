@@ -2,12 +2,12 @@
 const navigation = {
   main: [
     { name: "About", href: "#" },
-   // { name: "Blog", href: "#" },
+    // { name: "Blog", href: "#" },
     { name: "Jobs", href: "#" },
-    { name: "FAQ",  href: '/FAQ' },
+    { name: "FAQ", href: "/FAQ" },
     { name: "Press", href: "#" },
-   // { name: "Accessibility", href: "#" },
-    { name: "Developers", href: '/team' },
+    // { name: "Accessibility", href: "#" },
+    { name: "Developers", href: "/team" },
   ],
   social: [
     {

@@ -10,6 +10,7 @@ import { FilesModule } from './files/files.module';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { AppGateway } from './AppGateway';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AppGateway } from './AppGateway';
     PostsModule,
     FilesModule,
     UsersModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppGateway],

@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from 'src/users/users.module';
 import { SearchService } from './search.service';
 import { SearchController } from './search.controller';
+import { User } from 'src/users/entities/user.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [UsersModule],
+  imports: [TypeOrmModule.forFeature([User])],
   providers: [SearchService],
   controllers: [SearchController],
   exports: [SearchService],

@@ -11,6 +11,8 @@ import {
   ClassSerializerInterceptor,
   Req,
   UploadedFile,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import RequestWithUser from '../auth/requestWithUser.interface';
 import { SearchService } from './search.service';
@@ -22,4 +24,9 @@ import { ApiTags } from '@nestjs/swagger';
 @UseInterceptors(ClassSerializerInterceptor)
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
+
+  @Get('/users/:email')
+  searchUserByEmail(@Param('email') email: string) {
+    return this.searchService.searchUserByEmail(email);
+  }
 }

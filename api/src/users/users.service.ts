@@ -7,7 +7,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Connection } from 'typeorm';
+import { Repository, Connection, Like } from 'typeorm';
 import { FilesService } from '../files/files.service';
 import * as bcrypt from 'bcrypt';
 import axios from 'axios';

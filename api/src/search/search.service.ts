@@ -21,14 +21,26 @@ export class SearchService {
     @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
 
+  /* Search users */
   async searchUserByEmail(query: string) {
     const results = await this.usersRepository.find({
       email: Like(`%${query}%`),
     });
-
     if (results) {
       return results;
     }
+    return new HttpException('No matches found', HttpStatus.NOT_FOUND);
+  }
+
+  async searchUserByUsername(query: string) {
+    const results = await this.usersRepository.find({
+      username: Like(`%${query}%`),
+    });
+    if (results) {
+      return results;
+    }
+    return new HttpException('No matches found', HttpStatus.NOT_FOUND);
+  }
 
     return new HttpException('No matches found', HttpStatus.NOT_FOUND);
   }

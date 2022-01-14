@@ -14,6 +14,11 @@ import { Post } from '../../posts/entities/post.entity';
 export class User {
   @PrimaryGeneratedColumn()
   public id?: number;
+
+  @Column({ unique: true, nullable: true })
+  @Expose()
+  public username: string;
+
   @Column({ unique: true })
   @Expose()
   public email: string;

@@ -25,8 +25,14 @@ import { ApiTags } from '@nestjs/swagger';
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
-  @Get('/users/:email')
+  /* Search for user endpoints */
+  @Get('/users/email/:email')
   searchUserByEmail(@Param('email') email: string) {
     return this.searchService.searchUserByEmail(email);
+  }
+
+  @Get('/users/username/:username')
+  searchUserByUsername(@Param('username') username: string) {
+    return this.searchService.searchUserByUsername(username);
   }
 }

@@ -35,4 +35,10 @@ export class SearchController {
   searchUserByUsername(@Param('username') username: string) {
     return this.searchService.searchUserByUsername(username);
   }
+
+  /* Search for post endpoints */
+  @Get('/posts/title/:title')
+  searchPostByTitle(@Param('title') title: string) {
+    return this.searchService.searchPostByTitle(title);
+  }
 }

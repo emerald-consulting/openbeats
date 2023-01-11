@@ -48,7 +48,7 @@
     "bcrypt": "^5.0.1",
     "cache-manager": "^3.4.4",
     "class-transformer": "0.4.0",
-    "class-validator": "^0.13.1",
+    "class-validator": "^0.14.0",
     "cluster": "^0.7.7",
     "cookie": "^0.4.1",
     "cookie-parser": "^1.4.5",
